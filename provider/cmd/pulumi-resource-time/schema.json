@@ -1,0 +1,546 @@
+{
+    "name": "time",
+    "description": "A Pulumi package to create time resources in Pulumi programs.",
+    "keywords": [
+        "pulumi",
+        "time"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`time` Terraform Provider](https://github.com/hashicorp/terraform-provider-time).",
+    "repository": "https://github.com/pulumi/pulumi-time",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {},
+    "provider": {
+        "description": "The provider type for the time package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n"
+    },
+    "resources": {
+        "time:index/timeOffset:TimeOffset": {
+            "description": "\n\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console\n\n```sh\n $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0\n```\n\n The `triggers` argument cannot be imported. ",
+            "properties": {
+                "baseRfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "day": {
+                    "type": "integer",
+                    "description": "Number day of offset timestamp.\n"
+                },
+                "hour": {
+                    "type": "integer",
+                    "description": "Number hour of offset timestamp.\n"
+                },
+                "minute": {
+                    "type": "integer",
+                    "description": "Number minute of offset timestamp.\n"
+                },
+                "month": {
+                    "type": "integer",
+                    "description": "Number month of offset timestamp.\n"
+                },
+                "offsetDays": {
+                    "type": "integer",
+                    "description": "Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetHours": {
+                    "type": "integer",
+                    "description": "Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetMinutes": {
+                    "type": "integer",
+                    "description": "Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetMonths": {
+                    "type": "integer",
+                    "description": "Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetSeconds": {
+                    "type": "integer",
+                    "description": "Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetYears": {
+                    "type": "integer",
+                    "description": "Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "rfc3339": {
+                    "type": "string",
+                    "description": "UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.\n"
+                },
+                "second": {
+                    "type": "integer",
+                    "description": "Number second of offset timestamp.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                },
+                "unix": {
+                    "type": "integer",
+                    "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                },
+                "year": {
+                    "type": "integer",
+                    "description": "Number year of offset timestamp.\n"
+                }
+            },
+            "required": [
+                "baseRfc3339",
+                "day",
+                "hour",
+                "minute",
+                "month",
+                "rfc3339",
+                "second",
+                "unix",
+                "year"
+            ],
+            "inputProperties": {
+                "baseRfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "offsetDays": {
+                    "type": "integer",
+                    "description": "Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetHours": {
+                    "type": "integer",
+                    "description": "Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetMinutes": {
+                    "type": "integer",
+                    "description": "Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetMonths": {
+                    "type": "integer",
+                    "description": "Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetSeconds": {
+                    "type": "integer",
+                    "description": "Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "offsetYears": {
+                    "type": "integer",
+                    "description": "Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TimeOffset resources.\n",
+                "properties": {
+                    "baseRfc3339": {
+                        "type": "string",
+                        "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    },
+                    "day": {
+                        "type": "integer",
+                        "description": "Number day of offset timestamp.\n"
+                    },
+                    "hour": {
+                        "type": "integer",
+                        "description": "Number hour of offset timestamp.\n"
+                    },
+                    "minute": {
+                        "type": "integer",
+                        "description": "Number minute of offset timestamp.\n"
+                    },
+                    "month": {
+                        "type": "integer",
+                        "description": "Number month of offset timestamp.\n"
+                    },
+                    "offsetDays": {
+                        "type": "integer",
+                        "description": "Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "offsetHours": {
+                        "type": "integer",
+                        "description": "Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "offsetMinutes": {
+                        "type": "integer",
+                        "description": "Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "offsetMonths": {
+                        "type": "integer",
+                        "description": "Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "offsetSeconds": {
+                        "type": "integer",
+                        "description": "Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "offsetYears": {
+                        "type": "integer",
+                        "description": "Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.\n"
+                    },
+                    "rfc3339": {
+                        "type": "string",
+                        "description": "UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.\n"
+                    },
+                    "second": {
+                        "type": "integer",
+                        "description": "Number second of offset timestamp.\n"
+                    },
+                    "triggers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                    },
+                    "unix": {
+                        "type": "integer",
+                        "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "description": "Number year of offset timestamp.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "time:index/timeRotating:TimeRotating": {
+            "description": "\n\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days console\n\n```sh\n $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,0,0,30,0,0\n```\n\n Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g. console\n\n```sh\n $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
+            "properties": {
+                "day": {
+                    "type": "integer",
+                    "description": "Number day of timestamp.\n"
+                },
+                "hour": {
+                    "type": "integer",
+                    "description": "Number hour of timestamp.\n"
+                },
+                "minute": {
+                    "type": "integer",
+                    "description": "Number minute of timestamp.\n"
+                },
+                "month": {
+                    "type": "integer",
+                    "description": "Number month of timestamp.\n"
+                },
+                "rfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "rotationDays": {
+                    "type": "integer",
+                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationHours": {
+                    "type": "integer",
+                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationMinutes": {
+                    "type": "integer",
+                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationMonths": {
+                    "type": "integer",
+                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationRfc3339": {
+                    "type": "string",
+                    "description": "Configure the rotation timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationYears": {
+                    "type": "integer",
+                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "second": {
+                    "type": "integer",
+                    "description": "Number second of timestamp.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n"
+                },
+                "unix": {
+                    "type": "integer",
+                    "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                },
+                "year": {
+                    "type": "integer",
+                    "description": "Number year of timestamp.\n"
+                }
+            },
+            "required": [
+                "day",
+                "hour",
+                "minute",
+                "month",
+                "rfc3339",
+                "rotationRfc3339",
+                "second",
+                "unix",
+                "year"
+            ],
+            "inputProperties": {
+                "rfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "rotationDays": {
+                    "type": "integer",
+                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationHours": {
+                    "type": "integer",
+                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationMinutes": {
+                    "type": "integer",
+                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationMonths": {
+                    "type": "integer",
+                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationRfc3339": {
+                    "type": "string",
+                    "description": "Configure the rotation timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "rotationYears": {
+                    "type": "integer",
+                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TimeRotating resources.\n",
+                "properties": {
+                    "day": {
+                        "type": "integer",
+                        "description": "Number day of timestamp.\n"
+                    },
+                    "hour": {
+                        "type": "integer",
+                        "description": "Number hour of timestamp.\n"
+                    },
+                    "minute": {
+                        "type": "integer",
+                        "description": "Number minute of timestamp.\n"
+                    },
+                    "month": {
+                        "type": "integer",
+                        "description": "Number month of timestamp.\n"
+                    },
+                    "rfc3339": {
+                        "type": "string",
+                        "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    },
+                    "rotationDays": {
+                        "type": "integer",
+                        "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "rotationHours": {
+                        "type": "integer",
+                        "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "rotationMinutes": {
+                        "type": "integer",
+                        "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "rotationMonths": {
+                        "type": "integer",
+                        "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "rotationRfc3339": {
+                        "type": "string",
+                        "description": "Configure the rotation timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "rotationYears": {
+                        "type": "integer",
+                        "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.\n"
+                    },
+                    "second": {
+                        "type": "integer",
+                        "description": "Number second of timestamp.\n"
+                    },
+                    "triggers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n"
+                    },
+                    "unix": {
+                        "type": "integer",
+                        "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "description": "Number year of timestamp.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "time:index/timeStatic:TimeStatic": {
+            "description": "\n\n\n## Import\n\nThis resource can be imported using the UTC RFC3339 value, e.g. console\n\n```sh\n $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
+            "properties": {
+                "day": {
+                    "type": "integer",
+                    "description": "Number day of timestamp.\n"
+                },
+                "hour": {
+                    "type": "integer",
+                    "description": "Number hour of timestamp.\n"
+                },
+                "minute": {
+                    "type": "integer",
+                    "description": "Number minute of timestamp.\n"
+                },
+                "month": {
+                    "type": "integer",
+                    "description": "Number month of timestamp.\n"
+                },
+                "rfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "second": {
+                    "type": "integer",
+                    "description": "Number second of timestamp.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                },
+                "unix": {
+                    "type": "integer",
+                    "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                },
+                "year": {
+                    "type": "integer",
+                    "description": "Number year of timestamp.\n"
+                }
+            },
+            "required": [
+                "day",
+                "hour",
+                "minute",
+                "month",
+                "rfc3339",
+                "second",
+                "unix",
+                "year"
+            ],
+            "inputProperties": {
+                "rfc3339": {
+                    "type": "string",
+                    "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                },
+                "triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TimeStatic resources.\n",
+                "properties": {
+                    "day": {
+                        "type": "integer",
+                        "description": "Number day of timestamp.\n"
+                    },
+                    "hour": {
+                        "type": "integer",
+                        "description": "Number hour of timestamp.\n"
+                    },
+                    "minute": {
+                        "type": "integer",
+                        "description": "Number minute of timestamp.\n"
+                    },
+                    "month": {
+                        "type": "integer",
+                        "description": "Number month of timestamp.\n"
+                    },
+                    "rfc3339": {
+                        "type": "string",
+                        "description": "Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    },
+                    "second": {
+                        "type": "integer",
+                        "description": "Number second of timestamp.\n"
+                    },
+                    "triggers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
+                    },
+                    "unix": {
+                        "type": "integer",
+                        "description": "Number of seconds since epoch time, e.g. `1581489373`.\n"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "description": "Number year of timestamp.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-time/sdk/go/time"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package to create time resources in Pulumi programs.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-time` repo](https://github.com/pulumi/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-time` repo](https://github.com/pulumi/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
