@@ -5,6 +5,35 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Basic Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as time from "@pulumiverse/time";
+ *
+ * const example = new time.TimeStatic("example", {});
+ * export const currentTime = example.rfc3339;
+ * ```
+ * ### Triggers Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as time from "@pulumiverse/time";
+ *
+ * const amiUpdate = new time.TimeStatic("amiUpdate", {triggers: {
+ *     ami_id: data.aws_ami.example.id,
+ * }});
+ * const server = new aws.ec2.Instance("server", {
+ *     ami: amiUpdate.triggers.apply(triggers => triggers?.amiId),
+ *     tags: {
+ *         AmiUpdateTime: amiUpdate.rfc3339,
+ *     },
+ * });
+ * // ... (other aws_instance arguments) ...
+ * ```
+ *
  * ## Import
  *
  * This resource can be imported using the UTC RFC3339 value, e.g. console
@@ -89,35 +118,33 @@ export class TimeStatic extends pulumi.CustomResource {
      */
     constructor(name: string, args?: TimeStaticArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TimeStaticArgs | TimeStaticState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TimeStaticState | undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["hour"] = state ? state.hour : undefined;
-            inputs["minute"] = state ? state.minute : undefined;
-            inputs["month"] = state ? state.month : undefined;
-            inputs["rfc3339"] = state ? state.rfc3339 : undefined;
-            inputs["second"] = state ? state.second : undefined;
-            inputs["triggers"] = state ? state.triggers : undefined;
-            inputs["unix"] = state ? state.unix : undefined;
-            inputs["year"] = state ? state.year : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["hour"] = state ? state.hour : undefined;
+            resourceInputs["minute"] = state ? state.minute : undefined;
+            resourceInputs["month"] = state ? state.month : undefined;
+            resourceInputs["rfc3339"] = state ? state.rfc3339 : undefined;
+            resourceInputs["second"] = state ? state.second : undefined;
+            resourceInputs["triggers"] = state ? state.triggers : undefined;
+            resourceInputs["unix"] = state ? state.unix : undefined;
+            resourceInputs["year"] = state ? state.year : undefined;
         } else {
             const args = argsOrState as TimeStaticArgs | undefined;
-            inputs["rfc3339"] = args ? args.rfc3339 : undefined;
-            inputs["triggers"] = args ? args.triggers : undefined;
-            inputs["day"] = undefined /*out*/;
-            inputs["hour"] = undefined /*out*/;
-            inputs["minute"] = undefined /*out*/;
-            inputs["month"] = undefined /*out*/;
-            inputs["second"] = undefined /*out*/;
-            inputs["unix"] = undefined /*out*/;
-            inputs["year"] = undefined /*out*/;
+            resourceInputs["rfc3339"] = args ? args.rfc3339 : undefined;
+            resourceInputs["triggers"] = args ? args.triggers : undefined;
+            resourceInputs["day"] = undefined /*out*/;
+            resourceInputs["hour"] = undefined /*out*/;
+            resourceInputs["minute"] = undefined /*out*/;
+            resourceInputs["month"] = undefined /*out*/;
+            resourceInputs["second"] = undefined /*out*/;
+            resourceInputs["unix"] = undefined /*out*/;
+            resourceInputs["year"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TimeStatic.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TimeStatic.__pulumiType, name, resourceInputs, opts);
     }
 }
 

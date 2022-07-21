@@ -18,8 +18,8 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	time "github.com/pulumi/pulumi-time/provider"
-	"github.com/pulumi/pulumi-time/provider/pkg/version"
+	time "github.com/pulumiverse/pulumi-time/provider"
+	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
 func main() {

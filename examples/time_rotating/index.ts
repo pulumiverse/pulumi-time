@@ -1,4 +1,4 @@
-import * as time from "@pulumi/time";
+import * as time from "@pulumiverse/time";
 
 export const time_rotation = new time.TimeRotating("my-time-rotating", {
     rotationMinutes: 1,

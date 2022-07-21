@@ -5,6 +5,38 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Basic Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as time from "@pulumiverse/time";
+ *
+ * const example = new time.TimeOffset("example", {offsetDays: 7});
+ * export const oneWeekFromNow = example.rfc3339;
+ * ```
+ * ### Triggers Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as time from "@pulumiverse/time";
+ *
+ * const amiUpdate = new time.TimeOffset("amiUpdate", {
+ *     triggers: {
+ *         ami_id: data.aws_ami.example.id,
+ *     },
+ *     offsetDays: 7,
+ * });
+ * const server = new aws.ec2.Instance("server", {
+ *     ami: amiUpdate.triggers.apply(triggers => triggers?.amiId),
+ *     tags: {
+ *         ExpirationTime: amiUpdate.rfc3339,
+ *     },
+ * });
+ * // ... (other aws_instance arguments) ...
+ * ```
+ *
  * ## Import
  *
  * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
@@ -117,49 +149,47 @@ export class TimeOffset extends pulumi.CustomResource {
      */
     constructor(name: string, args?: TimeOffsetArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TimeOffsetArgs | TimeOffsetState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TimeOffsetState | undefined;
-            inputs["baseRfc3339"] = state ? state.baseRfc3339 : undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["hour"] = state ? state.hour : undefined;
-            inputs["minute"] = state ? state.minute : undefined;
-            inputs["month"] = state ? state.month : undefined;
-            inputs["offsetDays"] = state ? state.offsetDays : undefined;
-            inputs["offsetHours"] = state ? state.offsetHours : undefined;
-            inputs["offsetMinutes"] = state ? state.offsetMinutes : undefined;
-            inputs["offsetMonths"] = state ? state.offsetMonths : undefined;
-            inputs["offsetSeconds"] = state ? state.offsetSeconds : undefined;
-            inputs["offsetYears"] = state ? state.offsetYears : undefined;
-            inputs["rfc3339"] = state ? state.rfc3339 : undefined;
-            inputs["second"] = state ? state.second : undefined;
-            inputs["triggers"] = state ? state.triggers : undefined;
-            inputs["unix"] = state ? state.unix : undefined;
-            inputs["year"] = state ? state.year : undefined;
+            resourceInputs["baseRfc3339"] = state ? state.baseRfc3339 : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["hour"] = state ? state.hour : undefined;
+            resourceInputs["minute"] = state ? state.minute : undefined;
+            resourceInputs["month"] = state ? state.month : undefined;
+            resourceInputs["offsetDays"] = state ? state.offsetDays : undefined;
+            resourceInputs["offsetHours"] = state ? state.offsetHours : undefined;
+            resourceInputs["offsetMinutes"] = state ? state.offsetMinutes : undefined;
+            resourceInputs["offsetMonths"] = state ? state.offsetMonths : undefined;
+            resourceInputs["offsetSeconds"] = state ? state.offsetSeconds : undefined;
+            resourceInputs["offsetYears"] = state ? state.offsetYears : undefined;
+            resourceInputs["rfc3339"] = state ? state.rfc3339 : undefined;
+            resourceInputs["second"] = state ? state.second : undefined;
+            resourceInputs["triggers"] = state ? state.triggers : undefined;
+            resourceInputs["unix"] = state ? state.unix : undefined;
+            resourceInputs["year"] = state ? state.year : undefined;
         } else {
             const args = argsOrState as TimeOffsetArgs | undefined;
-            inputs["baseRfc3339"] = args ? args.baseRfc3339 : undefined;
-            inputs["offsetDays"] = args ? args.offsetDays : undefined;
-            inputs["offsetHours"] = args ? args.offsetHours : undefined;
-            inputs["offsetMinutes"] = args ? args.offsetMinutes : undefined;
-            inputs["offsetMonths"] = args ? args.offsetMonths : undefined;
-            inputs["offsetSeconds"] = args ? args.offsetSeconds : undefined;
-            inputs["offsetYears"] = args ? args.offsetYears : undefined;
-            inputs["triggers"] = args ? args.triggers : undefined;
-            inputs["day"] = undefined /*out*/;
-            inputs["hour"] = undefined /*out*/;
-            inputs["minute"] = undefined /*out*/;
-            inputs["month"] = undefined /*out*/;
-            inputs["rfc3339"] = undefined /*out*/;
-            inputs["second"] = undefined /*out*/;
-            inputs["unix"] = undefined /*out*/;
-            inputs["year"] = undefined /*out*/;
+            resourceInputs["baseRfc3339"] = args ? args.baseRfc3339 : undefined;
+            resourceInputs["offsetDays"] = args ? args.offsetDays : undefined;
+            resourceInputs["offsetHours"] = args ? args.offsetHours : undefined;
+            resourceInputs["offsetMinutes"] = args ? args.offsetMinutes : undefined;
+            resourceInputs["offsetMonths"] = args ? args.offsetMonths : undefined;
+            resourceInputs["offsetSeconds"] = args ? args.offsetSeconds : undefined;
+            resourceInputs["offsetYears"] = args ? args.offsetYears : undefined;
+            resourceInputs["triggers"] = args ? args.triggers : undefined;
+            resourceInputs["day"] = undefined /*out*/;
+            resourceInputs["hour"] = undefined /*out*/;
+            resourceInputs["minute"] = undefined /*out*/;
+            resourceInputs["month"] = undefined /*out*/;
+            resourceInputs["rfc3339"] = undefined /*out*/;
+            resourceInputs["second"] = undefined /*out*/;
+            resourceInputs["unix"] = undefined /*out*/;
+            resourceInputs["year"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TimeOffset.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TimeOffset.__pulumiType, name, resourceInputs, opts);
     }
 }
 

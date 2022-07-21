@@ -11,11 +11,11 @@ This package is available in many languages in the standard packaging formats.
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    $ npm install @pulumi/time
+    $ npm install @pulumiverse/time
 
 or `yarn`:
 
-    $ yarn add @pulumi/time
+    $ yarn add @pulumiverse/time
 
 ### Python
 
@@ -27,7 +27,7 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-time/sdk/v4/go/...
+    $ go get github.com/pulumiverse/pulumi-time/sdk/go/...
 
 ### .NET
 
@@ -37,7 +37,7 @@ To use from .NET, install using `dotnet add package`:
 
 ## Concepts
 
-The `@pulumi/time` package provides a strongly-typed means to build cloud applications that create
+The `@pulumiverse/time` package provides a strongly-typed means to build cloud applications that create
 and interact closely with Time resources.
 
 ## Reference

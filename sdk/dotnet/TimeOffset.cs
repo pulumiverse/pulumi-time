@@ -6,10 +6,66 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Time
+namespace Pulumiverse.Time
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Basic Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Time.TimeOffset("example", new Time.TimeOffsetArgs
+    ///         {
+    ///             OffsetDays = 7,
+    ///         });
+    ///         this.OneWeekFromNow = example.Rfc3339;
+    ///     }
+    /// 
+    ///     [Output("oneWeekFromNow")]
+    ///     public Output&lt;string&gt; OneWeekFromNow { get; set; }
+    /// }
+    /// ```
+    /// ### Triggers Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var amiUpdate = new Time.TimeOffset("amiUpdate", new Time.TimeOffsetArgs
+    ///         {
+    ///             Triggers = 
+    ///             {
+    ///                 { "ami_id", data.Aws_ami.Example.Id },
+    ///             },
+    ///             OffsetDays = 7,
+    ///         });
+    ///         var server = new Aws.Ec2.Instance("server", new Aws.Ec2.InstanceArgs
+    ///         {
+    ///             Ami = amiUpdate.Triggers.Apply(triggers =&gt; triggers?.AmiId),
+    ///             Tags = 
+    ///             {
+    ///                 { "ExpirationTime", amiUpdate.Rfc3339 },
+    ///             },
+    ///         });
+    ///         // ... (other aws_instance arguments) ...
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console

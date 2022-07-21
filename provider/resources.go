@@ -17,15 +17,13 @@ package time
 import (
 	"fmt"
 	"path/filepath"
-	"unicode"
 
 	tftime "github.com/hashicorp/terraform-provider-time/shim"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi-time/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -36,24 +34,6 @@ const (
 	// modules:
 	mainMod = "index" // the time module
 )
-
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
-}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -76,32 +56,40 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:             []string{"pulumi", "time"},
 		License:              "Apache-2.0",
 		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-time",
+		Repository:           "https://github.com/pulumiverse/pulumi-time",
 		Config:               map[string]*tfbridge.SchemaInfo{},
 		GitHubOrg:            "hashicorp",
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"time_offset": {
-				Tok: makeResource(mainMod, "TimeOffset"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeOffset"),
 				Docs: &tfbridge.DocInfo{
-					Source: "offset.html.markdown",
+					Source: "website/docs/r/offset.html.markdown",
 				},
 			},
 			"time_rotating": {
-				Tok: makeResource(mainMod, "TimeRotating"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeRotating"),
 				Docs: &tfbridge.DocInfo{
-					Source: "rotating.html.markdown",
+					Source: "website/docs/r/rotating.html.markdown",
+				},
+			},
+			"time_sleep": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeSleep"),
+				Docs: &tfbridge.DocInfo{
+					Source: "website/docs/r/sleep.html.markdown",
 				},
 			},
 			"time_static": {
-				Tok: makeResource(mainMod, "TimeStatic"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeStatic"),
 				Docs: &tfbridge.DocInfo{
-					Source: "static.html.markdown",
+					Source: "website/docs/r/static.html.markdown",
 				},
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@pulumiverse/time",
+
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -116,6 +104,7 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
+			PackageName: "pulumiverse_time",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -123,7 +112,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -131,9 +120,14 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Pulumiverse",
+
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+		},
+		Java: &tfbridge.JavaInfo{
+			BasePackage: "com.pulumiverse",
 		},
 	}
 

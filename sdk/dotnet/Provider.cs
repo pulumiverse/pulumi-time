@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Time
+namespace Pulumiverse.Time
 {
     /// <summary>
     /// The provider type for the time package. By default, resources use package-wide configuration

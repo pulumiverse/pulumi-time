@@ -6,10 +6,64 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Time
+namespace Pulumiverse.Time
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Basic Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Time.TimeStatic("example", new Time.TimeStaticArgs
+    ///         {
+    ///         });
+    ///         this.CurrentTime = example.Rfc3339;
+    ///     }
+    /// 
+    ///     [Output("currentTime")]
+    ///     public Output&lt;string&gt; CurrentTime { get; set; }
+    /// }
+    /// ```
+    /// ### Triggers Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var amiUpdate = new Time.TimeStatic("amiUpdate", new Time.TimeStaticArgs
+    ///         {
+    ///             Triggers = 
+    ///             {
+    ///                 { "ami_id", data.Aws_ami.Example.Id },
+    ///             },
+    ///         });
+    ///         var server = new Aws.Ec2.Instance("server", new Aws.Ec2.InstanceArgs
+    ///         {
+    ///             Ami = amiUpdate.Triggers.Apply(triggers =&gt; triggers?.AmiId),
+    ///             Tags = 
+    ///             {
+    ///                 { "AmiUpdateTime", amiUpdate.Rfc3339 },
+    ///             },
+    ///         });
+    ///         // ... (other aws_instance arguments) ...
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the UTC RFC3339 value, e.g. console

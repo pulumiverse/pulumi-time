@@ -6,10 +6,32 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Time
+namespace Pulumiverse.Time
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// This example configuration will rotate (destroy/create) the resource every 30 days.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Time.TimeRotating("example", new Time.TimeRotatingArgs
+    ///         {
+    ///             RotationDays = 30,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days console

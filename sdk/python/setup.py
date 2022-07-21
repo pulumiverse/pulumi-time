@@ -37,7 +37,7 @@ def readme():
         return "time Pulumi Package - Development Version"
 
 
-setup(name='pulumi_time',
+setup(name='pulumiverse_time',
       version=VERSION,
       description="A Pulumi package to create time resources in Pulumi programs.",
       long_description=readme(),
@@ -48,13 +48,14 @@ setup(name='pulumi_time',
       keywords='pulumi time',
       url='https://pulumi.io',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-time'
+          'Repository': 'https://github.com/pulumiverse/pulumi-time'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_time': [
+          'pulumiverse_time': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

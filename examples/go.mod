@@ -1,3 +1,3 @@
-module github.com/pulumi/pulumi-time/examples
+module github.com/pulumiverse/pulumi-time/examples
 
 go 1.16

@@ -8,11 +8,13 @@ import * as utilities from "./utilities";
 export * from "./provider";
 export * from "./timeOffset";
 export * from "./timeRotating";
+export * from "./timeSleep";
 export * from "./timeStatic";
 
 // Import resources to register:
 import { TimeOffset } from "./timeOffset";
 import { TimeRotating } from "./timeRotating";
+import { TimeSleep } from "./timeSleep";
 import { TimeStatic } from "./timeStatic";
 
 const _module = {
@@ -23,6 +25,8 @@ const _module = {
                 return new TimeOffset(name, <any>undefined, { urn })
             case "time:index/timeRotating:TimeRotating":
                 return new TimeRotating(name, <any>undefined, { urn })
+            case "time:index/timeSleep:TimeSleep":
+                return new TimeSleep(name, <any>undefined, { urn })
             case "time:index/timeStatic:TimeStatic":
                 return new TimeStatic(name, <any>undefined, { urn })
             default:
@@ -32,6 +36,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("time", "index/timeOffset", _module)
 pulumi.runtime.registerResourceModule("time", "index/timeRotating", _module)
+pulumi.runtime.registerResourceModule("time", "index/timeSleep", _module)
 pulumi.runtime.registerResourceModule("time", "index/timeStatic", _module)
 
 import { Provider } from "./provider";

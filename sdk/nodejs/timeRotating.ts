@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * This example configuration will rotate (destroy/create) the resource every 30 days.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as time from "@pulumi/time";
+ *
+ * const example = new time.TimeRotating("example", {
+ *     rotationDays: 30,
+ * });
+ * ```
+ *
  * ## Import
  *
  * This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days console
@@ -119,47 +132,45 @@ export class TimeRotating extends pulumi.CustomResource {
      */
     constructor(name: string, args?: TimeRotatingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TimeRotatingArgs | TimeRotatingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TimeRotatingState | undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["hour"] = state ? state.hour : undefined;
-            inputs["minute"] = state ? state.minute : undefined;
-            inputs["month"] = state ? state.month : undefined;
-            inputs["rfc3339"] = state ? state.rfc3339 : undefined;
-            inputs["rotationDays"] = state ? state.rotationDays : undefined;
-            inputs["rotationHours"] = state ? state.rotationHours : undefined;
-            inputs["rotationMinutes"] = state ? state.rotationMinutes : undefined;
-            inputs["rotationMonths"] = state ? state.rotationMonths : undefined;
-            inputs["rotationRfc3339"] = state ? state.rotationRfc3339 : undefined;
-            inputs["rotationYears"] = state ? state.rotationYears : undefined;
-            inputs["second"] = state ? state.second : undefined;
-            inputs["triggers"] = state ? state.triggers : undefined;
-            inputs["unix"] = state ? state.unix : undefined;
-            inputs["year"] = state ? state.year : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["hour"] = state ? state.hour : undefined;
+            resourceInputs["minute"] = state ? state.minute : undefined;
+            resourceInputs["month"] = state ? state.month : undefined;
+            resourceInputs["rfc3339"] = state ? state.rfc3339 : undefined;
+            resourceInputs["rotationDays"] = state ? state.rotationDays : undefined;
+            resourceInputs["rotationHours"] = state ? state.rotationHours : undefined;
+            resourceInputs["rotationMinutes"] = state ? state.rotationMinutes : undefined;
+            resourceInputs["rotationMonths"] = state ? state.rotationMonths : undefined;
+            resourceInputs["rotationRfc3339"] = state ? state.rotationRfc3339 : undefined;
+            resourceInputs["rotationYears"] = state ? state.rotationYears : undefined;
+            resourceInputs["second"] = state ? state.second : undefined;
+            resourceInputs["triggers"] = state ? state.triggers : undefined;
+            resourceInputs["unix"] = state ? state.unix : undefined;
+            resourceInputs["year"] = state ? state.year : undefined;
         } else {
             const args = argsOrState as TimeRotatingArgs | undefined;
-            inputs["rfc3339"] = args ? args.rfc3339 : undefined;
-            inputs["rotationDays"] = args ? args.rotationDays : undefined;
-            inputs["rotationHours"] = args ? args.rotationHours : undefined;
-            inputs["rotationMinutes"] = args ? args.rotationMinutes : undefined;
-            inputs["rotationMonths"] = args ? args.rotationMonths : undefined;
-            inputs["rotationRfc3339"] = args ? args.rotationRfc3339 : undefined;
-            inputs["rotationYears"] = args ? args.rotationYears : undefined;
-            inputs["triggers"] = args ? args.triggers : undefined;
-            inputs["day"] = undefined /*out*/;
-            inputs["hour"] = undefined /*out*/;
-            inputs["minute"] = undefined /*out*/;
-            inputs["month"] = undefined /*out*/;
-            inputs["second"] = undefined /*out*/;
-            inputs["unix"] = undefined /*out*/;
-            inputs["year"] = undefined /*out*/;
+            resourceInputs["rfc3339"] = args ? args.rfc3339 : undefined;
+            resourceInputs["rotationDays"] = args ? args.rotationDays : undefined;
+            resourceInputs["rotationHours"] = args ? args.rotationHours : undefined;
+            resourceInputs["rotationMinutes"] = args ? args.rotationMinutes : undefined;
+            resourceInputs["rotationMonths"] = args ? args.rotationMonths : undefined;
+            resourceInputs["rotationRfc3339"] = args ? args.rotationRfc3339 : undefined;
+            resourceInputs["rotationYears"] = args ? args.rotationYears : undefined;
+            resourceInputs["triggers"] = args ? args.triggers : undefined;
+            resourceInputs["day"] = undefined /*out*/;
+            resourceInputs["hour"] = undefined /*out*/;
+            resourceInputs["minute"] = undefined /*out*/;
+            resourceInputs["month"] = undefined /*out*/;
+            resourceInputs["second"] = undefined /*out*/;
+            resourceInputs["unix"] = undefined /*out*/;
+            resourceInputs["year"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TimeRotating.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TimeRotating.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -8,6 +8,7 @@ import typing
 from .provider import *
 from .time_offset import *
 from .time_rotating import *
+from .time_sleep import *
 from .time_static import *
 _utilities.register(
     resource_modules="""
@@ -15,7 +16,7 @@ _utilities.register(
  {
   "pkg": "time",
   "mod": "index/timeOffset",
-  "fqn": "pulumi_time",
+  "fqn": "pulumiverse_time",
   "classes": {
    "time:index/timeOffset:TimeOffset": "TimeOffset"
   }
@@ -23,15 +24,23 @@ _utilities.register(
  {
   "pkg": "time",
   "mod": "index/timeRotating",
-  "fqn": "pulumi_time",
+  "fqn": "pulumiverse_time",
   "classes": {
    "time:index/timeRotating:TimeRotating": "TimeRotating"
   }
  },
  {
   "pkg": "time",
+  "mod": "index/timeSleep",
+  "fqn": "pulumiverse_time",
+  "classes": {
+   "time:index/timeSleep:TimeSleep": "TimeSleep"
+  }
+ },
+ {
+  "pkg": "time",
   "mod": "index/timeStatic",
-  "fqn": "pulumi_time",
+  "fqn": "pulumiverse_time",
   "classes": {
    "time:index/timeStatic:TimeStatic": "TimeStatic"
   }
@@ -43,7 +52,7 @@ _utilities.register(
  {
   "pkg": "time",
   "token": "pulumi:providers:time",
-  "fqn": "pulumi_time",
+  "fqn": "pulumiverse_time",
   "class": "Provider"
  }
 ]

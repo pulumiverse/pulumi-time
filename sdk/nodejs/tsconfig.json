@@ -17,6 +17,7 @@
         "provider.ts",
         "timeOffset.ts",
         "timeRotating.ts",
+        "timeSleep.ts",
         "timeStatic.ts",
         "utilities.ts"
     ]
