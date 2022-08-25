@@ -46,10 +46,7 @@ dotnet add package Pulumiverse.time
 
 ## Configuration
 
-The following configuration points are available for the `time` provider:
-
-- `time:apiKey` (environment: `time_API_KEY`) - the API key for `time`
-- `time:region` (environment: `time_REGION`) - the region in which to deploy resources
+The Time provider does not need any additional configuration.
 
 ## Reference
 
