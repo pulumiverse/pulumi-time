@@ -1,3 +1,2 @@
-// A Pulumi package to create time resources in Pulumi programs.
-//
+// A Pulumi package for creating and managing Time resources
 package time

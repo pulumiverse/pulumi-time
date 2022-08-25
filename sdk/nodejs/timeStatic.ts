@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource can be imported using the UTC RFC3339 value, e.g. console
+ * This resource can be imported using the UTC RFC3339 value, e.g.
  *
  * ```sh
  *  $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
@@ -89,7 +89,8 @@ export class TimeStatic extends pulumi.CustomResource {
      */
     public /*out*/ readonly month!: pulumi.Output<number>;
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     public readonly rfc3339!: pulumi.Output<string>;
     /**
@@ -97,7 +98,8 @@ export class TimeStatic extends pulumi.CustomResource {
      */
     public /*out*/ readonly second!: pulumi.Output<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     public readonly triggers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -169,7 +171,8 @@ export interface TimeStaticState {
      */
     month?: pulumi.Input<number>;
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     rfc3339?: pulumi.Input<string>;
     /**
@@ -177,7 +180,8 @@ export interface TimeStaticState {
      */
     second?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -195,11 +199,13 @@ export interface TimeStaticState {
  */
 export interface TimeStaticArgs {
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     rfc3339?: pulumi.Input<string>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

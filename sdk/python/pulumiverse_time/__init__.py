@@ -8,7 +8,6 @@ import typing
 from .provider import *
 from .time_offset import *
 from .time_rotating import *
-from .time_sleep import *
 from .time_static import *
 _utilities.register(
     resource_modules="""
@@ -27,14 +26,6 @@ _utilities.register(
   "fqn": "pulumiverse_time",
   "classes": {
    "time:index/timeRotating:TimeRotating": "TimeRotating"
-  }
- },
- {
-  "pkg": "time",
-  "mod": "index/timeSleep",
-  "fqn": "pulumiverse_time",
-  "classes": {
-   "time:index/timeSleep:TimeSleep": "TimeSleep"
   }
  },
  {

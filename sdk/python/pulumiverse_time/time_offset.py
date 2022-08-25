@@ -24,14 +24,16 @@ class TimeOffsetArgs:
                  triggers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TimeOffset resource.
-        :param pulumi.Input[str] base_rfc3339: Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
-        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        :param pulumi.Input[str] base_rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+               documentation](../index.md) for more information.
         """
         if base_rfc3339 is not None:
             pulumi.set(__self__, "base_rfc3339", base_rfc3339)
@@ -54,7 +56,8 @@ class TimeOffsetArgs:
     @pulumi.getter(name="baseRfc3339")
     def base_rfc3339(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "base_rfc3339")
 
@@ -66,7 +69,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetDays")
     def offset_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_days")
 
@@ -78,7 +81,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetHours")
     def offset_hours(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_hours")
 
@@ -90,7 +93,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetMinutes")
     def offset_minutes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_minutes")
 
@@ -102,7 +105,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetMonths")
     def offset_months(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_months")
 
@@ -114,7 +117,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetSeconds")
     def offset_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_seconds")
 
@@ -126,7 +129,7 @@ class TimeOffsetArgs:
     @pulumi.getter(name="offsetYears")
     def offset_years(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_years")
 
@@ -138,7 +141,8 @@ class TimeOffsetArgs:
     @pulumi.getter
     def triggers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        documentation](../index.md) for more information.
         """
         return pulumi.get(self, "triggers")
 
@@ -168,20 +172,22 @@ class _TimeOffsetState:
                  year: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering TimeOffset resources.
-        :param pulumi.Input[str] base_rfc3339: Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[str] base_rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         :param pulumi.Input[int] day: Number day of offset timestamp.
         :param pulumi.Input[int] hour: Number hour of offset timestamp.
         :param pulumi.Input[int] minute: Number minute of offset timestamp.
         :param pulumi.Input[int] month: Number month of offset timestamp.
-        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[str] rfc3339: UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[str] rfc3339: RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         :param pulumi.Input[int] second: Number second of offset timestamp.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+               documentation](../index.md) for more information.
         :param pulumi.Input[int] unix: Number of seconds since epoch time, e.g. `1581489373`.
         :param pulumi.Input[int] year: Number year of offset timestamp.
         """
@@ -222,7 +228,8 @@ class _TimeOffsetState:
     @pulumi.getter(name="baseRfc3339")
     def base_rfc3339(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "base_rfc3339")
 
@@ -282,7 +289,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetDays")
     def offset_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_days")
 
@@ -294,7 +301,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetHours")
     def offset_hours(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_hours")
 
@@ -306,7 +313,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetMinutes")
     def offset_minutes(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_minutes")
 
@@ -318,7 +325,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetMonths")
     def offset_months(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_months")
 
@@ -330,7 +337,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetSeconds")
     def offset_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_seconds")
 
@@ -342,7 +349,7 @@ class _TimeOffsetState:
     @pulumi.getter(name="offsetYears")
     def offset_years(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_years")
 
@@ -354,7 +361,7 @@ class _TimeOffsetState:
     @pulumi.getter
     def rfc3339(self) -> Optional[pulumi.Input[str]]:
         """
-        UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         """
         return pulumi.get(self, "rfc3339")
 
@@ -378,7 +385,8 @@ class _TimeOffsetState:
     @pulumi.getter
     def triggers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        documentation](../index.md) for more information.
         """
         return pulumi.get(self, "triggers")
 
@@ -439,7 +447,7 @@ class TimeOffset(pulumi.CustomResource):
 
         ## Import
 
-        This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
+        This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 
         ```sh
          $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
@@ -449,14 +457,16 @@ class TimeOffset(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] base_rfc3339: Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
-        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        :param pulumi.Input[str] base_rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+               documentation](../index.md) for more information.
         """
         ...
     @overload
@@ -478,7 +488,7 @@ class TimeOffset(pulumi.CustomResource):
 
         ## Import
 
-        This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
+        This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 
         ```sh
          $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
@@ -567,20 +577,22 @@ class TimeOffset(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] base_rfc3339: Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[str] base_rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         :param pulumi.Input[int] day: Number day of offset timestamp.
         :param pulumi.Input[int] hour: Number hour of offset timestamp.
         :param pulumi.Input[int] minute: Number minute of offset timestamp.
         :param pulumi.Input[int] month: Number month of offset timestamp.
-        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
-        :param pulumi.Input[str] rfc3339: UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        :param pulumi.Input[int] offset_days: Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_hours: Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_minutes: Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_months: Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_seconds: Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[int] offset_years: Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
+        :param pulumi.Input[str] rfc3339: RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         :param pulumi.Input[int] second: Number second of offset timestamp.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+               documentation](../index.md) for more information.
         :param pulumi.Input[int] unix: Number of seconds since epoch time, e.g. `1581489373`.
         :param pulumi.Input[int] year: Number year of offset timestamp.
         """
@@ -610,7 +622,8 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="baseRfc3339")
     def base_rfc3339(self) -> pulumi.Output[str]:
         """
-        Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "base_rfc3339")
 
@@ -650,7 +663,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetDays")
     def offset_days(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_days")
 
@@ -658,7 +671,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetHours")
     def offset_hours(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_hours")
 
@@ -666,7 +679,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetMinutes")
     def offset_minutes(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_minutes")
 
@@ -674,7 +687,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetMonths")
     def offset_months(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_months")
 
@@ -682,7 +695,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetSeconds")
     def offset_seconds(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_seconds")
 
@@ -690,7 +703,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter(name="offsetYears")
     def offset_years(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         """
         return pulumi.get(self, "offset_years")
 
@@ -698,7 +711,7 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter
     def rfc3339(self) -> pulumi.Output[str]:
         """
-        UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         """
         return pulumi.get(self, "rfc3339")
 
@@ -714,7 +727,8 @@ class TimeOffset(pulumi.CustomResource):
     @pulumi.getter
     def triggers(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        documentation](../index.md) for more information.
         """
         return pulumi.get(self, "triggers")
 

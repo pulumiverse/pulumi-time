@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
+ * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
  *
  * ```sh
  *  $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
@@ -76,7 +76,8 @@ export class TimeOffset extends pulumi.CustomResource {
     }
 
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     public readonly baseRfc3339!: pulumi.Output<string>;
     /**
@@ -96,31 +97,31 @@ export class TimeOffset extends pulumi.CustomResource {
      */
     public /*out*/ readonly month!: pulumi.Output<number>;
     /**
-     * Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetDays!: pulumi.Output<number | undefined>;
     /**
-     * Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetHours!: pulumi.Output<number | undefined>;
     /**
-     * Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetMinutes!: pulumi.Output<number | undefined>;
     /**
-     * Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetMonths!: pulumi.Output<number | undefined>;
     /**
-     * Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetSeconds!: pulumi.Output<number | undefined>;
     /**
-     * Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     public readonly offsetYears!: pulumi.Output<number | undefined>;
     /**
-     * UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+     * RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
      */
     public /*out*/ readonly rfc3339!: pulumi.Output<string>;
     /**
@@ -128,7 +129,8 @@ export class TimeOffset extends pulumi.CustomResource {
      */
     public /*out*/ readonly second!: pulumi.Output<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     public readonly triggers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -198,7 +200,8 @@ export class TimeOffset extends pulumi.CustomResource {
  */
 export interface TimeOffsetState {
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     baseRfc3339?: pulumi.Input<string>;
     /**
@@ -218,31 +221,31 @@ export interface TimeOffsetState {
      */
     month?: pulumi.Input<number>;
     /**
-     * Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetDays?: pulumi.Input<number>;
     /**
-     * Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetHours?: pulumi.Input<number>;
     /**
-     * Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetMinutes?: pulumi.Input<number>;
     /**
-     * Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetMonths?: pulumi.Input<number>;
     /**
-     * Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetSeconds?: pulumi.Input<number>;
     /**
-     * Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetYears?: pulumi.Input<number>;
     /**
-     * UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+     * RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
      */
     rfc3339?: pulumi.Input<string>;
     /**
@@ -250,7 +253,8 @@ export interface TimeOffsetState {
      */
     second?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -268,35 +272,37 @@ export interface TimeOffsetState {
  */
 export interface TimeOffsetArgs {
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     baseRfc3339?: pulumi.Input<string>;
     /**
-     * Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetDays?: pulumi.Input<number>;
     /**
-     * Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetHours?: pulumi.Input<number>;
     /**
-     * Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetMinutes?: pulumi.Input<number>;
     /**
-     * Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetMonths?: pulumi.Input<number>;
     /**
-     * Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetSeconds?: pulumi.Input<number>;
     /**
-     * Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
      */
     offsetYears?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

@@ -17,20 +17,23 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/pulumiverse/pulumi-time/sdk/go/time"
+//
+//	"github.com/pulumi/pulumi-time/sdk/go/time"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := time.NewTimeStatic(ctx, "example", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("currentTime", example.Rfc3339)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := time.NewTimeStatic(ctx, "example", nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("currentTime", example.Rfc3339)
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Triggers Usage
 //
@@ -38,46 +41,51 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/pulumiverse/pulumi-time/sdk/go/time"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi-time/sdk/go/time"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		amiUpdate, err := time.NewTimeStatic(ctx, "amiUpdate", &time.TimeStaticArgs{
-// 			Triggers: pulumi.StringMap{
-// 				"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
-// 				return triggers.AmiId, nil
-// 			}).(pulumi.StringOutput),
-// 			Tags: pulumi.StringMap{
-// 				"AmiUpdateTime": amiUpdate.Rfc3339,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			amiUpdate, err := time.NewTimeStatic(ctx, "amiUpdate", &time.TimeStaticArgs{
+//				Triggers: pulumi.StringMap{
+//					"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
+//				Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
+//					return triggers.AmiId, nil
+//				}).(pulumi.StringOutput),
+//				Tags: pulumi.StringMap{
+//					"AmiUpdateTime": amiUpdate.Rfc3339,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// This resource can be imported using the UTC RFC3339 value, e.g. console
+// This resource can be imported using the UTC RFC3339 value, e.g.
 //
 // ```sh
-//  $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
+//
+//	$ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
+//
 // ```
 //
-//  The `triggers` argument cannot be imported.
+//	The `triggers` argument cannot be imported.
 type TimeStatic struct {
 	pulumi.CustomResourceState
 
@@ -89,11 +97,13 @@ type TimeStatic struct {
 	Minute pulumi.IntOutput `pulumi:"minute"`
 	// Number month of timestamp.
 	Month pulumi.IntOutput `pulumi:"month"`
-	// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringOutput `pulumi:"rfc3339"`
 	// Number second of timestamp.
 	Second pulumi.IntOutput `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+	// documentation](../index.md) for more information.
 	Triggers pulumi.StringMapOutput `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntOutput `pulumi:"unix"`
@@ -108,6 +118,7 @@ func NewTimeStatic(ctx *pulumi.Context,
 		args = &TimeStaticArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource TimeStatic
 	err := ctx.RegisterResource("time:index/timeStatic:TimeStatic", name, args, &resource, opts...)
 	if err != nil {
@@ -138,11 +149,13 @@ type timeStaticState struct {
 	Minute *int `pulumi:"minute"`
 	// Number month of timestamp.
 	Month *int `pulumi:"month"`
-	// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 *string `pulumi:"rfc3339"`
 	// Number second of timestamp.
 	Second *int `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+	// documentation](../index.md) for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix *int `pulumi:"unix"`
@@ -159,11 +172,13 @@ type TimeStaticState struct {
 	Minute pulumi.IntPtrInput
 	// Number month of timestamp.
 	Month pulumi.IntPtrInput
-	// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringPtrInput
 	// Number second of timestamp.
 	Second pulumi.IntPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+	// documentation](../index.md) for more information.
 	Triggers pulumi.StringMapInput
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntPtrInput
@@ -176,17 +191,21 @@ func (TimeStaticState) ElementType() reflect.Type {
 }
 
 type timeStaticArgs struct {
-	// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 *string `pulumi:"rfc3339"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+	// documentation](../index.md) for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 }
 
 // The set of arguments for constructing a TimeStatic resource.
 type TimeStaticArgs struct {
-	// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+	// documentation](../index.md) for more information.
 	Triggers pulumi.StringMapInput
 }
 
@@ -216,7 +235,7 @@ func (i *TimeStatic) ToTimeStaticOutputWithContext(ctx context.Context) TimeStat
 // TimeStaticArrayInput is an input type that accepts TimeStaticArray and TimeStaticArrayOutput values.
 // You can construct a concrete instance of `TimeStaticArrayInput` via:
 //
-//          TimeStaticArray{ TimeStaticArgs{...} }
+//	TimeStaticArray{ TimeStaticArgs{...} }
 type TimeStaticArrayInput interface {
 	pulumi.Input
 
@@ -241,7 +260,7 @@ func (i TimeStaticArray) ToTimeStaticArrayOutputWithContext(ctx context.Context)
 // TimeStaticMapInput is an input type that accepts TimeStaticMap and TimeStaticMapOutput values.
 // You can construct a concrete instance of `TimeStaticMapInput` via:
 //
-//          TimeStaticMap{ "key": TimeStaticArgs{...} }
+//	TimeStaticMap{ "key": TimeStaticArgs{...} }
 type TimeStaticMapInput interface {
 	pulumi.Input
 
@@ -297,7 +316,8 @@ func (o TimeStaticOutput) Month() pulumi.IntOutput {
 	return o.ApplyT(func(v *TimeStatic) pulumi.IntOutput { return v.Month }).(pulumi.IntOutput)
 }
 
-// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 func (o TimeStaticOutput) Rfc3339() pulumi.StringOutput {
 	return o.ApplyT(func(v *TimeStatic) pulumi.StringOutput { return v.Rfc3339 }).(pulumi.StringOutput)
 }
@@ -307,7 +327,8 @@ func (o TimeStaticOutput) Second() pulumi.IntOutput {
 	return o.ApplyT(func(v *TimeStatic) pulumi.IntOutput { return v.Second }).(pulumi.IntOutput)
 }
 
-// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+// documentation](../index.md) for more information.
 func (o TimeStaticOutput) Triggers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *TimeStatic) pulumi.StringMapOutput { return v.Triggers }).(pulumi.StringMapOutput)
 }

@@ -24,8 +24,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TimeOffset{}
 	case "time:index/timeRotating:TimeRotating":
 		r = &TimeRotating{}
-	case "time:index/timeSleep:TimeSleep":
-		r = &TimeSleep{}
 	case "time:index/timeStatic:TimeStatic":
 		r = &TimeStatic{}
 	default:
@@ -64,11 +62,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"time",
 		"index/timeRotating",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"time",
-		"index/timeSleep",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

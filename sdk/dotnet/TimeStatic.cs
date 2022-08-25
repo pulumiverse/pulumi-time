@@ -66,7 +66,7 @@ namespace Pulumiverse.Time
     /// 
     /// ## Import
     /// 
-    /// This resource can be imported using the UTC RFC3339 value, e.g. console
+    /// This resource can be imported using the UTC RFC3339 value, e.g.
     /// 
     /// ```sh
     ///  $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
@@ -102,7 +102,8 @@ namespace Pulumiverse.Time
         public Output<int> Month { get; private set; } = null!;
 
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Output("rfc3339")]
         public Output<string> Rfc3339 { get; private set; } = null!;
@@ -114,7 +115,8 @@ namespace Pulumiverse.Time
         public Output<int> Second { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         [Output("triggers")]
         public Output<ImmutableDictionary<string, string>?> Triggers { get; private set; } = null!;
@@ -154,6 +156,7 @@ namespace Pulumiverse.Time
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-time",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -178,7 +181,8 @@ namespace Pulumiverse.Time
     public sealed class TimeStaticArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("rfc3339")]
         public Input<string>? Rfc3339 { get; set; }
@@ -187,7 +191,8 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         public InputMap<string> Triggers
         {
@@ -227,7 +232,8 @@ namespace Pulumiverse.Time
         public Input<int>? Month { get; set; }
 
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("rfc3339")]
         public Input<string>? Rfc3339 { get; set; }
@@ -242,7 +248,8 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         public InputMap<string> Triggers
         {

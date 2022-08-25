@@ -126,7 +126,7 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "static.html.markdown",
 				},
 			},
-			// time_sleep not mapped because Pulumi provides other principals
+			// time_sleep not mapped because Pulumi provides other means to pause for specific timespan
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example

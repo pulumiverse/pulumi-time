@@ -1,12 +1,13 @@
 {
     "name": "@pulumiverse/time",
     "version": "${VERSION}",
-    "description": "A Pulumi package to create time resources in Pulumi programs.",
+    "description": "A Pulumi package for creating and managing Time resources",
     "keywords": [
         "pulumi",
-        "time"
+        "time",
+        "category/utility"
     ],
-    "homepage": "https://pulumi.io",
+    "homepage": "https://github.com/pulumiverse/pulumi-time",
     "repository": "https://github.com/pulumiverse/pulumi-time",
     "license": "Apache-2.0",
     "scripts": {
@@ -23,6 +24,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "time"
+        "name": "time",
+        "server": "github://api.github.com/pulumiverse/pulumi-time"
     }
 }

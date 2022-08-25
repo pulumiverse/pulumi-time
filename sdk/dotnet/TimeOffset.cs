@@ -68,7 +68,7 @@ namespace Pulumiverse.Time
     /// 
     /// ## Import
     /// 
-    /// This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
+    /// This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
     /// 
     /// ```sh
     ///  $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
@@ -80,7 +80,8 @@ namespace Pulumiverse.Time
     public partial class TimeOffset : Pulumi.CustomResource
     {
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Output("baseRfc3339")]
         public Output<string> BaseRfc3339 { get; private set; } = null!;
@@ -110,43 +111,43 @@ namespace Pulumiverse.Time
         public Output<int> Month { get; private set; } = null!;
 
         /// <summary>
-        /// Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetDays")]
         public Output<int?> OffsetDays { get; private set; } = null!;
 
         /// <summary>
-        /// Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetHours")]
         public Output<int?> OffsetHours { get; private set; } = null!;
 
         /// <summary>
-        /// Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetMinutes")]
         public Output<int?> OffsetMinutes { get; private set; } = null!;
 
         /// <summary>
-        /// Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetMonths")]
         public Output<int?> OffsetMonths { get; private set; } = null!;
 
         /// <summary>
-        /// Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetSeconds")]
         public Output<int?> OffsetSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Output("offsetYears")]
         public Output<int?> OffsetYears { get; private set; } = null!;
 
         /// <summary>
-        /// UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        /// RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         /// </summary>
         [Output("rfc3339")]
         public Output<string> Rfc3339 { get; private set; } = null!;
@@ -158,7 +159,8 @@ namespace Pulumiverse.Time
         public Output<int> Second { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         [Output("triggers")]
         public Output<ImmutableDictionary<string, string>?> Triggers { get; private set; } = null!;
@@ -198,6 +200,7 @@ namespace Pulumiverse.Time
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-time",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -222,43 +225,44 @@ namespace Pulumiverse.Time
     public sealed class TimeOffsetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("baseRfc3339")]
         public Input<string>? BaseRfc3339 { get; set; }
 
         /// <summary>
-        /// Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetDays")]
         public Input<int>? OffsetDays { get; set; }
 
         /// <summary>
-        /// Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetHours")]
         public Input<int>? OffsetHours { get; set; }
 
         /// <summary>
-        /// Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetMinutes")]
         public Input<int>? OffsetMinutes { get; set; }
 
         /// <summary>
-        /// Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetMonths")]
         public Input<int>? OffsetMonths { get; set; }
 
         /// <summary>
-        /// Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetSeconds")]
         public Input<int>? OffsetSeconds { get; set; }
 
         /// <summary>
-        /// Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetYears")]
         public Input<int>? OffsetYears { get; set; }
@@ -267,7 +271,8 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         public InputMap<string> Triggers
         {
@@ -283,7 +288,8 @@ namespace Pulumiverse.Time
     public sealed class TimeOffsetState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("baseRfc3339")]
         public Input<string>? BaseRfc3339 { get; set; }
@@ -313,43 +319,43 @@ namespace Pulumiverse.Time
         public Input<int>? Month { get; set; }
 
         /// <summary>
-        /// Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetDays")]
         public Input<int>? OffsetDays { get; set; }
 
         /// <summary>
-        /// Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of hours to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetHours")]
         public Input<int>? OffsetHours { get; set; }
 
         /// <summary>
-        /// Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of minutes to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetMinutes")]
         public Input<int>? OffsetMinutes { get; set; }
 
         /// <summary>
-        /// Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of months to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetMonths")]
         public Input<int>? OffsetMonths { get; set; }
 
         /// <summary>
-        /// Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of seconds to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetSeconds")]
         public Input<int>? OffsetSeconds { get; set; }
 
         /// <summary>
-        /// Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+        /// Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
         /// </summary>
         [Input("offsetYears")]
         public Input<int>? OffsetYears { get; set; }
 
         /// <summary>
-        /// UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+        /// RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
         /// </summary>
         [Input("rfc3339")]
         public Input<string>? Rfc3339 { get; set; }
@@ -364,7 +370,8 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+        /// documentation](../index.md) for more information.
         /// </summary>
         public InputMap<string> Triggers
         {
