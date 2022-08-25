@@ -4,7 +4,7 @@ linters:
     - errcheck
     - goconst
     - gofmt
-    - revive
+    - golint
     - gosec
     - govet
     - ineffassign
@@ -21,4 +21,4 @@ run:
   skip-files:
     - schema.go
     - pulumiManifest.go
-  timeout: 10m
+  timeout: 20m
