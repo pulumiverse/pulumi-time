@@ -1,8 +1,6 @@
 # Time Resource Provider
 
-The Time Resource Provider lets you manage [time](https://registry.terraform.io/providers/hashicorp/time) resources.
-
-It is available from the [Pulumi Registry](https://www.pulumi.com/registry/packages/time/).
+The Time Resource Provider lets you manage [time](https://www.pulumi.com/registry/packages/time/) resources.
 
 ## Installing
 
