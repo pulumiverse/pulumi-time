@@ -14,10 +14,10 @@
     },
     "files": [
         "index.ts",
+        "offset.ts",
         "provider.ts",
-        "timeOffset.ts",
-        "timeRotating.ts",
-        "timeStatic.ts",
+        "rotating.ts",
+        "static.ts",
         "utilities.ts"
     ]
 }

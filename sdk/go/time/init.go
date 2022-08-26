@@ -20,12 +20,12 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "time:index/timeOffset:TimeOffset":
-		r = &TimeOffset{}
-	case "time:index/timeRotating:TimeRotating":
-		r = &TimeRotating{}
-	case "time:index/timeStatic:TimeStatic":
-		r = &TimeStatic{}
+	case "time:index/offset:Offset":
+		r = &Offset{}
+	case "time:index/rotating:Rotating":
+		r = &Rotating{}
+	case "time:index/static:Static":
+		r = &Static{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -56,17 +56,17 @@ func init() {
 	version, _ := PkgVersion()
 	pulumi.RegisterResourceModule(
 		"time",
-		"index/timeOffset",
+		"index/offset",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"time",
-		"index/timeRotating",
+		"index/rotating",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"time",
-		"index/timeStatic",
+		"index/static",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

@@ -7,9 +7,9 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import com.pulumiverse.time.TimeStaticArgs;
+import com.pulumiverse.time.StaticArgs;
 import com.pulumiverse.time.Utilities;
-import com.pulumiverse.time.inputs.TimeStaticState;
+import com.pulumiverse.time.inputs.StaticState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.time.TimeStatic;
+ * import com.pulumi.time.Static;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new TimeStatic(&#34;example&#34;);
+ *         var example = new Static(&#34;example&#34;);
  * 
  *         ctx.export(&#34;currentTime&#34;, example.rfc3339());
  *     }
@@ -52,8 +52,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.time.TimeStatic;
- * import com.pulumi.time.TimeStaticArgs;
+ * import com.pulumi.time.Static;
+ * import com.pulumi.time.StaticArgs;
  * import com.pulumi.aws.ec2.Instance;
  * import com.pulumi.aws.ec2.InstanceArgs;
  * import java.util.List;
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var amiUpdate = new TimeStatic(&#34;amiUpdate&#34;, TimeStaticArgs.builder()        
+ *         var amiUpdate = new Static(&#34;amiUpdate&#34;, StaticArgs.builder()        
  *             .triggers(Map.of(&#34;ami_id&#34;, data.aws_ami().example().id()))
  *             .build());
  * 
@@ -84,17 +84,17 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource can be imported using the UTC RFC3339 value, e.g. console
+ * This resource can be imported using the UTC RFC3339 value, e.g.
  * 
  * ```sh
- *  $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
+ *  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
  * ```
  * 
  *  The `triggers` argument cannot be imported.
  * 
  */
-@ResourceType(type="time:index/timeStatic:TimeStatic")
-public class TimeStatic extends com.pulumi.resources.CustomResource {
+@ResourceType(type="time:index/static:Static")
+public class Static extends com.pulumi.resources.CustomResource {
     /**
      * Number day of timestamp.
      * 
@@ -152,14 +152,16 @@ public class TimeStatic extends com.pulumi.resources.CustomResource {
         return this.month;
     }
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Export(name="rfc3339", type=String.class, parameters={})
     private Output<String> rfc3339;
 
     /**
-     * @return Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> rfc3339() {
@@ -180,14 +182,16 @@ public class TimeStatic extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -226,15 +230,15 @@ public class TimeStatic extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TimeStatic(String name) {
-        this(name, TimeStaticArgs.Empty);
+    public Static(String name) {
+        this(name, StaticArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TimeStatic(String name, @Nullable TimeStaticArgs args) {
+    public Static(String name, @Nullable StaticArgs args) {
         this(name, args, null);
     }
     /**
@@ -243,12 +247,12 @@ public class TimeStatic extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TimeStatic(String name, @Nullable TimeStaticArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeStatic:TimeStatic", name, args == null ? TimeStaticArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Static(String name, @Nullable StaticArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/static:Static", name, args == null ? StaticArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TimeStatic(String name, Output<String> id, @Nullable TimeStaticState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeStatic:TimeStatic", name, state, makeResourceOptions(options, id));
+    private Static(String name, Output<String> id, @Nullable StaticState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/static:Static", name, state, makeResourceOptions(options, id));
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
@@ -267,7 +271,7 @@ public class TimeStatic extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TimeStatic get(String name, Output<String> id, @Nullable TimeStaticState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new TimeStatic(name, id, state, options);
+    public static Static get(String name, Output<String> id, @Nullable StaticState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new Static(name, id, state, options);
     }
 }

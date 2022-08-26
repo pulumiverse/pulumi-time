@@ -22,7 +22,7 @@ namespace Pulumiverse.Time
     /// {
     ///     public MyStack()
     ///     {
-    ///         var example = new Time.TimeRotating("example", new Time.TimeRotatingArgs
+    ///         var example = new Time.Rotating("example", new Time.RotatingArgs
     ///         {
     ///             RotationDays = 30,
     ///         });
@@ -36,19 +36,19 @@ namespace Pulumiverse.Time
     /// This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,0,0,30,0,0
+    ///  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
     /// ```
     /// 
     ///  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
+    ///  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
     /// ```
     /// 
     ///  The `triggers` argument cannot be imported.
     /// </summary>
-    [TimeResourceType("time:index/timeRotating:TimeRotating")]
-    public partial class TimeRotating : Pulumi.CustomResource
+    [TimeResourceType("time:index/rotating:Rotating")]
+    public partial class Rotating : Pulumi.CustomResource
     {
         /// <summary>
         /// Number day of timestamp.
@@ -152,19 +152,19 @@ namespace Pulumiverse.Time
 
 
         /// <summary>
-        /// Create a TimeRotating resource with the given unique name, arguments, and options.
+        /// Create a Rotating resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public TimeRotating(string name, TimeRotatingArgs? args = null, CustomResourceOptions? options = null)
-            : base("time:index/timeRotating:TimeRotating", name, args ?? new TimeRotatingArgs(), MakeResourceOptions(options, ""))
+        public Rotating(string name, RotatingArgs? args = null, CustomResourceOptions? options = null)
+            : base("time:index/rotating:Rotating", name, args ?? new RotatingArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private TimeRotating(string name, Input<string> id, TimeRotatingState? state = null, CustomResourceOptions? options = null)
-            : base("time:index/timeRotating:TimeRotating", name, state, MakeResourceOptions(options, id))
+        private Rotating(string name, Input<string> id, RotatingState? state = null, CustomResourceOptions? options = null)
+            : base("time:index/rotating:Rotating", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -181,7 +181,7 @@ namespace Pulumiverse.Time
             return merged;
         }
         /// <summary>
-        /// Get an existing TimeRotating resource's state with the given name, ID, and optional extra
+        /// Get an existing Rotating resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -189,13 +189,13 @@ namespace Pulumiverse.Time
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static TimeRotating Get(string name, Input<string> id, TimeRotatingState? state = null, CustomResourceOptions? options = null)
+        public static Rotating Get(string name, Input<string> id, RotatingState? state = null, CustomResourceOptions? options = null)
         {
-            return new TimeRotating(name, id, state, options);
+            return new Rotating(name, id, state, options);
         }
     }
 
-    public sealed class TimeRotatingArgs : Pulumi.ResourceArgs
+    public sealed class RotatingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
@@ -261,12 +261,12 @@ namespace Pulumiverse.Time
             set => _triggers = value;
         }
 
-        public TimeRotatingArgs()
+        public RotatingArgs()
         {
         }
     }
 
-    public sealed class TimeRotatingState : Pulumi.ResourceArgs
+    public sealed class RotatingState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number day of timestamp.
@@ -374,7 +374,7 @@ namespace Pulumiverse.Time
         [Input("year")]
         public Input<int>? Year { get; set; }
 
-        public TimeRotatingState()
+        public RotatingState()
         {
         }
     }

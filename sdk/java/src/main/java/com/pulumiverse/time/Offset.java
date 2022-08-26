@@ -7,9 +7,9 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import com.pulumiverse.time.TimeOffsetArgs;
+import com.pulumiverse.time.OffsetArgs;
 import com.pulumiverse.time.Utilities;
-import com.pulumiverse.time.inputs.TimeOffsetState;
+import com.pulumiverse.time.inputs.OffsetState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.time.TimeOffset;
- * import com.pulumi.time.TimeOffsetArgs;
+ * import com.pulumi.time.Offset;
+ * import com.pulumi.time.OffsetArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new TimeOffset(&#34;example&#34;, TimeOffsetArgs.builder()        
+ *         var example = new Offset(&#34;example&#34;, OffsetArgs.builder()        
  *             .offsetDays(7)
  *             .build());
  * 
@@ -55,8 +55,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.time.TimeOffset;
- * import com.pulumi.time.TimeOffsetArgs;
+ * import com.pulumi.time.Offset;
+ * import com.pulumi.time.OffsetArgs;
  * import com.pulumi.aws.ec2.Instance;
  * import com.pulumi.aws.ec2.InstanceArgs;
  * import java.util.List;
@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var amiUpdate = new TimeOffset(&#34;amiUpdate&#34;, TimeOffsetArgs.builder()        
+ *         var amiUpdate = new Offset(&#34;amiUpdate&#34;, OffsetArgs.builder()        
  *             .triggers(Map.of(&#34;ami_id&#34;, data.aws_ami().example().id()))
  *             .offsetDays(7)
  *             .build());
@@ -88,26 +88,28 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g. console
+ * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
  * 
  * ```sh
- *  $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+ *  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
  * ```
  * 
  *  The `triggers` argument cannot be imported.
  * 
  */
-@ResourceType(type="time:index/timeOffset:TimeOffset")
-public class TimeOffset extends com.pulumi.resources.CustomResource {
+@ResourceType(type="time:index/offset:Offset")
+public class Offset extends com.pulumi.resources.CustomResource {
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Export(name="baseRfc3339", type=String.class, parameters={})
     private Output<String> baseRfc3339;
 
     /**
-     * @return Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> baseRfc3339() {
@@ -170,98 +172,98 @@ public class TimeOffset extends com.pulumi.resources.CustomResource {
         return this.month;
     }
     /**
-     * Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetDays", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetDays;
 
     /**
-     * @return Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetDays() {
         return Codegen.optional(this.offsetDays);
     }
     /**
-     * Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetHours", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetHours;
 
     /**
-     * @return Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetHours() {
         return Codegen.optional(this.offsetHours);
     }
     /**
-     * Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetMinutes", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetMinutes;
 
     /**
-     * @return Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetMinutes() {
         return Codegen.optional(this.offsetMinutes);
     }
     /**
-     * Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetMonths", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetMonths;
 
     /**
-     * @return Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetMonths() {
         return Codegen.optional(this.offsetMonths);
     }
     /**
-     * Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetSeconds", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetSeconds;
 
     /**
-     * @return Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetSeconds() {
         return Codegen.optional(this.offsetSeconds);
     }
     /**
-     * Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Export(name="offsetYears", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> offsetYears;
 
     /**
-     * @return Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> offsetYears() {
         return Codegen.optional(this.offsetYears);
     }
     /**
-     * UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+     * RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
      * 
      */
     @Export(name="rfc3339", type=String.class, parameters={})
     private Output<String> rfc3339;
 
     /**
-     * @return UTC RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
+     * @return RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
      * 
      */
     public Output<String> rfc3339() {
@@ -282,14 +284,16 @@ public class TimeOffset extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -328,15 +332,15 @@ public class TimeOffset extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TimeOffset(String name) {
-        this(name, TimeOffsetArgs.Empty);
+    public Offset(String name) {
+        this(name, OffsetArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TimeOffset(String name, @Nullable TimeOffsetArgs args) {
+    public Offset(String name, @Nullable OffsetArgs args) {
         this(name, args, null);
     }
     /**
@@ -345,12 +349,12 @@ public class TimeOffset extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TimeOffset(String name, @Nullable TimeOffsetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeOffset:TimeOffset", name, args == null ? TimeOffsetArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Offset(String name, @Nullable OffsetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/offset:Offset", name, args == null ? OffsetArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TimeOffset(String name, Output<String> id, @Nullable TimeOffsetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeOffset:TimeOffset", name, state, makeResourceOptions(options, id));
+    private Offset(String name, Output<String> id, @Nullable OffsetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/offset:Offset", name, state, makeResourceOptions(options, id));
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
@@ -369,7 +373,7 @@ public class TimeOffset extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TimeOffset get(String name, Output<String> id, @Nullable TimeOffsetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new TimeOffset(name, id, state, options);
+    public static Offset get(String name, Output<String> id, @Nullable OffsetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new Offset(name, id, state, options);
     }
 }

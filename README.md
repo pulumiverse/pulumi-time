@@ -2,6 +2,8 @@
 
 The Time Resource Provider lets you manage [time](https://registry.terraform.io/providers/hashicorp/time) resources.
 
+It is available from the [Pulumi Registry](https://www.pulumi.com/registry/packages/time/).
+
 ## Installing
 
 This package is available for several languages/platforms:
@@ -41,7 +43,7 @@ go get github.com/pulumiverse/pulumi-time/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumiverse.time
+dotnet add package Pulumiverse.Time
 ```
 
 ## Configuration

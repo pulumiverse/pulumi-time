@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumi/time";
  *
- * const example = new time.TimeRotating("example", {
+ * const example = new time.Rotating("example", {
  *     rotationDays: 30,
  * });
  * ```
@@ -22,20 +22,20 @@ import * as utilities from "./utilities";
  * This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
  *
  * ```sh
- *  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,0,0,30,0,0
+ *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
  * ```
  *
  *  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
  *
  * ```sh
- *  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
+ *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
  * ```
  *
  *  The `triggers` argument cannot be imported.
  */
-export class TimeRotating extends pulumi.CustomResource {
+export class Rotating extends pulumi.CustomResource {
     /**
-     * Get an existing TimeRotating resource's state with the given name, ID, and optional extra
+     * Get an existing Rotating resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -43,22 +43,22 @@ export class TimeRotating extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TimeRotatingState, opts?: pulumi.CustomResourceOptions): TimeRotating {
-        return new TimeRotating(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RotatingState, opts?: pulumi.CustomResourceOptions): Rotating {
+        return new Rotating(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'time:index/timeRotating:TimeRotating';
+    public static readonly __pulumiType = 'time:index/rotating:Rotating';
 
     /**
-     * Returns true if the given object is an instance of TimeRotating.  This is designed to work even
+     * Returns true if the given object is an instance of Rotating.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is TimeRotating {
+    public static isInstance(obj: any): obj is Rotating {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === TimeRotating.__pulumiType;
+        return obj['__pulumiType'] === Rotating.__pulumiType;
     }
 
     /**
@@ -133,18 +133,18 @@ export class TimeRotating extends pulumi.CustomResource {
     public /*out*/ readonly year!: pulumi.Output<number>;
 
     /**
-     * Create a TimeRotating resource with the given unique name, arguments, and options.
+     * Create a Rotating resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: TimeRotatingArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: TimeRotatingArgs | TimeRotatingState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: RotatingArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RotatingArgs | RotatingState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as TimeRotatingState | undefined;
+            const state = argsOrState as RotatingState | undefined;
             resourceInputs["day"] = state ? state.day : undefined;
             resourceInputs["hour"] = state ? state.hour : undefined;
             resourceInputs["minute"] = state ? state.minute : undefined;
@@ -161,7 +161,7 @@ export class TimeRotating extends pulumi.CustomResource {
             resourceInputs["unix"] = state ? state.unix : undefined;
             resourceInputs["year"] = state ? state.year : undefined;
         } else {
-            const args = argsOrState as TimeRotatingArgs | undefined;
+            const args = argsOrState as RotatingArgs | undefined;
             resourceInputs["rfc3339"] = args ? args.rfc3339 : undefined;
             resourceInputs["rotationDays"] = args ? args.rotationDays : undefined;
             resourceInputs["rotationHours"] = args ? args.rotationHours : undefined;
@@ -179,14 +179,14 @@ export class TimeRotating extends pulumi.CustomResource {
             resourceInputs["year"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(TimeRotating.__pulumiType, name, resourceInputs, opts);
+        super(Rotating.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering TimeRotating resources.
+ * Input properties used for looking up and filtering Rotating resources.
  */
-export interface TimeRotatingState {
+export interface RotatingState {
     /**
      * Number day of timestamp.
      */
@@ -260,9 +260,9 @@ export interface TimeRotatingState {
 }
 
 /**
- * The set of arguments for constructing a TimeRotating resource.
+ * The set of arguments for constructing a Rotating resource.
  */
-export interface TimeRotatingArgs {
+export interface RotatingArgs {
     /**
      * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
      * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.

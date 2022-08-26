@@ -5,7 +5,7 @@ We have a few tips and housekeeping items to help you get up and running.
 
 ## Code of Conduct
 
-Please make sure to read and observe our [Code of Conduct](./CODE-OF-CONDUCT.md)
+Please make sure to read and observe our [Code of Conduct](https://github.com/pulumiverse/.github/blob/main/CODE_OF_CONDUCT.md)
 
 ## Community Expectations
 
@@ -33,4 +33,3 @@ cloud resources while running. Before running these tests, make sure that you ha
 configured access to your cloud provider with Pulumi.
 
 _TODO: Add any steps you need to take to run integration tests here_
-

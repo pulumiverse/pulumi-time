@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
  *
- * const example = new time.TimeOffset("example", {offsetDays: 7});
+ * const example = new time.Offset("example", {offsetDays: 7});
  * export const oneWeekFromNow = example.rfc3339;
  * ```
  * ### Triggers Usage
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as time from "@pulumiverse/time";
  *
- * const amiUpdate = new time.TimeOffset("amiUpdate", {
+ * const amiUpdate = new time.Offset("amiUpdate", {
  *     triggers: {
  *         ami_id: data.aws_ami.example.id,
  *     },
@@ -42,14 +42,14 @@ import * as utilities from "./utilities";
  * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
  *
  * ```sh
- *  $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+ *  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
  * ```
  *
  *  The `triggers` argument cannot be imported.
  */
-export class TimeOffset extends pulumi.CustomResource {
+export class Offset extends pulumi.CustomResource {
     /**
-     * Get an existing TimeOffset resource's state with the given name, ID, and optional extra
+     * Get an existing Offset resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -57,22 +57,22 @@ export class TimeOffset extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TimeOffsetState, opts?: pulumi.CustomResourceOptions): TimeOffset {
-        return new TimeOffset(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OffsetState, opts?: pulumi.CustomResourceOptions): Offset {
+        return new Offset(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'time:index/timeOffset:TimeOffset';
+    public static readonly __pulumiType = 'time:index/offset:Offset';
 
     /**
-     * Returns true if the given object is an instance of TimeOffset.  This is designed to work even
+     * Returns true if the given object is an instance of Offset.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is TimeOffset {
+    public static isInstance(obj: any): obj is Offset {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === TimeOffset.__pulumiType;
+        return obj['__pulumiType'] === Offset.__pulumiType;
     }
 
     /**
@@ -143,18 +143,18 @@ export class TimeOffset extends pulumi.CustomResource {
     public /*out*/ readonly year!: pulumi.Output<number>;
 
     /**
-     * Create a TimeOffset resource with the given unique name, arguments, and options.
+     * Create a Offset resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: TimeOffsetArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: TimeOffsetArgs | TimeOffsetState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: OffsetArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: OffsetArgs | OffsetState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as TimeOffsetState | undefined;
+            const state = argsOrState as OffsetState | undefined;
             resourceInputs["baseRfc3339"] = state ? state.baseRfc3339 : undefined;
             resourceInputs["day"] = state ? state.day : undefined;
             resourceInputs["hour"] = state ? state.hour : undefined;
@@ -172,7 +172,7 @@ export class TimeOffset extends pulumi.CustomResource {
             resourceInputs["unix"] = state ? state.unix : undefined;
             resourceInputs["year"] = state ? state.year : undefined;
         } else {
-            const args = argsOrState as TimeOffsetArgs | undefined;
+            const args = argsOrState as OffsetArgs | undefined;
             resourceInputs["baseRfc3339"] = args ? args.baseRfc3339 : undefined;
             resourceInputs["offsetDays"] = args ? args.offsetDays : undefined;
             resourceInputs["offsetHours"] = args ? args.offsetHours : undefined;
@@ -191,14 +191,14 @@ export class TimeOffset extends pulumi.CustomResource {
             resourceInputs["year"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(TimeOffset.__pulumiType, name, resourceInputs, opts);
+        super(Offset.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering TimeOffset resources.
+ * Input properties used for looking up and filtering Offset resources.
  */
-export interface TimeOffsetState {
+export interface OffsetState {
     /**
      * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
      * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
@@ -268,9 +268,9 @@ export interface TimeOffsetState {
 }
 
 /**
- * The set of arguments for constructing a TimeOffset resource.
+ * The set of arguments for constructing a Offset resource.
  */
-export interface TimeOffsetArgs {
+export interface OffsetArgs {
     /**
      * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
      * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.

@@ -109,19 +109,19 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 			"time_offset": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeOffset"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Offset"),
 				Docs: &tfbridge.DocInfo{
 					Source: "offset.html.markdown",
 				},
 			},
 			"time_rotating": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeRotating"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Rotating"),
 				Docs: &tfbridge.DocInfo{
 					Source: "rotating.html.markdown",
 				},
 			},
 			"time_static": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "TimeStatic"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Static"),
 				Docs: &tfbridge.DocInfo{
 					Source: "static.html.markdown",
 				},

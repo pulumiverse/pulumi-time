@@ -22,7 +22,7 @@ namespace Pulumiverse.Time
     /// {
     ///     public MyStack()
     ///     {
-    ///         var example = new Time.TimeStatic("example", new Time.TimeStaticArgs
+    ///         var example = new Time.Static("example", new Time.StaticArgs
     ///         {
     ///         });
     ///         this.CurrentTime = example.Rfc3339;
@@ -43,7 +43,7 @@ namespace Pulumiverse.Time
     /// {
     ///     public MyStack()
     ///     {
-    ///         var amiUpdate = new Time.TimeStatic("amiUpdate", new Time.TimeStaticArgs
+    ///         var amiUpdate = new Time.Static("amiUpdate", new Time.StaticArgs
     ///         {
     ///             Triggers = 
     ///             {
@@ -69,13 +69,13 @@ namespace Pulumiverse.Time
     /// This resource can be imported using the UTC RFC3339 value, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/timeStatic:TimeStatic example 2020-02-12T06:36:13Z
+    ///  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
     /// ```
     /// 
     ///  The `triggers` argument cannot be imported.
     /// </summary>
-    [TimeResourceType("time:index/timeStatic:TimeStatic")]
-    public partial class TimeStatic : Pulumi.CustomResource
+    [TimeResourceType("time:index/static:Static")]
+    public partial class Static : Pulumi.CustomResource
     {
         /// <summary>
         /// Number day of timestamp.
@@ -135,19 +135,19 @@ namespace Pulumiverse.Time
 
 
         /// <summary>
-        /// Create a TimeStatic resource with the given unique name, arguments, and options.
+        /// Create a Static resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public TimeStatic(string name, TimeStaticArgs? args = null, CustomResourceOptions? options = null)
-            : base("time:index/timeStatic:TimeStatic", name, args ?? new TimeStaticArgs(), MakeResourceOptions(options, ""))
+        public Static(string name, StaticArgs? args = null, CustomResourceOptions? options = null)
+            : base("time:index/static:Static", name, args ?? new StaticArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private TimeStatic(string name, Input<string> id, TimeStaticState? state = null, CustomResourceOptions? options = null)
-            : base("time:index/timeStatic:TimeStatic", name, state, MakeResourceOptions(options, id))
+        private Static(string name, Input<string> id, StaticState? state = null, CustomResourceOptions? options = null)
+            : base("time:index/static:Static", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -164,7 +164,7 @@ namespace Pulumiverse.Time
             return merged;
         }
         /// <summary>
-        /// Get an existing TimeStatic resource's state with the given name, ID, and optional extra
+        /// Get an existing Static resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -172,13 +172,13 @@ namespace Pulumiverse.Time
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static TimeStatic Get(string name, Input<string> id, TimeStaticState? state = null, CustomResourceOptions? options = null)
+        public static Static Get(string name, Input<string> id, StaticState? state = null, CustomResourceOptions? options = null)
         {
-            return new TimeStatic(name, id, state, options);
+            return new Static(name, id, state, options);
         }
     }
 
-    public sealed class TimeStaticArgs : Pulumi.ResourceArgs
+    public sealed class StaticArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
@@ -200,12 +200,12 @@ namespace Pulumiverse.Time
             set => _triggers = value;
         }
 
-        public TimeStaticArgs()
+        public StaticArgs()
         {
         }
     }
 
-    public sealed class TimeStaticState : Pulumi.ResourceArgs
+    public sealed class StaticState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number day of timestamp.
@@ -269,7 +269,7 @@ namespace Pulumiverse.Time
         [Input("year")]
         public Input<int>? Year { get; set; }
 
-        public TimeStaticState()
+        public StaticState()
         {
         }
     }

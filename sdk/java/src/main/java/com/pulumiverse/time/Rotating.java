@@ -7,9 +7,9 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import com.pulumiverse.time.TimeRotatingArgs;
+import com.pulumiverse.time.RotatingArgs;
 import com.pulumiverse.time.Utilities;
-import com.pulumiverse.time.inputs.TimeRotatingState;
+import com.pulumiverse.time.inputs.RotatingState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
@@ -18,16 +18,15 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
- * 
- * This example configuration will rotate (destroy/create) the resource every 30 days.
+ * ### Basic Usage
  * ```java
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.time.TimeRotating;
- * import com.pulumi.time.TimeRotatingArgs;
+ * import com.pulumi.time.Rotating;
+ * import com.pulumi.time.RotatingArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -41,7 +40,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new TimeRotating(&#34;example&#34;, TimeRotatingArgs.builder()        
+ *         var example = new Rotating(&#34;example&#34;, RotatingArgs.builder()        
  *             .rotationDays(30)
  *             .build());
  * 
@@ -51,23 +50,23 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days console
+ * This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
  * 
  * ```sh
- *  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,0,0,30,0,0
+ *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
  * ```
  * 
- *  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g. console
+ *  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
  * 
  * ```sh
- *  $ pulumi import time:index/timeRotating:TimeRotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
+ *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
  * ```
  * 
  *  The `triggers` argument cannot be imported.
  * 
  */
-@ResourceType(type="time:index/timeRotating:TimeRotating")
-public class TimeRotating extends com.pulumi.resources.CustomResource {
+@ResourceType(type="time:index/rotating:Rotating")
+public class Rotating extends com.pulumi.resources.CustomResource {
     /**
      * Number day of timestamp.
      * 
@@ -125,98 +124,114 @@ public class TimeRotating extends com.pulumi.resources.CustomResource {
         return this.month;
     }
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Export(name="rfc3339", type=String.class, parameters={})
     private Output<String> rfc3339;
 
     /**
-     * @return Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> rfc3339() {
         return this.rfc3339;
     }
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationDays", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> rotationDays;
 
     /**
-     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationDays() {
         return Codegen.optional(this.rotationDays);
     }
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationHours", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> rotationHours;
 
     /**
-     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationHours() {
         return Codegen.optional(this.rotationHours);
     }
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationMinutes", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> rotationMinutes;
 
     /**
-     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationMinutes() {
         return Codegen.optional(this.rotationMinutes);
     }
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationMonths", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> rotationMonths;
 
     /**
-     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationMonths() {
         return Codegen.optional(this.rotationMonths);
     }
     /**
-     * Configure the rotation timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
+     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
+     * least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationRfc3339", type=String.class, parameters={})
     private Output<String> rotationRfc3339;
 
     /**
-     * @return Configure the rotation timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
+     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
+     * least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<String> rotationRfc3339() {
         return this.rotationRfc3339;
     }
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Export(name="rotationYears", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> rotationYears;
 
     /**
-     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. Conflicts with other `rotation_` arguments.
+     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
+     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationYears() {
@@ -237,14 +252,18 @@ public class TimeRotating extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
+     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
+     * more information.
      * 
      */
     @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
+     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
+     * more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -283,15 +302,15 @@ public class TimeRotating extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TimeRotating(String name) {
-        this(name, TimeRotatingArgs.Empty);
+    public Rotating(String name) {
+        this(name, RotatingArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TimeRotating(String name, @Nullable TimeRotatingArgs args) {
+    public Rotating(String name, @Nullable RotatingArgs args) {
         this(name, args, null);
     }
     /**
@@ -300,12 +319,12 @@ public class TimeRotating extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TimeRotating(String name, @Nullable TimeRotatingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeRotating:TimeRotating", name, args == null ? TimeRotatingArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Rotating(String name, @Nullable RotatingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/rotating:Rotating", name, args == null ? RotatingArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TimeRotating(String name, Output<String> id, @Nullable TimeRotatingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("time:index/timeRotating:TimeRotating", name, state, makeResourceOptions(options, id));
+    private Rotating(String name, Output<String> id, @Nullable RotatingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("time:index/rotating:Rotating", name, state, makeResourceOptions(options, id));
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
@@ -324,7 +343,7 @@ public class TimeRotating extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TimeRotating get(String name, Output<String> id, @Nullable TimeRotatingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new TimeRotating(name, id, state, options);
+    public static Rotating get(String name, Output<String> id, @Nullable RotatingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new Rotating(name, id, state, options);
     }
 }

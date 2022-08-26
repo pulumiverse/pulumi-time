@@ -13,9 +13,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
+public final class StaticState extends com.pulumi.resources.ResourceArgs {
 
-    public static final TimeStaticState Empty = new TimeStaticState();
+    public static final StaticState Empty = new StaticState();
 
     /**
      * Number day of timestamp.
@@ -78,14 +78,16 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Import(name="rfc3339")
     private @Nullable Output<String> rfc3339;
 
     /**
-     * @return Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Optional<Output<String>> rfc3339() {
@@ -108,14 +110,16 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     @Import(name="triggers")
     private @Nullable Output<Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     public Optional<Output<Map<String,String>>> triggers() {
@@ -152,9 +156,9 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.year);
     }
 
-    private TimeStaticState() {}
+    private StaticState() {}
 
-    private TimeStaticState(TimeStaticState $) {
+    private StaticState(StaticState $) {
         this.day = $.day;
         this.hour = $.hour;
         this.minute = $.minute;
@@ -169,19 +173,19 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(TimeStaticState defaults) {
+    public static Builder builder(StaticState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private TimeStaticState $;
+        private StaticState $;
 
         public Builder() {
-            $ = new TimeStaticState();
+            $ = new StaticState();
         }
 
-        public Builder(TimeStaticState defaults) {
-            $ = new TimeStaticState(Objects.requireNonNull(defaults));
+        public Builder(StaticState defaults) {
+            $ = new StaticState(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -269,7 +273,8 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rfc3339 Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -280,7 +285,8 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rfc3339 Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -311,7 +317,8 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+         * documentation](../index.md) for more information.
          * 
          * @return builder
          * 
@@ -322,7 +329,8 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+         * documentation](../index.md) for more information.
          * 
          * @return builder
          * 
@@ -373,7 +381,7 @@ public final class TimeStaticState extends com.pulumi.resources.ResourceArgs {
             return year(Output.of(year));
         }
 
-        public TimeStaticState build() {
+        public StaticState build() {
             return $;
         }
     }

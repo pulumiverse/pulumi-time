@@ -5,35 +5,35 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .offset import *
 from .provider import *
-from .time_offset import *
-from .time_rotating import *
-from .time_static import *
+from .rotating import *
+from .static import *
 _utilities.register(
     resource_modules="""
 [
  {
   "pkg": "time",
-  "mod": "index/timeOffset",
+  "mod": "index/offset",
   "fqn": "pulumiverse_time",
   "classes": {
-   "time:index/timeOffset:TimeOffset": "TimeOffset"
+   "time:index/offset:Offset": "Offset"
   }
  },
  {
   "pkg": "time",
-  "mod": "index/timeRotating",
+  "mod": "index/rotating",
   "fqn": "pulumiverse_time",
   "classes": {
-   "time:index/timeRotating:TimeRotating": "TimeRotating"
+   "time:index/rotating:Rotating": "Rotating"
   }
  },
  {
   "pkg": "time",
-  "mod": "index/timeStatic",
+  "mod": "index/static",
   "fqn": "pulumiverse_time",
   "classes": {
-   "time:index/timeStatic:TimeStatic": "TimeStatic"
+   "time:index/static:Static": "Static"
   }
  }
 ]

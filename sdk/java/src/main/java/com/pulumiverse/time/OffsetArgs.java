@@ -13,19 +13,21 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
+public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final TimeOffsetArgs Empty = new TimeOffsetArgs();
+    public static final OffsetArgs Empty = new OffsetArgs();
 
     /**
-     * Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Import(name="baseRfc3339")
     private @Nullable Output<String> baseRfc3339;
 
     /**
-     * @return Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Optional<Output<String>> baseRfc3339() {
@@ -33,14 +35,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetDays")
     private @Nullable Output<Integer> offsetDays;
 
     /**
-     * @return Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetDays() {
@@ -48,14 +50,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetHours")
     private @Nullable Output<Integer> offsetHours;
 
     /**
-     * @return Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetHours() {
@@ -63,14 +65,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetMinutes")
     private @Nullable Output<Integer> offsetMinutes;
 
     /**
-     * @return Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetMinutes() {
@@ -78,14 +80,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetMonths")
     private @Nullable Output<Integer> offsetMonths;
 
     /**
-     * @return Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetMonths() {
@@ -93,14 +95,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetSeconds")
     private @Nullable Output<Integer> offsetSeconds;
 
     /**
-     * @return Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetSeconds() {
@@ -108,14 +110,14 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     @Import(name="offsetYears")
     private @Nullable Output<Integer> offsetYears;
 
     /**
-     * @return Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+     * @return Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> offsetYears() {
@@ -123,23 +125,25 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     @Import(name="triggers")
     private @Nullable Output<Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+     * documentation](../index.md) for more information.
      * 
      */
     public Optional<Output<Map<String,String>>> triggers() {
         return Optional.ofNullable(this.triggers);
     }
 
-    private TimeOffsetArgs() {}
+    private OffsetArgs() {}
 
-    private TimeOffsetArgs(TimeOffsetArgs $) {
+    private OffsetArgs(OffsetArgs $) {
         this.baseRfc3339 = $.baseRfc3339;
         this.offsetDays = $.offsetDays;
         this.offsetHours = $.offsetHours;
@@ -153,23 +157,24 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(TimeOffsetArgs defaults) {
+    public static Builder builder(OffsetArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private TimeOffsetArgs $;
+        private OffsetArgs $;
 
         public Builder() {
-            $ = new TimeOffsetArgs();
+            $ = new OffsetArgs();
         }
 
-        public Builder(TimeOffsetArgs defaults) {
-            $ = new TimeOffsetArgs(Objects.requireNonNull(defaults));
+        public Builder(OffsetArgs defaults) {
+            $ = new OffsetArgs(Objects.requireNonNull(defaults));
         }
 
         /**
-         * @param baseRfc3339 Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -180,7 +185,8 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param baseRfc3339 Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
+         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -190,7 +196,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetDays Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetDays Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -201,7 +207,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetDays Number of days to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetDays Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -211,7 +217,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetHours Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetHours Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -222,7 +228,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetHours Number of hours to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetHours Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -232,7 +238,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetMinutes Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetMinutes Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -243,7 +249,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetMinutes Number of minutes to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetMinutes Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -253,7 +259,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetMonths Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetMonths Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -264,7 +270,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetMonths Number of months to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetMonths Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -274,7 +280,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetSeconds Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetSeconds Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -285,7 +291,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetSeconds Number of seconds to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetSeconds Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -295,7 +301,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetYears Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetYears Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -306,7 +312,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param offsetYears Number of years to offset the base timestamp. Conflicts with other `offset_` arguments.
+         * @param offsetYears Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -316,7 +322,8 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+         * documentation](../index.md) for more information.
          * 
          * @return builder
          * 
@@ -327,7 +334,8 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
+         * documentation](../index.md) for more information.
          * 
          * @return builder
          * 
@@ -336,7 +344,7 @@ public final class TimeOffsetArgs extends com.pulumi.resources.ResourceArgs {
             return triggers(Output.of(triggers));
         }
 
-        public TimeOffsetArgs build() {
+        public OffsetArgs build() {
             return $;
         }
     }

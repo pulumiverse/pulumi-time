@@ -22,7 +22,7 @@ namespace Pulumiverse.Time
     /// {
     ///     public MyStack()
     ///     {
-    ///         var example = new Time.TimeOffset("example", new Time.TimeOffsetArgs
+    ///         var example = new Time.Offset("example", new Time.OffsetArgs
     ///         {
     ///             OffsetDays = 7,
     ///         });
@@ -44,7 +44,7 @@ namespace Pulumiverse.Time
     /// {
     ///     public MyStack()
     ///     {
-    ///         var amiUpdate = new Time.TimeOffset("amiUpdate", new Time.TimeOffsetArgs
+    ///         var amiUpdate = new Time.Offset("amiUpdate", new Time.OffsetArgs
     ///         {
     ///             Triggers = 
     ///             {
@@ -71,13 +71,13 @@ namespace Pulumiverse.Time
     /// This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/timeOffset:TimeOffset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+    ///  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
     /// ```
     /// 
     ///  The `triggers` argument cannot be imported.
     /// </summary>
-    [TimeResourceType("time:index/timeOffset:TimeOffset")]
-    public partial class TimeOffset : Pulumi.CustomResource
+    [TimeResourceType("time:index/offset:Offset")]
+    public partial class Offset : Pulumi.CustomResource
     {
         /// <summary>
         /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
@@ -179,19 +179,19 @@ namespace Pulumiverse.Time
 
 
         /// <summary>
-        /// Create a TimeOffset resource with the given unique name, arguments, and options.
+        /// Create a Offset resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public TimeOffset(string name, TimeOffsetArgs? args = null, CustomResourceOptions? options = null)
-            : base("time:index/timeOffset:TimeOffset", name, args ?? new TimeOffsetArgs(), MakeResourceOptions(options, ""))
+        public Offset(string name, OffsetArgs? args = null, CustomResourceOptions? options = null)
+            : base("time:index/offset:Offset", name, args ?? new OffsetArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private TimeOffset(string name, Input<string> id, TimeOffsetState? state = null, CustomResourceOptions? options = null)
-            : base("time:index/timeOffset:TimeOffset", name, state, MakeResourceOptions(options, id))
+        private Offset(string name, Input<string> id, OffsetState? state = null, CustomResourceOptions? options = null)
+            : base("time:index/offset:Offset", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -208,7 +208,7 @@ namespace Pulumiverse.Time
             return merged;
         }
         /// <summary>
-        /// Get an existing TimeOffset resource's state with the given name, ID, and optional extra
+        /// Get an existing Offset resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -216,13 +216,13 @@ namespace Pulumiverse.Time
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static TimeOffset Get(string name, Input<string> id, TimeOffsetState? state = null, CustomResourceOptions? options = null)
+        public static Offset Get(string name, Input<string> id, OffsetState? state = null, CustomResourceOptions? options = null)
         {
-            return new TimeOffset(name, id, state, options);
+            return new Offset(name, id, state, options);
         }
     }
 
-    public sealed class TimeOffsetArgs : Pulumi.ResourceArgs
+    public sealed class OffsetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
@@ -280,12 +280,12 @@ namespace Pulumiverse.Time
             set => _triggers = value;
         }
 
-        public TimeOffsetArgs()
+        public OffsetArgs()
         {
         }
     }
 
-    public sealed class TimeOffsetState : Pulumi.ResourceArgs
+    public sealed class OffsetState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
@@ -391,7 +391,7 @@ namespace Pulumiverse.Time
         [Input("year")]
         public Input<int>? Year { get; set; }
 
-        public TimeOffsetState()
+        public OffsetState()
         {
         }
     }
