@@ -1,8 +1,6 @@
 # Time Resource Provider
 
-The Time Resource Provider lets you manage [time](https://registry.terraform.io/providers/hashicorp/time) resources.
-
-It is available from the [Pulumi Registry](https://www.pulumi.com/registry/packages/time/).
+The Time Resource Provider lets you manage [time](https://www.pulumi.com/registry/packages/time/) resources.
 
 ## Installing
 
@@ -48,10 +46,7 @@ dotnet add package Pulumiverse.Time
 
 ## Configuration
 
-The following configuration points are available for the `time` provider:
-
-- `time:apiKey` (environment: `time_API_KEY`) - the API key for `time`
-- `time:region` (environment: `time_REGION`) - the region in which to deploy resources
+The Time provider does not need any additional configuration.
 
 ## Reference
 
