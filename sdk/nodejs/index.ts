@@ -5,34 +5,34 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./offset";
 export * from "./provider";
-export * from "./timeOffset";
-export * from "./timeRotating";
-export * from "./timeStatic";
+export * from "./rotating";
+export * from "./static";
 
 // Import resources to register:
-import { TimeOffset } from "./timeOffset";
-import { TimeRotating } from "./timeRotating";
-import { TimeStatic } from "./timeStatic";
+import { Offset } from "./offset";
+import { Rotating } from "./rotating";
+import { Static } from "./static";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "time:index/timeOffset:TimeOffset":
-                return new TimeOffset(name, <any>undefined, { urn })
-            case "time:index/timeRotating:TimeRotating":
-                return new TimeRotating(name, <any>undefined, { urn })
-            case "time:index/timeStatic:TimeStatic":
-                return new TimeStatic(name, <any>undefined, { urn })
+            case "time:index/offset:Offset":
+                return new Offset(name, <any>undefined, { urn })
+            case "time:index/rotating:Rotating":
+                return new Rotating(name, <any>undefined, { urn })
+            case "time:index/static:Static":
+                return new Static(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("time", "index/timeOffset", _module)
-pulumi.runtime.registerResourceModule("time", "index/timeRotating", _module)
-pulumi.runtime.registerResourceModule("time", "index/timeStatic", _module)
+pulumi.runtime.registerResourceModule("time", "index/offset", _module)
+pulumi.runtime.registerResourceModule("time", "index/rotating", _module)
+pulumi.runtime.registerResourceModule("time", "index/static", _module)
 
 import { Provider } from "./provider";
 

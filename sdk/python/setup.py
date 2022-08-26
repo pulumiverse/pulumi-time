@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'time', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'time', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse/pulumi-time'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,24 +37,25 @@ def readme():
         return "time Pulumi Package - Development Version"
 
 
-setup(name='pulumi_time',
+setup(name='pulumiverse_time',
       version=VERSION,
-      description="A Pulumi package to create time resources in Pulumi programs.",
+      description="A Pulumi package for creating and managing Time resources",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi time',
-      url='https://pulumi.io',
+      keywords='pulumi time category/utility',
+      url='https://github.com/pulumiverse/pulumi-time',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-time'
+          'Repository': 'https://github.com/pulumiverse/pulumi-time'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_time': [
+          'pulumiverse_time': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[
