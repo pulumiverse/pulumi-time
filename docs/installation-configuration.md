@@ -1,6 +1,6 @@
 ---
 title: Time Setup
-meta_desc: Information on how to install the Time provider.
+meta_desc: Information on how to install the Pulumi Time provider.
 layout: installation
 ---
 
