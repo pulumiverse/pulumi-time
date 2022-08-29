@@ -1,6 +1,6 @@
 {
     "name": "time",
-    "displayName": "Pulumi Time provider",
+    "displayName": "Time",
     "description": "A Pulumi package for creating and managing Time resources",
     "keywords": [
         "pulumi",
