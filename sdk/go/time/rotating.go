@@ -17,24 +17,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-time/sdk/go/time"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := time.NewRotating(ctx, "example", &time.RotatingArgs{
-//				RotationDays: pulumi.Int(30),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := time.NewRotating(ctx, "example", &time.RotatingArgs{
+// 			RotationDays: pulumi.Int(30),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -42,20 +39,16 @@ import (
 // This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
 //
 // ```sh
-//
-//	$ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
-//
+//  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
 // ```
 //
-//	Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
+//  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
 //
 // ```sh
-//
-//	$ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
-//
+//  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
 // ```
 //
-//	The `triggers` argument cannot be imported.
+//  The `triggers` argument cannot be imported.
 type Rotating struct {
 	pulumi.CustomResourceState
 
@@ -305,7 +298,7 @@ func (i *Rotating) ToRotatingOutputWithContext(ctx context.Context) RotatingOutp
 // RotatingArrayInput is an input type that accepts RotatingArray and RotatingArrayOutput values.
 // You can construct a concrete instance of `RotatingArrayInput` via:
 //
-//	RotatingArray{ RotatingArgs{...} }
+//          RotatingArray{ RotatingArgs{...} }
 type RotatingArrayInput interface {
 	pulumi.Input
 
@@ -330,7 +323,7 @@ func (i RotatingArray) ToRotatingArrayOutputWithContext(ctx context.Context) Rot
 // RotatingMapInput is an input type that accepts RotatingMap and RotatingMapOutput values.
 // You can construct a concrete instance of `RotatingMapInput` via:
 //
-//	RotatingMap{ "key": RotatingArgs{...} }
+//          RotatingMap{ "key": RotatingArgs{...} }
 type RotatingMapInput interface {
 	pulumi.Input
 

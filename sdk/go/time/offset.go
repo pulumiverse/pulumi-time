@@ -17,25 +17,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-time/sdk/go/time"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := time.NewOffset(ctx, "example", &time.OffsetArgs{
-//				OffsetDays: pulumi.Int(7),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("oneWeekFromNow", example.Rfc3339)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := time.NewOffset(ctx, "example", &time.OffsetArgs{
+// 			OffsetDays: pulumi.Int(7),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("oneWeekFromNow", example.Rfc3339)
+// 		return nil
+// 	})
+// }
 // ```
 // ### Triggers Usage
 //
@@ -43,39 +40,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-time/sdk/go/time"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			amiUpdate, err := time.NewOffset(ctx, "amiUpdate", &time.OffsetArgs{
-//				Triggers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
-//				},
-//				OffsetDays: pulumi.Int(7),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-//				Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
-//					return triggers.AmiId, nil
-//				}).(pulumi.StringOutput),
-//				Tags: pulumi.StringMap{
-//					"ExpirationTime": amiUpdate.Rfc3339,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		amiUpdate, err := time.NewOffset(ctx, "amiUpdate", &time.OffsetArgs{
+// 			Triggers: pulumi.StringMap{
+// 				"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
+// 			},
+// 			OffsetDays: pulumi.Int(7),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
+// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
+// 				return triggers.AmiId, nil
+// 			}).(pulumi.StringOutput),
+// 			Tags: pulumi.StringMap{
+// 				"ExpirationTime": amiUpdate.Rfc3339,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -83,12 +77,10 @@ import (
 // This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 //
 // ```sh
-//
-//	$ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
-//
+//  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
 // ```
 //
-//	The `triggers` argument cannot be imported.
+//  The `triggers` argument cannot be imported.
 type Offset struct {
 	pulumi.CustomResourceState
 
@@ -304,7 +296,7 @@ func (i *Offset) ToOffsetOutputWithContext(ctx context.Context) OffsetOutput {
 // OffsetArrayInput is an input type that accepts OffsetArray and OffsetArrayOutput values.
 // You can construct a concrete instance of `OffsetArrayInput` via:
 //
-//	OffsetArray{ OffsetArgs{...} }
+//          OffsetArray{ OffsetArgs{...} }
 type OffsetArrayInput interface {
 	pulumi.Input
 
@@ -329,7 +321,7 @@ func (i OffsetArray) ToOffsetArrayOutputWithContext(ctx context.Context) OffsetA
 // OffsetMapInput is an input type that accepts OffsetMap and OffsetMapOutput values.
 // You can construct a concrete instance of `OffsetMapInput` via:
 //
-//	OffsetMap{ "key": OffsetArgs{...} }
+//          OffsetMap{ "key": OffsetArgs{...} }
 type OffsetMapInput interface {
 	pulumi.Input
 

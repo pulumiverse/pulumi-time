@@ -17,23 +17,20 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-time/sdk/go/time"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := time.NewStatic(ctx, "example", nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("currentTime", example.Rfc3339)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := time.NewStatic(ctx, "example", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("currentTime", example.Rfc3339)
+// 		return nil
+// 	})
+// }
 // ```
 // ### Triggers Usage
 //
@@ -41,38 +38,35 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-time/sdk/go/time"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			amiUpdate, err := time.NewStatic(ctx, "amiUpdate", &time.StaticArgs{
-//				Triggers: pulumi.StringMap{
-//					"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-//				Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
-//					return triggers.AmiId, nil
-//				}).(pulumi.StringOutput),
-//				Tags: pulumi.StringMap{
-//					"AmiUpdateTime": amiUpdate.Rfc3339,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		amiUpdate, err := time.NewStatic(ctx, "amiUpdate", &time.StaticArgs{
+// 			Triggers: pulumi.StringMap{
+// 				"ami_id": pulumi.Any(data.Aws_ami.Example.Id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
+// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
+// 				return triggers.AmiId, nil
+// 			}).(pulumi.StringOutput),
+// 			Tags: pulumi.StringMap{
+// 				"AmiUpdateTime": amiUpdate.Rfc3339,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -80,12 +74,10 @@ import (
 // This resource can be imported using the UTC RFC3339 value, e.g.
 //
 // ```sh
-//
-//	$ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
-//
+//  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
 // ```
 //
-//	The `triggers` argument cannot be imported.
+//  The `triggers` argument cannot be imported.
 type Static struct {
 	pulumi.CustomResourceState
 
@@ -235,7 +227,7 @@ func (i *Static) ToStaticOutputWithContext(ctx context.Context) StaticOutput {
 // StaticArrayInput is an input type that accepts StaticArray and StaticArrayOutput values.
 // You can construct a concrete instance of `StaticArrayInput` via:
 //
-//	StaticArray{ StaticArgs{...} }
+//          StaticArray{ StaticArgs{...} }
 type StaticArrayInput interface {
 	pulumi.Input
 
@@ -260,7 +252,7 @@ func (i StaticArray) ToStaticArrayOutputWithContext(ctx context.Context) StaticA
 // StaticMapInput is an input type that accepts StaticMap and StaticMapOutput values.
 // You can construct a concrete instance of `StaticMapInput` via:
 //
-//	StaticMap{ "key": StaticArgs{...} }
+//          StaticMap{ "key": StaticArgs{...} }
 type StaticMapInput interface {
 	pulumi.Input
 
