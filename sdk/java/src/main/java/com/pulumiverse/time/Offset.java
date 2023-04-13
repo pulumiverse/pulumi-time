@@ -100,16 +100,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="time:index/offset:Offset")
 public class Offset extends com.pulumi.resources.CustomResource {
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
-    @Export(name="baseRfc3339", type=String.class, parameters={})
+    @Export(name="baseRfc3339", refs={String.class}, tree="[0]")
     private Output<String> baseRfc3339;
 
     /**
-     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> baseRfc3339() {
@@ -119,7 +117,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number day of offset timestamp.
      * 
      */
-    @Export(name="day", type=Integer.class, parameters={})
+    @Export(name="day", refs={Integer.class}, tree="[0]")
     private Output<Integer> day;
 
     /**
@@ -133,7 +131,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number hour of offset timestamp.
      * 
      */
-    @Export(name="hour", type=Integer.class, parameters={})
+    @Export(name="hour", refs={Integer.class}, tree="[0]")
     private Output<Integer> hour;
 
     /**
@@ -147,7 +145,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number minute of offset timestamp.
      * 
      */
-    @Export(name="minute", type=Integer.class, parameters={})
+    @Export(name="minute", refs={Integer.class}, tree="[0]")
     private Output<Integer> minute;
 
     /**
@@ -161,7 +159,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number month of offset timestamp.
      * 
      */
-    @Export(name="month", type=Integer.class, parameters={})
+    @Export(name="month", refs={Integer.class}, tree="[0]")
     private Output<Integer> month;
 
     /**
@@ -175,7 +173,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of days to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetDays", type=Integer.class, parameters={})
+    @Export(name="offsetDays", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetDays;
 
     /**
@@ -189,7 +187,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of hours to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetHours", type=Integer.class, parameters={})
+    @Export(name="offsetHours", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetHours;
 
     /**
@@ -203,7 +201,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of minutes to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetMinutes", type=Integer.class, parameters={})
+    @Export(name="offsetMinutes", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetMinutes;
 
     /**
@@ -217,7 +215,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of months to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetMonths", type=Integer.class, parameters={})
+    @Export(name="offsetMonths", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetMonths;
 
     /**
@@ -231,7 +229,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of seconds to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetSeconds", type=Integer.class, parameters={})
+    @Export(name="offsetSeconds", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetSeconds;
 
     /**
@@ -245,7 +243,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of years to offset the base timestamp. At least one of the &#39;offset_&#39; arguments must be configured.
      * 
      */
-    @Export(name="offsetYears", type=Integer.class, parameters={})
+    @Export(name="offsetYears", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> offsetYears;
 
     /**
@@ -259,7 +257,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * RFC3339 format of the offset timestamp, e.g. `2020-02-12T06:36:13Z`.
      * 
      */
-    @Export(name="rfc3339", type=String.class, parameters={})
+    @Export(name="rfc3339", refs={String.class}, tree="[0]")
     private Output<String> rfc3339;
 
     /**
@@ -273,7 +271,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number second of offset timestamp.
      * 
      */
-    @Export(name="second", type=Integer.class, parameters={})
+    @Export(name="second", refs={Integer.class}, tree="[0]")
     private Output<Integer> second;
 
     /**
@@ -284,16 +282,14 @@ public class Offset extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
-    @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="triggers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -303,7 +299,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number of seconds since epoch time, e.g. `1581489373`.
      * 
      */
-    @Export(name="unix", type=Integer.class, parameters={})
+    @Export(name="unix", refs={Integer.class}, tree="[0]")
     private Output<Integer> unix;
 
     /**
@@ -317,7 +313,7 @@ public class Offset extends com.pulumi.resources.CustomResource {
      * Number year of offset timestamp.
      * 
      */
-    @Export(name="year", type=Integer.class, parameters={})
+    @Export(name="year", refs={Integer.class}, tree="[0]")
     private Output<Integer> year;
 
     /**

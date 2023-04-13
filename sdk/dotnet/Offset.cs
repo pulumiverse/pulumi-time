@@ -15,55 +15,53 @@ namespace Pulumiverse.Time
     /// ### Basic Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Time = Pulumiverse.Time;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Time.Offset("example", new()
     ///     {
-    ///         var example = new Time.Offset("example", new Time.OffsetArgs
-    ///         {
-    ///             OffsetDays = 7,
-    ///         });
-    ///         this.OneWeekFromNow = example.Rfc3339;
-    ///     }
+    ///         OffsetDays = 7,
+    ///     });
     /// 
-    ///     [Output("oneWeekFromNow")]
-    ///     public Output&lt;string&gt; OneWeekFromNow { get; set; }
-    /// }
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["oneWeekFromNow"] = example.Rfc3339,
+    ///     };
+    /// });
     /// ```
     /// ### Triggers Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Time = Pulumiverse.Time;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var amiUpdate = new Time.Offset("amiUpdate", new()
     ///     {
-    ///         var amiUpdate = new Time.Offset("amiUpdate", new Time.OffsetArgs
+    ///         Triggers = 
     ///         {
-    ///             Triggers = 
-    ///             {
-    ///                 { "ami_id", data.Aws_ami.Example.Id },
-    ///             },
-    ///             OffsetDays = 7,
-    ///         });
-    ///         var server = new Aws.Ec2.Instance("server", new Aws.Ec2.InstanceArgs
-    ///         {
-    ///             Ami = amiUpdate.Triggers.Apply(triggers =&gt; triggers?.AmiId),
-    ///             Tags = 
-    ///             {
-    ///                 { "ExpirationTime", amiUpdate.Rfc3339 },
-    ///             },
-    ///         });
-    ///         // ... (other aws_instance arguments) ...
-    ///     }
+    ///             { "ami_id", data.Aws_ami.Example.Id },
+    ///         },
+    ///         OffsetDays = 7,
+    ///     });
     /// 
-    /// }
+    ///     var server = new Aws.Ec2.Instance("server", new()
+    ///     {
+    ///         Ami = amiUpdate.Triggers.Apply(triggers =&gt; triggers?.AmiId),
+    ///         Tags = 
+    ///         {
+    ///             { "ExpirationTime", amiUpdate.Rfc3339 },
+    ///         },
+    ///     });
+    /// 
+    ///     // ... (other aws_instance arguments) ...
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -77,11 +75,10 @@ namespace Pulumiverse.Time
     ///  The `triggers` argument cannot be imported.
     /// </summary>
     [TimeResourceType("time:index/offset:Offset")]
-    public partial class Offset : Pulumi.CustomResource
+    public partial class Offset : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Output("baseRfc3339")]
         public Output<string> BaseRfc3339 { get; private set; } = null!;
@@ -159,8 +156,7 @@ namespace Pulumiverse.Time
         public Output<int> Second { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        /// documentation](../index.md) for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         /// </summary>
         [Output("triggers")]
         public Output<ImmutableDictionary<string, string>?> Triggers { get; private set; } = null!;
@@ -222,11 +218,10 @@ namespace Pulumiverse.Time
         }
     }
 
-    public sealed class OffsetArgs : Pulumi.ResourceArgs
+    public sealed class OffsetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("baseRfc3339")]
         public Input<string>? BaseRfc3339 { get; set; }
@@ -271,8 +266,7 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        /// documentation](../index.md) for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         /// </summary>
         public InputMap<string> Triggers
         {
@@ -283,13 +277,13 @@ namespace Pulumiverse.Time
         public OffsetArgs()
         {
         }
+        public static new OffsetArgs Empty => new OffsetArgs();
     }
 
-    public sealed class OffsetState : Pulumi.ResourceArgs
+    public sealed class OffsetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        /// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        /// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         /// </summary>
         [Input("baseRfc3339")]
         public Input<string>? BaseRfc3339 { get; set; }
@@ -370,8 +364,7 @@ namespace Pulumiverse.Time
         private InputMap<string>? _triggers;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        /// documentation](../index.md) for more information.
+        /// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         /// </summary>
         public InputMap<string> Triggers
         {
@@ -394,5 +387,6 @@ namespace Pulumiverse.Time
         public OffsetState()
         {
         }
+        public static new OffsetState Empty => new OffsetState();
     }
 }

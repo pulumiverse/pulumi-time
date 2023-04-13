@@ -71,7 +71,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number day of timestamp.
      * 
      */
-    @Export(name="day", type=Integer.class, parameters={})
+    @Export(name="day", refs={Integer.class}, tree="[0]")
     private Output<Integer> day;
 
     /**
@@ -85,7 +85,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number hour of timestamp.
      * 
      */
-    @Export(name="hour", type=Integer.class, parameters={})
+    @Export(name="hour", refs={Integer.class}, tree="[0]")
     private Output<Integer> hour;
 
     /**
@@ -99,7 +99,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number minute of timestamp.
      * 
      */
-    @Export(name="minute", type=Integer.class, parameters={})
+    @Export(name="minute", refs={Integer.class}, tree="[0]")
     private Output<Integer> minute;
 
     /**
@@ -113,7 +113,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number month of timestamp.
      * 
      */
-    @Export(name="month", type=Integer.class, parameters={})
+    @Export(name="month", refs={Integer.class}, tree="[0]")
     private Output<Integer> month;
 
     /**
@@ -124,114 +124,98 @@ public class Rotating extends com.pulumi.resources.CustomResource {
         return this.month;
     }
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
-    @Export(name="rfc3339", type=String.class, parameters={})
+    @Export(name="rfc3339", refs={String.class}, tree="[0]")
     private Output<String> rfc3339;
 
     /**
-     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> rfc3339() {
         return this.rfc3339;
     }
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationDays", type=Integer.class, parameters={})
+    @Export(name="rotationDays", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationDays;
 
     /**
-     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationDays() {
         return Codegen.optional(this.rotationDays);
     }
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationHours", type=Integer.class, parameters={})
+    @Export(name="rotationHours", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationHours;
 
     /**
-     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationHours() {
         return Codegen.optional(this.rotationHours);
     }
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationMinutes", type=Integer.class, parameters={})
+    @Export(name="rotationMinutes", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationMinutes;
 
     /**
-     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationMinutes() {
         return Codegen.optional(this.rotationMinutes);
     }
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationMonths", type=Integer.class, parameters={})
+    @Export(name="rotationMonths", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationMonths;
 
     /**
-     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationMonths() {
         return Codegen.optional(this.rotationMonths);
     }
     /**
-     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the &#39;rotation_&#39; arguments must be configured.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationRfc3339", type=String.class, parameters={})
+    @Export(name="rotationRfc3339", refs={String.class}, tree="[0]")
     private Output<String> rotationRfc3339;
 
     /**
-     * @return Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<String> rotationRfc3339() {
         return this.rotationRfc3339;
     }
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
-    @Export(name="rotationYears", type=Integer.class, parameters={})
+    @Export(name="rotationYears", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationYears;
 
     /**
-     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Output<Optional<Integer>> rotationYears() {
@@ -241,7 +225,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number second of timestamp.
      * 
      */
-    @Export(name="second", type=Integer.class, parameters={})
+    @Export(name="second", refs={Integer.class}, tree="[0]")
     private Output<Integer> second;
 
     /**
@@ -252,18 +236,14 @@ public class Rotating extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      * 
      */
-    @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="triggers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -273,7 +253,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number of seconds since epoch time, e.g. `1581489373`.
      * 
      */
-    @Export(name="unix", type=Integer.class, parameters={})
+    @Export(name="unix", refs={Integer.class}, tree="[0]")
     private Output<Integer> unix;
 
     /**
@@ -287,7 +267,7 @@ public class Rotating extends com.pulumi.resources.CustomResource {
      * Number year of timestamp.
      * 
      */
-    @Export(name="year", type=Integer.class, parameters={})
+    @Export(name="year", refs={Integer.class}, tree="[0]")
     private Output<Integer> year;
 
     /**

@@ -75,7 +75,7 @@ namespace Pulumiverse.Time
         }
     }
 
-    internal sealed class TimeResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class TimeResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public TimeResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {
