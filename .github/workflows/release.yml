@@ -32,6 +32,10 @@ env:
   PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: "__token__"
   PUBLISH_PYPI: true
+  PUBLISH_JAVA: true
+  PUBLISH_REPO_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+  PUBLISH_REPO_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
 jobs:
   publish_binary:
     name: publish
@@ -106,6 +110,8 @@ jobs:
               git diff
               exit 1
           fi
+      ###
+      # python
       - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
         name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -113,29 +119,67 @@ jobs:
           user: ${{ env.PYPI_USERNAME }}
           password: ${{ env.PYPI_PASSWORD }}
           packages_dir: ${{github.workspace}}/sdk/python/bin/dist
+      ###
+      # nodejs
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
         uses: JS-DevTools/npm-publish@v1
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+      ###
+      # dotnet
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
           dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg -s ${{ env.NUGET_FEED_URL }} -k ${{ env.NUGET_PUBLISH_KEY }}
           echo "done publishing packages"
+      ###
+      # java
+      - if: ${{ matrix.language == 'java' && env.PUBLISH_JAVA == 'true' }}
+        name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{matrix.javaversion}}
+          distribution: temurin
+          cache: gradle
+      - if: ${{ matrix.language == 'java' && env.PUBLISH_JAVA == 'true' }}
+        name: Download java SDK
+        uses: actions/download-artifact@v2
+        with:
+          name: java-sdk.tar.gz
+          path: ${{ github.workspace}}/sdk/
+      - if: ${{ matrix.language == 'java' && env.PUBLISH_JAVA == 'true' }}
+        name: Uncompress java SDK
+        run: tar -zxf ${{github.workspace}}/sdk/java.tar.gz -C
+          ${{github.workspace}}/sdk/java
+      - if: ${{ matrix.language == 'java' && env.PUBLISH_JAVA == 'true' }}
+        name: Set PACKAGE_VERSION to Env
+        run: echo "PACKAGE_VERSION=$(pulumictl get version --language generic)" >>
+          $GITHUB_ENV
+      - if: ${{ matrix.language == 'java' && env.PUBLISH_JAVA == 'true' }}
+        name: Publish Java SDK
+        uses: gradle/gradle-build-action@9b814496b50909128c6a52622b416c5ffa04db49
+        with:
+          arguments: publishToSonatype closeAndReleaseSonatypeStagingRepository
+          build-root-directory: ./sdk/java
+          gradle-version: 7.4.1
     strategy:
       fail-fast: true
       matrix:
         dotnetversion:
           - 3.1.301
+          - 6.0.x
         goversion:
           - 1.18.x
+        javaversion:
+          - 11
         language:
           - nodejs
           - python
           - dotnet
           - go
+          - java
         nodeversion:
           - 16.x
         pythonversion:
