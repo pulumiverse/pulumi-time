@@ -32,7 +32,9 @@
             "importBasePath": "github.com/pulumi/pulumi-time/sdk/go/time"
         },
         "java": {
-            "basePackage": "com.pulumiverse"
+            "basePackage": "com.pulumiverse",
+            "buildFiles": "",
+            "gradleNexusPublishPluginVersion": ""
         },
         "nodejs": {
             "compatibility": "tfbridge20",
@@ -46,13 +48,13 @@
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing Time resources",
             "packageName": "@pulumiverse/time",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-time` repo](https://github.com/pulumi/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-time` repo](https://github.com/pulumiverse/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
             "typescriptVersion": ""
         },
         "python": {
             "compatibility": "tfbridge20",
             "packageName": "pulumiverse_time",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-time` repo](https://github.com/pulumi/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-time)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-time` repo](https://github.com/pulumiverse/pulumi-time/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-time` repo](https://github.com/hashicorp/terraform-provider-time/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
@@ -64,11 +66,11 @@
     },
     "resources": {
         "time:index/offset:Offset": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumiverse/time\";\n\nconst example = new time.Offset(\"example\", {offsetDays: 7});\nexport const oneWeekFromNow = example.rfc3339;\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Offset(\"example\", offset_days=7)\npulumi.export(\"oneWeekFromNow\", example.rfc3339)\n```\n```csharp\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Time.Offset(\"example\", new Time.OffsetArgs\n        {\n            OffsetDays = 7,\n        });\n        this.OneWeekFromNow = example.Rfc3339;\n    }\n\n    [Output(\"oneWeekFromNow\")]\n    public Output\u003cstring\u003e OneWeekFromNow { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := time.NewOffset(ctx, \"example\", \u0026time.OffsetArgs{\n\t\t\tOffsetDays: pulumi.Int(7),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"oneWeekFromNow\", example.Rfc3339)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Offset;\nimport com.pulumi.time.OffsetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Offset(\"example\", OffsetArgs.builder()        \n            .offsetDays(7)\n            .build());\n\n        ctx.export(\"oneWeekFromNow\", example.rfc3339());\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Offset\n    properties:\n      offsetDays: 7\noutputs:\n  oneWeekFromNow: ${example.rfc3339}\n```\n{{% /example %}}\n{{% example %}}\n### Triggers Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as time from \"@pulumiverse/time\";\n\nconst amiUpdate = new time.Offset(\"amiUpdate\", {\n    triggers: {\n        ami_id: data.aws_ami.example.id,\n    },\n    offsetDays: 7,\n});\nconst server = new aws.ec2.Instance(\"server\", {\n    ami: amiUpdate.triggers.apply(triggers =\u003e triggers?.amiId),\n    tags: {\n        ExpirationTime: amiUpdate.rfc3339,\n    },\n});\n// ... (other aws_instance arguments) ...\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Time = Pulumiverse.Time;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var amiUpdate = new Time.Offset(\"amiUpdate\", new Time.OffsetArgs\n        {\n            Triggers = \n            {\n                { \"ami_id\", data.Aws_ami.Example.Id },\n            },\n            OffsetDays = 7,\n        });\n        var server = new Aws.Ec2.Instance(\"server\", new Aws.Ec2.InstanceArgs\n        {\n            Ami = amiUpdate.Triggers.Apply(triggers =\u003e triggers?.AmiId),\n            Tags = \n            {\n                { \"ExpirationTime\", amiUpdate.Rfc3339 },\n            },\n        });\n        // ... (other aws_instance arguments) ...\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tamiUpdate, err := time.NewOffset(ctx, \"amiUpdate\", \u0026time.OffsetArgs{\n\t\t\tTriggers: pulumi.StringMap{\n\t\t\t\t\"ami_id\": pulumi.Any(data.Aws_ami.Example.Id),\n\t\t\t},\n\t\t\tOffsetDays: pulumi.Int(7),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewInstance(ctx, \"server\", \u0026ec2.InstanceArgs{\n\t\t\tAmi: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {\n\t\t\t\treturn triggers.AmiId, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"ExpirationTime\": amiUpdate.Rfc3339,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Offset;\nimport com.pulumi.time.OffsetArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var amiUpdate = new Offset(\"amiUpdate\", OffsetArgs.builder()        \n            .triggers(Map.of(\"ami_id\", data.aws_ami().example().id()))\n            .offsetDays(7)\n            .build());\n\n        var server = new Instance(\"server\", InstanceArgs.builder()        \n            .ami(amiUpdate.triggers().applyValue(triggers -\u003e triggers.amiId()))\n            .tags(Map.of(\"ExpirationTime\", amiUpdate.rfc3339()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  amiUpdate:\n    type: time:Offset\n    properties:\n      triggers:\n        ami_id: ${data.aws_ami.example.id}\n      offsetDays: 7\n  server:\n    type: aws:ec2:Instance\n    properties:\n      # Read the AMI id \"through\" the time_offset resource to ensure that\n      #   # both will change together.\n      ami: ${amiUpdate.triggers.amiId}\n      tags:\n        ExpirationTime: ${amiUpdate.rfc3339}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.\n\n```sh\n $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0\n```\n\n The `triggers` argument cannot be imported. ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumiverse/time\";\n\nconst example = new time.Offset(\"example\", {offsetDays: 7});\nexport const oneWeekFromNow = example.rfc3339;\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Offset(\"example\", offset_days=7)\npulumi.export(\"oneWeekFromNow\", example.rfc3339)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Time.Offset(\"example\", new()\n    {\n        OffsetDays = 7,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"oneWeekFromNow\"] = example.Rfc3339,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := time.NewOffset(ctx, \"example\", \u0026time.OffsetArgs{\n\t\t\tOffsetDays: pulumi.Int(7),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"oneWeekFromNow\", example.Rfc3339)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Offset;\nimport com.pulumi.time.OffsetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Offset(\"example\", OffsetArgs.builder()        \n            .offsetDays(7)\n            .build());\n\n        ctx.export(\"oneWeekFromNow\", example.rfc3339());\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Offset\n    properties:\n      offsetDays: 7\noutputs:\n  oneWeekFromNow: ${example.rfc3339}\n```\n{{% /example %}}\n{{% example %}}\n### Triggers Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as time from \"@pulumiverse/time\";\n\nconst amiUpdate = new time.Offset(\"amiUpdate\", {\n    triggers: {\n        ami_id: data.aws_ami.example.id,\n    },\n    offsetDays: 7,\n});\nconst server = new aws.ec2.Instance(\"server\", {\n    ami: amiUpdate.triggers.apply(triggers =\u003e triggers?.amiId),\n    tags: {\n        ExpirationTime: amiUpdate.rfc3339,\n    },\n});\n// ... (other aws_instance arguments) ...\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Time = Pulumiverse.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var amiUpdate = new Time.Offset(\"amiUpdate\", new()\n    {\n        Triggers = \n        {\n            { \"ami_id\", data.Aws_ami.Example.Id },\n        },\n        OffsetDays = 7,\n    });\n\n    var server = new Aws.Ec2.Instance(\"server\", new()\n    {\n        Ami = amiUpdate.Triggers.Apply(triggers =\u003e triggers?.AmiId),\n        Tags = \n        {\n            { \"ExpirationTime\", amiUpdate.Rfc3339 },\n        },\n    });\n\n    // ... (other aws_instance arguments) ...\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tamiUpdate, err := time.NewOffset(ctx, \"amiUpdate\", \u0026time.OffsetArgs{\n\t\t\tTriggers: pulumi.StringMap{\n\t\t\t\t\"ami_id\": pulumi.Any(data.Aws_ami.Example.Id),\n\t\t\t},\n\t\t\tOffsetDays: pulumi.Int(7),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewInstance(ctx, \"server\", \u0026ec2.InstanceArgs{\n\t\t\tAmi: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (*string, error) {\n\t\t\t\treturn \u0026triggers.AmiId, nil\n\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"ExpirationTime\": amiUpdate.Rfc3339,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Offset;\nimport com.pulumi.time.OffsetArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var amiUpdate = new Offset(\"amiUpdate\", OffsetArgs.builder()        \n            .triggers(Map.of(\"ami_id\", data.aws_ami().example().id()))\n            .offsetDays(7)\n            .build());\n\n        var server = new Instance(\"server\", InstanceArgs.builder()        \n            .ami(amiUpdate.triggers().applyValue(triggers -\u003e triggers.amiId()))\n            .tags(Map.of(\"ExpirationTime\", amiUpdate.rfc3339()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  amiUpdate:\n    type: time:Offset\n    properties:\n      triggers:\n        ami_id: ${data.aws_ami.example.id}\n      offsetDays: 7\n  server:\n    type: aws:ec2:Instance\n    properties:\n      # Read the AMI id \"through\" the time_offset resource to ensure that\n      #   # both will change together.\n      ami: ${amiUpdate.triggers.amiId}\n      tags:\n        ExpirationTime: ${amiUpdate.rfc3339}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.\n\n```sh\n $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0\n```\n\n The `triggers` argument cannot be imported. ",
             "properties": {
                 "baseRfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
                 },
                 "day": {
                     "type": "integer",
@@ -123,7 +125,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
                 },
                 "unix": {
                     "type": "integer",
@@ -148,7 +150,7 @@
             "inputProperties": {
                 "baseRfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                     "willReplaceOnChanges": true
                 },
                 "offsetDays": {
@@ -180,7 +182,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n",
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -189,7 +191,7 @@
                 "properties": {
                     "baseRfc3339": {
                         "type": "string",
-                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                         "willReplaceOnChanges": true
                     },
                     "day": {
@@ -245,7 +247,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n",
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n",
                         "willReplaceOnChanges": true
                     },
                     "unix": {
@@ -261,7 +263,7 @@
             }
         },
         "time:index/rotating:Rotating": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumi/time\";\n\nconst example = new time.Rotating(\"example\", {\n    rotationDays: 30,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Rotating(\"example\", rotation_days=30)\n```\n```csharp\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Time.Rotating(\"example\", new Time.RotatingArgs\n        {\n            RotationDays = 30,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := time.NewRotating(ctx, \"example\", \u0026time.RotatingArgs{\n\t\t\tRotationDays: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Rotating(\"example\", RotatingArgs.builder()        \n            .rotationDays(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Rotating\n    properties:\n      rotationDays: 30\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days\n\n```sh\n $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0\n```\n\n Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.\n\n```sh\n $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumiverse/time\";\n\nconst example = new time.Rotating(\"example\", {rotationDays: 30});\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Rotating(\"example\", rotation_days=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Time.Rotating(\"example\", new()\n    {\n        RotationDays = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := time.NewRotating(ctx, \"example\", \u0026time.RotatingArgs{\n\t\t\tRotationDays: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Rotating(\"example\", RotatingArgs.builder()        \n            .rotationDays(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Rotating\n    properties:\n      rotationDays: 30\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days\n\n```sh\n $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0\n```\n\n Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.\n\n```sh\n $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
             "properties": {
                 "day": {
                     "type": "integer",
@@ -281,31 +283,31 @@
                 },
                 "rfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
                 },
                 "rotationDays": {
                     "type": "integer",
-                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationHours": {
                     "type": "integer",
-                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationMinutes": {
                     "type": "integer",
-                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationMonths": {
                     "type": "integer",
-                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationRfc3339": {
                     "type": "string",
-                    "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of\nthe offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At\nleast one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationYears": {
                     "type": "integer",
-                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "second": {
                     "type": "integer",
@@ -316,7 +318,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions\nrecreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for\nmore information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n"
                 },
                 "unix": {
                     "type": "integer",
@@ -341,39 +343,39 @@
             "inputProperties": {
                 "rfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                     "willReplaceOnChanges": true
                 },
                 "rotationDays": {
                     "type": "integer",
-                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationHours": {
                     "type": "integer",
-                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationMinutes": {
                     "type": "integer",
-                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationMonths": {
                     "type": "integer",
-                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationRfc3339": {
                     "type": "string",
-                    "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of\nthe offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At\nleast one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "rotationYears": {
                     "type": "integer",
-                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                    "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                 },
                 "triggers": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions\nrecreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for\nmore information.\n",
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -398,32 +400,32 @@
                     },
                     "rfc3339": {
                         "type": "string",
-                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                         "willReplaceOnChanges": true
                     },
                     "rotationDays": {
                         "type": "integer",
-                        "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "rotationHours": {
                         "type": "integer",
-                        "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "rotationMinutes": {
                         "type": "integer",
-                        "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "rotationMonths": {
                         "type": "integer",
-                        "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "rotationRfc3339": {
                         "type": "string",
-                        "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of\nthe offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At\nleast one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "rotationYears": {
                         "type": "integer",
-                        "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the\nrotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
+                        "description": "Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.\n"
                     },
                     "second": {
                         "type": "integer",
@@ -434,7 +436,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions\nrecreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for\nmore information.\n",
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.\n",
                         "willReplaceOnChanges": true
                     },
                     "unix": {
@@ -450,7 +452,7 @@
             }
         },
         "time:index/static:Static": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumiverse/time\";\n\nconst example = new time.Static(\"example\", {});\nexport const currentTime = example.rfc3339;\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Static(\"example\")\npulumi.export(\"currentTime\", example.rfc3339)\n```\n```csharp\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Time.Static(\"example\", new Time.StaticArgs\n        {\n        });\n        this.CurrentTime = example.Rfc3339;\n    }\n\n    [Output(\"currentTime\")]\n    public Output\u003cstring\u003e CurrentTime { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := time.NewStatic(ctx, \"example\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"currentTime\", example.Rfc3339)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Static;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Static(\"example\");\n\n        ctx.export(\"currentTime\", example.rfc3339());\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Static\noutputs:\n  currentTime: ${example.rfc3339}\n```\n{{% /example %}}\n{{% example %}}\n### Triggers Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as time from \"@pulumiverse/time\";\n\nconst amiUpdate = new time.Static(\"amiUpdate\", {triggers: {\n    ami_id: data.aws_ami.example.id,\n}});\nconst server = new aws.ec2.Instance(\"server\", {\n    ami: amiUpdate.triggers.apply(triggers =\u003e triggers?.amiId),\n    tags: {\n        AmiUpdateTime: amiUpdate.rfc3339,\n    },\n});\n// ... (other aws_instance arguments) ...\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Time = Pulumiverse.Time;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var amiUpdate = new Time.Static(\"amiUpdate\", new Time.StaticArgs\n        {\n            Triggers = \n            {\n                { \"ami_id\", data.Aws_ami.Example.Id },\n            },\n        });\n        var server = new Aws.Ec2.Instance(\"server\", new Aws.Ec2.InstanceArgs\n        {\n            Ami = amiUpdate.Triggers.Apply(triggers =\u003e triggers?.AmiId),\n            Tags = \n            {\n                { \"AmiUpdateTime\", amiUpdate.Rfc3339 },\n            },\n        });\n        // ... (other aws_instance arguments) ...\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tamiUpdate, err := time.NewStatic(ctx, \"amiUpdate\", \u0026time.StaticArgs{\n\t\t\tTriggers: pulumi.StringMap{\n\t\t\t\t\"ami_id\": pulumi.Any(data.Aws_ami.Example.Id),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewInstance(ctx, \"server\", \u0026ec2.InstanceArgs{\n\t\t\tAmi: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {\n\t\t\t\treturn triggers.AmiId, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"AmiUpdateTime\": amiUpdate.Rfc3339,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Static;\nimport com.pulumi.time.StaticArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var amiUpdate = new Static(\"amiUpdate\", StaticArgs.builder()        \n            .triggers(Map.of(\"ami_id\", data.aws_ami().example().id()))\n            .build());\n\n        var server = new Instance(\"server\", InstanceArgs.builder()        \n            .ami(amiUpdate.triggers().applyValue(triggers -\u003e triggers.amiId()))\n            .tags(Map.of(\"AmiUpdateTime\", amiUpdate.rfc3339()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  amiUpdate:\n    type: time:Static\n    properties:\n      triggers:\n        ami_id: ${data.aws_ami.example.id}\n  server:\n    type: aws:ec2:Instance\n    properties:\n      # Read the AMI id \"through\" the time_static resource to ensure that\n      #   # both will change together.\n      ami: ${amiUpdate.triggers.amiId}\n      tags:\n        AmiUpdateTime: ${amiUpdate.rfc3339}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the UTC RFC3339 value, e.g.\n\n```sh\n $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as time from \"@pulumiverse/time\";\n\nconst example = new time.Static(\"example\", {});\nexport const currentTime = example.rfc3339;\n```\n```python\nimport pulumi\nimport pulumiverse_time as time\n\nexample = time.Static(\"example\")\npulumi.export(\"currentTime\", example.rfc3339)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Time = Pulumiverse.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Time.Static(\"example\");\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"currentTime\"] = example.Rfc3339,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := time.NewStatic(ctx, \"example\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"currentTime\", example.Rfc3339)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Static;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Static(\"example\");\n\n        ctx.export(\"currentTime\", example.rfc3339());\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: time:Static\noutputs:\n  currentTime: ${example.rfc3339}\n```\n{{% /example %}}\n{{% example %}}\n### Triggers Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as time from \"@pulumiverse/time\";\n\nconst amiUpdate = new time.Static(\"amiUpdate\", {triggers: {\n    ami_id: data.aws_ami.example.id,\n}});\nconst server = new aws.ec2.Instance(\"server\", {\n    ami: amiUpdate.triggers.apply(triggers =\u003e triggers?.amiId),\n    tags: {\n        AmiUpdateTime: amiUpdate.rfc3339,\n    },\n});\n// ... (other aws_instance arguments) ...\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Time = Pulumiverse.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var amiUpdate = new Time.Static(\"amiUpdate\", new()\n    {\n        Triggers = \n        {\n            { \"ami_id\", data.Aws_ami.Example.Id },\n        },\n    });\n\n    var server = new Aws.Ec2.Instance(\"server\", new()\n    {\n        Ami = amiUpdate.Triggers.Apply(triggers =\u003e triggers?.AmiId),\n        Tags = \n        {\n            { \"AmiUpdateTime\", amiUpdate.Rfc3339 },\n        },\n    });\n\n    // ... (other aws_instance arguments) ...\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tamiUpdate, err := time.NewStatic(ctx, \"amiUpdate\", \u0026time.StaticArgs{\n\t\t\tTriggers: pulumi.StringMap{\n\t\t\t\t\"ami_id\": pulumi.Any(data.Aws_ami.Example.Id),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewInstance(ctx, \"server\", \u0026ec2.InstanceArgs{\n\t\t\tAmi: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (*string, error) {\n\t\t\t\treturn \u0026triggers.AmiId, nil\n\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"AmiUpdateTime\": amiUpdate.Rfc3339,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Static;\nimport com.pulumi.time.StaticArgs;\nimport com.pulumi.aws.ec2.Instance;\nimport com.pulumi.aws.ec2.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var amiUpdate = new Static(\"amiUpdate\", StaticArgs.builder()        \n            .triggers(Map.of(\"ami_id\", data.aws_ami().example().id()))\n            .build());\n\n        var server = new Instance(\"server\", InstanceArgs.builder()        \n            .ami(amiUpdate.triggers().applyValue(triggers -\u003e triggers.amiId()))\n            .tags(Map.of(\"AmiUpdateTime\", amiUpdate.rfc3339()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  amiUpdate:\n    type: time:Static\n    properties:\n      triggers:\n        ami_id: ${data.aws_ami.example.id}\n  server:\n    type: aws:ec2:Instance\n    properties:\n      # Read the AMI id \"through\" the time_static resource to ensure that\n      #   # both will change together.\n      ami: ${amiUpdate.triggers.amiId}\n      tags:\n        AmiUpdateTime: ${amiUpdate.rfc3339}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThis resource can be imported using the UTC RFC3339 value, e.g.\n\n```sh\n $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z\n```\n\n The `triggers` argument cannot be imported. ",
             "properties": {
                 "day": {
                     "type": "integer",
@@ -470,7 +472,7 @@
                 },
                 "rfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n"
                 },
                 "second": {
                     "type": "integer",
@@ -481,7 +483,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n"
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n"
                 },
                 "unix": {
                     "type": "integer",
@@ -505,7 +507,7 @@
             "inputProperties": {
                 "rfc3339": {
                     "type": "string",
-                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                    "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                     "willReplaceOnChanges": true
                 },
                 "triggers": {
@@ -513,7 +515,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n",
+                    "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -538,7 +540,7 @@
                     },
                     "rfc3339": {
                         "type": "string",
-                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time\nstring](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
+                        "description": "Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.\n",
                         "willReplaceOnChanges": true
                     },
                     "second": {
@@ -550,7 +552,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider\ndocumentation](../index.md) for more information.\n",
+                        "description": "Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.\n",
                         "willReplaceOnChanges": true
                     },
                     "unix": {
