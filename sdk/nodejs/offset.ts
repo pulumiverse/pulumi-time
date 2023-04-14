@@ -76,8 +76,7 @@ export class Offset extends pulumi.CustomResource {
     }
 
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     public readonly baseRfc3339!: pulumi.Output<string>;
     /**
@@ -129,8 +128,7 @@ export class Offset extends pulumi.CustomResource {
      */
     public /*out*/ readonly second!: pulumi.Output<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      */
     public readonly triggers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -200,8 +198,7 @@ export class Offset extends pulumi.CustomResource {
  */
 export interface OffsetState {
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     baseRfc3339?: pulumi.Input<string>;
     /**
@@ -253,8 +250,7 @@ export interface OffsetState {
      */
     second?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -272,8 +268,7 @@ export interface OffsetState {
  */
 export interface OffsetArgs {
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     baseRfc3339?: pulumi.Input<string>;
     /**
@@ -301,8 +296,7 @@ export interface OffsetArgs {
      */
     offsetYears?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

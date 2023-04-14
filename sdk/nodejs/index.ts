@@ -5,15 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./offset";
-export * from "./provider";
-export * from "./rotating";
-export * from "./static";
+export { OffsetArgs, OffsetState } from "./offset";
+export type Offset = import("./offset").Offset;
+export const Offset: typeof import("./offset").Offset = null as any;
+utilities.lazyLoad(exports, ["Offset"], () => require("./offset"));
 
-// Import resources to register:
-import { Offset } from "./offset";
-import { Rotating } from "./rotating";
-import { Static } from "./static";
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { RotatingArgs, RotatingState } from "./rotating";
+export type Rotating = import("./rotating").Rotating;
+export const Rotating: typeof import("./rotating").Rotating = null as any;
+utilities.lazyLoad(exports, ["Rotating"], () => require("./rotating"));
+
+export { StaticArgs, StaticState } from "./static";
+export type Static = import("./static").Static;
+export const Static: typeof import("./static").Static = null as any;
+utilities.lazyLoad(exports, ["Static"], () => require("./static"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -33,9 +44,6 @@ const _module = {
 pulumi.runtime.registerResourceModule("time", "index/offset", _module)
 pulumi.runtime.registerResourceModule("time", "index/rotating", _module)
 pulumi.runtime.registerResourceModule("time", "index/static", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("time", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

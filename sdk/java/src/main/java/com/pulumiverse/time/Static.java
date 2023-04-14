@@ -99,7 +99,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number day of timestamp.
      * 
      */
-    @Export(name="day", type=Integer.class, parameters={})
+    @Export(name="day", refs={Integer.class}, tree="[0]")
     private Output<Integer> day;
 
     /**
@@ -113,7 +113,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number hour of timestamp.
      * 
      */
-    @Export(name="hour", type=Integer.class, parameters={})
+    @Export(name="hour", refs={Integer.class}, tree="[0]")
     private Output<Integer> hour;
 
     /**
@@ -127,7 +127,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number minute of timestamp.
      * 
      */
-    @Export(name="minute", type=Integer.class, parameters={})
+    @Export(name="minute", refs={Integer.class}, tree="[0]")
     private Output<Integer> minute;
 
     /**
@@ -141,7 +141,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number month of timestamp.
      * 
      */
-    @Export(name="month", type=Integer.class, parameters={})
+    @Export(name="month", refs={Integer.class}, tree="[0]")
     private Output<Integer> month;
 
     /**
@@ -152,16 +152,14 @@ public class Static extends com.pulumi.resources.CustomResource {
         return this.month;
     }
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
-    @Export(name="rfc3339", type=String.class, parameters={})
+    @Export(name="rfc3339", refs={String.class}, tree="[0]")
     private Output<String> rfc3339;
 
     /**
-     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Output<String> rfc3339() {
@@ -171,7 +169,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number second of timestamp.
      * 
      */
-    @Export(name="second", type=Integer.class, parameters={})
+    @Export(name="second", refs={Integer.class}, tree="[0]")
     private Output<Integer> second;
 
     /**
@@ -182,16 +180,14 @@ public class Static extends com.pulumi.resources.CustomResource {
         return this.second;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
-    @Export(name="triggers", type=Map.class, parameters={String.class, String.class})
+    @Export(name="triggers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
     public Output<Optional<Map<String,String>>> triggers() {
@@ -201,7 +197,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number of seconds since epoch time, e.g. `1581489373`.
      * 
      */
-    @Export(name="unix", type=Integer.class, parameters={})
+    @Export(name="unix", refs={Integer.class}, tree="[0]")
     private Output<Integer> unix;
 
     /**
@@ -215,7 +211,7 @@ public class Static extends com.pulumi.resources.CustomResource {
      * Number year of timestamp.
      * 
      */
-    @Export(name="year", type=Integer.class, parameters={})
+    @Export(name="year", refs={Integer.class}, tree="[0]")
     private Output<Integer> year;
 
     /**

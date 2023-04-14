@@ -54,9 +54,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
-// 				return triggers.AmiId, nil
-// 			}).(pulumi.StringOutput),
+// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (*string, error) {
+// 				return &triggers.AmiId, nil
+// 			}).(pulumi.StringPtrOutput),
 // 			Tags: pulumi.StringMap{
 // 				"AmiUpdateTime": amiUpdate.Rfc3339,
 // 			},
@@ -89,13 +89,11 @@ type Static struct {
 	Minute pulumi.IntOutput `pulumi:"minute"`
 	// Number month of timestamp.
 	Month pulumi.IntOutput `pulumi:"month"`
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringOutput `pulumi:"rfc3339"`
 	// Number second of timestamp.
 	Second pulumi.IntOutput `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapOutput `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntOutput `pulumi:"unix"`
@@ -141,13 +139,11 @@ type staticState struct {
 	Minute *int `pulumi:"minute"`
 	// Number month of timestamp.
 	Month *int `pulumi:"month"`
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 *string `pulumi:"rfc3339"`
 	// Number second of timestamp.
 	Second *int `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix *int `pulumi:"unix"`
@@ -164,13 +160,11 @@ type StaticState struct {
 	Minute pulumi.IntPtrInput
 	// Number month of timestamp.
 	Month pulumi.IntPtrInput
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringPtrInput
 	// Number second of timestamp.
 	Second pulumi.IntPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapInput
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntPtrInput
@@ -183,21 +177,17 @@ func (StaticState) ElementType() reflect.Type {
 }
 
 type staticArgs struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 *string `pulumi:"rfc3339"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 }
 
 // The set of arguments for constructing a Static resource.
 type StaticArgs struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	Rfc3339 pulumi.StringPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapInput
 }
 
@@ -308,8 +298,7 @@ func (o StaticOutput) Month() pulumi.IntOutput {
 	return o.ApplyT(func(v *Static) pulumi.IntOutput { return v.Month }).(pulumi.IntOutput)
 }
 
-// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 func (o StaticOutput) Rfc3339() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.Rfc3339 }).(pulumi.StringOutput)
 }
@@ -319,8 +308,7 @@ func (o StaticOutput) Second() pulumi.IntOutput {
 	return o.ApplyT(func(v *Static) pulumi.IntOutput { return v.Second }).(pulumi.IntOutput)
 }
 
-// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-// documentation](../index.md) for more information.
+// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 func (o StaticOutput) Triggers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringMapOutput { return v.Triggers }).(pulumi.StringMapOutput)
 }

@@ -10,11 +10,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as time from "@pulumi/time";
+ * import * as time from "@pulumiverse/time";
  *
- * const example = new time.Rotating("example", {
- *     rotationDays: 30,
- * });
+ * const example = new time.Rotating("example", {rotationDays: 30});
  * ```
  *
  * ## Import
@@ -78,39 +76,31 @@ export class Rotating extends pulumi.CustomResource {
      */
     public /*out*/ readonly month!: pulumi.Output<number>;
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     public readonly rfc3339!: pulumi.Output<string>;
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationDays!: pulumi.Output<number | undefined>;
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationHours!: pulumi.Output<number | undefined>;
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationMinutes!: pulumi.Output<number | undefined>;
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationMonths!: pulumi.Output<number | undefined>;
     /**
-     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the 'rotation_' arguments must be configured.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationRfc3339!: pulumi.Output<string>;
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     public readonly rotationYears!: pulumi.Output<number | undefined>;
     /**
@@ -118,9 +108,7 @@ export class Rotating extends pulumi.CustomResource {
      */
     public /*out*/ readonly second!: pulumi.Output<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      */
     public readonly triggers!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -204,39 +192,31 @@ export interface RotatingState {
      */
     month?: pulumi.Input<number>;
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     rfc3339?: pulumi.Input<string>;
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationDays?: pulumi.Input<number>;
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationHours?: pulumi.Input<number>;
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationMinutes?: pulumi.Input<number>;
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationMonths?: pulumi.Input<number>;
     /**
-     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the 'rotation_' arguments must be configured.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationRfc3339?: pulumi.Input<string>;
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationYears?: pulumi.Input<number>;
     /**
@@ -244,9 +224,7 @@ export interface RotatingState {
      */
     second?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -264,45 +242,35 @@ export interface RotatingState {
  */
 export interface RotatingArgs {
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      */
     rfc3339?: pulumi.Input<string>;
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationDays?: pulumi.Input<number>;
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationHours?: pulumi.Input<number>;
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationMinutes?: pulumi.Input<number>;
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationMonths?: pulumi.Input<number>;
     /**
-     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the 'rotation_' arguments must be configured.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationRfc3339?: pulumi.Input<string>;
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the 'rotation_' arguments must be configured.
      */
     rotationYears?: pulumi.Input<number>;
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

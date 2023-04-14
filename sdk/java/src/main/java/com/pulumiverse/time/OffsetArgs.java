@@ -18,16 +18,14 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
     public static final OffsetArgs Empty = new OffsetArgs();
 
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Import(name="baseRfc3339")
     private @Nullable Output<String> baseRfc3339;
 
     /**
-     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Optional<Output<String>> baseRfc3339() {
@@ -125,16 +123,14 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
     @Import(name="triggers")
     private @Nullable Output<Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-     * documentation](../index.md) for more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
      * 
      */
     public Optional<Output<Map<String,String>>> triggers() {
@@ -173,8 +169,7 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -185,8 +180,7 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param baseRfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -322,8 +316,7 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-         * documentation](../index.md) for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
          * 
          * @return builder
          * 
@@ -334,8 +327,7 @@ public final class OffsetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-         * documentation](../index.md) for more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
          * 
          * @return builder
          * 

@@ -57,9 +57,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (string, error) {
-// 				return triggers.AmiId, nil
-// 			}).(pulumi.StringOutput),
+// 			Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (*string, error) {
+// 				return &triggers.AmiId, nil
+// 			}).(pulumi.StringPtrOutput),
 // 			Tags: pulumi.StringMap{
 // 				"ExpirationTime": amiUpdate.Rfc3339,
 // 			},
@@ -84,8 +84,7 @@ import (
 type Offset struct {
 	pulumi.CustomResourceState
 
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	BaseRfc3339 pulumi.StringOutput `pulumi:"baseRfc3339"`
 	// Number day of offset timestamp.
 	Day pulumi.IntOutput `pulumi:"day"`
@@ -111,8 +110,7 @@ type Offset struct {
 	Rfc3339 pulumi.StringOutput `pulumi:"rfc3339"`
 	// Number second of offset timestamp.
 	Second pulumi.IntOutput `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapOutput `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntOutput `pulumi:"unix"`
@@ -150,8 +148,7 @@ func GetOffset(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Offset resources.
 type offsetState struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	BaseRfc3339 *string `pulumi:"baseRfc3339"`
 	// Number day of offset timestamp.
 	Day *int `pulumi:"day"`
@@ -177,8 +174,7 @@ type offsetState struct {
 	Rfc3339 *string `pulumi:"rfc3339"`
 	// Number second of offset timestamp.
 	Second *int `pulumi:"second"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix *int `pulumi:"unix"`
@@ -187,8 +183,7 @@ type offsetState struct {
 }
 
 type OffsetState struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	BaseRfc3339 pulumi.StringPtrInput
 	// Number day of offset timestamp.
 	Day pulumi.IntPtrInput
@@ -214,8 +209,7 @@ type OffsetState struct {
 	Rfc3339 pulumi.StringPtrInput
 	// Number second of offset timestamp.
 	Second pulumi.IntPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapInput
 	// Number of seconds since epoch time, e.g. `1581489373`.
 	Unix pulumi.IntPtrInput
@@ -228,8 +222,7 @@ func (OffsetState) ElementType() reflect.Type {
 }
 
 type offsetArgs struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	BaseRfc3339 *string `pulumi:"baseRfc3339"`
 	// Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
 	OffsetDays *int `pulumi:"offsetDays"`
@@ -243,15 +236,13 @@ type offsetArgs struct {
 	OffsetSeconds *int `pulumi:"offsetSeconds"`
 	// Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
 	OffsetYears *int `pulumi:"offsetYears"`
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers map[string]string `pulumi:"triggers"`
 }
 
 // The set of arguments for constructing a Offset resource.
 type OffsetArgs struct {
-	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-	// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+	// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 	BaseRfc3339 pulumi.StringPtrInput
 	// Number of days to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
 	OffsetDays pulumi.IntPtrInput
@@ -265,8 +256,7 @@ type OffsetArgs struct {
 	OffsetSeconds pulumi.IntPtrInput
 	// Number of years to offset the base timestamp. At least one of the 'offset_' arguments must be configured.
 	OffsetYears pulumi.IntPtrInput
-	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-	// documentation](../index.md) for more information.
+	// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 	Triggers pulumi.StringMapInput
 }
 
@@ -357,8 +347,7 @@ func (o OffsetOutput) ToOffsetOutputWithContext(ctx context.Context) OffsetOutpu
 	return o
 }
 
-// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-// string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+// Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
 func (o OffsetOutput) BaseRfc3339() pulumi.StringOutput {
 	return o.ApplyT(func(v *Offset) pulumi.StringOutput { return v.BaseRfc3339 }).(pulumi.StringOutput)
 }
@@ -423,8 +412,7 @@ func (o OffsetOutput) Second() pulumi.IntOutput {
 	return o.ApplyT(func(v *Offset) pulumi.IntOutput { return v.Second }).(pulumi.IntOutput)
 }
 
-// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-// documentation](../index.md) for more information.
+// Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
 func (o OffsetOutput) Triggers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Offset) pulumi.StringMapOutput { return v.Triggers }).(pulumi.StringMapOutput)
 }

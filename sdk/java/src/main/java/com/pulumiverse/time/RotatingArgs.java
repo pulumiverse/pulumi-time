@@ -18,16 +18,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     public static final RotatingArgs Empty = new RotatingArgs();
 
     /**
-     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     @Import(name="rfc3339")
     private @Nullable Output<String> rfc3339;
 
     /**
-     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-     * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+     * @return Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
      * 
      */
     public Optional<Output<String>> rfc3339() {
@@ -35,16 +33,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationDays")
     private @Nullable Output<Integer> rotationDays;
 
     /**
-     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> rotationDays() {
@@ -52,16 +48,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationHours")
     private @Nullable Output<Integer> rotationHours;
 
     /**
-     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> rotationHours() {
@@ -69,16 +63,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationMinutes")
     private @Nullable Output<Integer> rotationMinutes;
 
     /**
-     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> rotationMinutes() {
@@ -86,16 +78,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationMonths")
     private @Nullable Output<Integer> rotationMonths;
 
     /**
-     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> rotationMonths() {
@@ -103,18 +93,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the &#39;rotation_&#39; arguments must be configured.
+     * Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationRfc3339")
     private @Nullable Output<String> rotationRfc3339;
 
     /**
-     * @return Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-     * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-     * least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<String>> rotationRfc3339() {
@@ -122,16 +108,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     @Import(name="rotationYears")
     private @Nullable Output<Integer> rotationYears;
 
     /**
-     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-     * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+     * @return Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
      * 
      */
     public Optional<Output<Integer>> rotationYears() {
@@ -139,18 +123,14 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      * 
      */
     @Import(name="triggers")
     private @Nullable Output<Map<String,String>> triggers;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-     * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-     * more information.
+     * @return Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
      * 
      */
     public Optional<Output<Map<String,String>>> triggers() {
@@ -189,8 +169,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -201,8 +180,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-         * string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+         * @param rfc3339 Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
          * 
          * @return builder
          * 
@@ -212,8 +190,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationDays Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationDays Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -224,8 +201,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationDays Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationDays Number of days to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -235,8 +211,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationHours Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationHours Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -247,8 +222,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationHours Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationHours Number of hours to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -258,8 +232,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationMinutes Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationMinutes Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -270,8 +243,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationMinutes Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationMinutes Number of minutes to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -281,8 +253,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationMonths Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationMonths Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -293,8 +264,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationMonths Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationMonths Number of months to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -304,9 +274,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationRfc3339 Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-         * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-         * least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationRfc3339 Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -317,9 +285,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationRfc3339 Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of
-         * the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At
-         * least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationRfc3339 Configure the rotation timestamp with an [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format of the offset timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -329,8 +295,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationYears Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationYears Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -341,8 +306,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rotationYears Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the
-         * rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
+         * @param rotationYears Number of years to add to the base timestamp to configure the rotation timestamp. When the current time has passed the rotation timestamp, the resource will trigger recreation. At least one of the &#39;rotation_&#39; arguments must be configured.
          * 
          * @return builder
          * 
@@ -352,9 +316,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-         * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-         * more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
          * 
          * @return builder
          * 
@@ -365,9 +327,7 @@ public final class RotatingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions
-         * recreate the resource in addition to other rotation arguments. See [the main provider documentation](../index.md) for
-         * more information.
+         * @param triggers Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. These conditions recreate the resource in addition to other rotation arguments. See the main provider documentation for more information.
          * 
          * @return builder
          * 

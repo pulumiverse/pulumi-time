@@ -18,10 +18,8 @@ class StaticArgs:
                  triggers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Static resource.
-        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-               documentation](../index.md) for more information.
+        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         """
         if rfc3339 is not None:
             pulumi.set(__self__, "rfc3339", rfc3339)
@@ -32,8 +30,7 @@ class StaticArgs:
     @pulumi.getter
     def rfc3339(self) -> Optional[pulumi.Input[str]]:
         """
-        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "rfc3339")
 
@@ -45,8 +42,7 @@ class StaticArgs:
     @pulumi.getter
     def triggers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        documentation](../index.md) for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         """
         return pulumi.get(self, "triggers")
 
@@ -73,11 +69,9 @@ class _StaticState:
         :param pulumi.Input[int] hour: Number hour of timestamp.
         :param pulumi.Input[int] minute: Number minute of timestamp.
         :param pulumi.Input[int] month: Number month of timestamp.
-        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         :param pulumi.Input[int] second: Number second of timestamp.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-               documentation](../index.md) for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         :param pulumi.Input[int] unix: Number of seconds since epoch time, e.g. `1581489373`.
         :param pulumi.Input[int] year: Number year of timestamp.
         """
@@ -152,8 +146,7 @@ class _StaticState:
     @pulumi.getter
     def rfc3339(self) -> Optional[pulumi.Input[str]]:
         """
-        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "rfc3339")
 
@@ -177,8 +170,7 @@ class _StaticState:
     @pulumi.getter
     def triggers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        documentation](../index.md) for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         """
         return pulumi.get(self, "triggers")
 
@@ -243,10 +235,8 @@ class Static(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-               documentation](../index.md) for more information.
+        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         """
         ...
     @overload
@@ -341,11 +331,9 @@ class Static(pulumi.CustomResource):
         :param pulumi.Input[int] hour: Number hour of timestamp.
         :param pulumi.Input[int] minute: Number minute of timestamp.
         :param pulumi.Input[int] month: Number month of timestamp.
-        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-               string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        :param pulumi.Input[str] rfc3339: Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         :param pulumi.Input[int] second: Number second of timestamp.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-               documentation](../index.md) for more information.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         :param pulumi.Input[int] unix: Number of seconds since epoch time, e.g. `1581489373`.
         :param pulumi.Input[int] year: Number year of timestamp.
         """
@@ -400,8 +388,7 @@ class Static(pulumi.CustomResource):
     @pulumi.getter
     def rfc3339(self) -> pulumi.Output[str]:
         """
-        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time
-        string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
+        Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
         """
         return pulumi.get(self, "rfc3339")
 
@@ -417,8 +404,7 @@ class Static(pulumi.CustomResource):
     @pulumi.getter
     def triggers(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See [the main provider
-        documentation](../index.md) for more information.
+        Arbitrary map of values that, when changed, will trigger a new base timestamp value to be saved. See the main provider documentation for more information.
         """
         return pulumi.get(self, "triggers")
 
