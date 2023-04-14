@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`time` Terraform Provider](https://github.com/hashicorp/terraform-provider-time).",
     "repository": "https://github.com/pulumiverse/pulumi-time",
-    "logoUrl": "https://www.svgrepo.com/show/77630/clock.svg",
+    "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-time/main/docs/clock-svgrepo-com.png",
     "pluginDownloadURL": "github://api.github.com/pulumiverse/pulumi-time",
     "publisher": "pulumiverse",
     "meta": {
