@@ -17,30 +17,53 @@ package time
 import (
 	"fmt"
 	"path/filepath"
+	"strings"
+	"unicode"
 
+	"github.com/ettle/strcase"
 	shimprovider "github.com/hashicorp/terraform-provider-time/shim"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
 // all of the token components used below.
 const (
-	// This variable controls the default name of the package in the package
-	// registries for nodejs and python:
-	mainPkg = "time"
 	// modules:
 	mainMod = "index" // the time module
 )
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
+var module_overrides = map[string]string{}
+
+func convertName(tfname string) (module string, name string) {
+	tfNameItems := strings.Split(tfname, "_")
+	contract.Assertf(len(tfNameItems) >= 2, "Invalid snake case name %s", tfname)
+	contract.Assertf(tfNameItems[0] == "time", "Invalid snake case name %s. Does not start with time", tfname)
+	if len(tfNameItems) == 2 {
+		module = mainMod
+		name = tfNameItems[1]
+	} else {
+		module = tfNameItems[1]
+		name = strings.Join(tfNameItems[2:], "_")
+	}
+	if v, ok := module_overrides[module]; ok {
+		module = v
+	}
+	contract.Assertf(!unicode.IsDigit(rune(name[0])), "Pulumi name must not start with a digit: %s", name)
+	name = strcase.ToPascal(name)
+	return
+}
+
+func makeDataSource(ds string) tokens.ModuleMember {
+	mod, name := convertName(ds)
+	return tfbridge.MakeDataSource("time", mod, "get"+name)
+}
+
+func makeResource(res string) tokens.Type {
+	mod, name := convertName(res)
+	return tfbridge.MakeResource("time", mod, name)
 }
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
@@ -94,7 +117,6 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
@@ -109,19 +131,19 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 			"time_offset": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Offset"),
+				Tok: makeResource("time_offset"),
 				Docs: &tfbridge.DocInfo{
 					Source: "offset.html.markdown",
 				},
 			},
 			"time_rotating": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Rotating"),
+				Tok: makeResource("time_rotating"),
 				Docs: &tfbridge.DocInfo{
 					Source: "rotating.html.markdown",
 				},
 			},
 			"time_static": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Static"),
+				Tok: makeResource("time_static"),
 				Docs: &tfbridge.DocInfo{
 					Source: "static.html.markdown",
 				},
@@ -162,10 +184,10 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", "time"),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
-				mainPkg,
+				"time",
 			),
 			GenerateResourceContainerTypes: true,
 		},
