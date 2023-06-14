@@ -15,10 +15,27 @@ TESTPARALLELISM  := 4
 
 WORKING_DIR      := $(shell pwd)
 
-OS := $(shell uname)
-EMPTY_TO_AVOID_SED := ""
+GO_MAJOR_VERSION := $(shell go version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f1)
+GO_MINOR_VERSION := $(shell go version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f2)
+####
+# Defines the required Go version. This is a safeguard, because
+# the (local) version must match the version specified in .github/workflows/release.yml
+# otherwise publkishing the Go SDK of the provider will fail
+REQUIRED_GO_MAJOR_VERSION := 1
+REQUIRED_GO_MINOR_VERSION := 20
+GO_VERSION_VALIDATION_ERR_MSG := Golang version $(REQUIRED_GO_MAJOR_VERSION).$(REQUIRED_GO_MINOR_VERSION) is required
 
-.PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python cleanup
+.PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python cleanup validate_go_version
+
+validate_go_version: ## Validates the installed version of go
+	@if [ $(GO_MAJOR_VERSION) -ne $(REQUIRED_GO_MAJOR_VERSION) ]; then \
+		echo '$(GO_VERSION_VALIDATION_ERR_MSG)';\
+		exit 1 ;\
+	fi
+	@if [ $(GO_MINOR_VERSION) -ne $(REQUIRED_GO_MINOR_VERSION) ]; then \
+		echo '$(GO_VERSION_VALIDATION_ERR_MSG)';\
+		exit 1 ;\
+	fi
 
 development:: install_plugins provider lint_provider build_sdks install_sdks cleanup # Build the provider & SDKs for a development environment
 
