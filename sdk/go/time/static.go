@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-time/sdk/go/time/internal"
 )
 
 // ## Example Usage
@@ -18,8 +20,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
 //
 // )
 //
@@ -43,8 +45,8 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
 //
 // )
 //
@@ -116,7 +118,7 @@ func NewStatic(ctx *pulumi.Context,
 		args = &StaticArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Static
 	err := ctx.RegisterResource("time:index/static:Static", name, args, &resource, opts...)
 	if err != nil {
@@ -222,6 +224,12 @@ func (i *Static) ToStaticOutputWithContext(ctx context.Context) StaticOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StaticOutput)
 }
 
+func (i *Static) ToOutput(ctx context.Context) pulumix.Output[*Static] {
+	return pulumix.Output[*Static]{
+		OutputState: i.ToStaticOutputWithContext(ctx).OutputState,
+	}
+}
+
 // StaticArrayInput is an input type that accepts StaticArray and StaticArrayOutput values.
 // You can construct a concrete instance of `StaticArrayInput` via:
 //
@@ -245,6 +253,12 @@ func (i StaticArray) ToStaticArrayOutput() StaticArrayOutput {
 
 func (i StaticArray) ToStaticArrayOutputWithContext(ctx context.Context) StaticArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StaticArrayOutput)
+}
+
+func (i StaticArray) ToOutput(ctx context.Context) pulumix.Output[[]*Static] {
+	return pulumix.Output[[]*Static]{
+		OutputState: i.ToStaticArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // StaticMapInput is an input type that accepts StaticMap and StaticMapOutput values.
@@ -272,6 +286,12 @@ func (i StaticMap) ToStaticMapOutputWithContext(ctx context.Context) StaticMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(StaticMapOutput)
 }
 
+func (i StaticMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Static] {
+	return pulumix.Output[map[string]*Static]{
+		OutputState: i.ToStaticMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StaticOutput struct{ *pulumi.OutputState }
 
 func (StaticOutput) ElementType() reflect.Type {
@@ -284,6 +304,12 @@ func (o StaticOutput) ToStaticOutput() StaticOutput {
 
 func (o StaticOutput) ToStaticOutputWithContext(ctx context.Context) StaticOutput {
 	return o
+}
+
+func (o StaticOutput) ToOutput(ctx context.Context) pulumix.Output[*Static] {
+	return pulumix.Output[*Static]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Number day of timestamp.
@@ -345,6 +371,12 @@ func (o StaticArrayOutput) ToStaticArrayOutputWithContext(ctx context.Context) S
 	return o
 }
 
+func (o StaticArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Static] {
+	return pulumix.Output[[]*Static]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o StaticArrayOutput) Index(i pulumi.IntInput) StaticOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Static {
 		return vs[0].([]*Static)[vs[1].(int)]
@@ -363,6 +395,12 @@ func (o StaticMapOutput) ToStaticMapOutput() StaticMapOutput {
 
 func (o StaticMapOutput) ToStaticMapOutputWithContext(ctx context.Context) StaticMapOutput {
 	return o
+}
+
+func (o StaticMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Static] {
+	return pulumix.Output[map[string]*Static]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StaticMapOutput) MapIndex(k pulumi.StringInput) StaticOutput {

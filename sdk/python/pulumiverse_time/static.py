@@ -222,6 +222,23 @@ class Static(pulumi.CustomResource):
         example = time.Static("example")
         pulumi.export("currentTime", example.rfc3339)
         ```
+        ### Triggers Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumiverse_time as time
+
+        ami_update = time.Static("amiUpdate", triggers={
+            "ami_id": data["aws_ami"]["example"]["id"],
+        })
+        server = aws.ec2.Instance("server",
+            ami=ami_update.triggers["amiId"],
+            tags={
+                "AmiUpdateTime": ami_update.rfc3339,
+            })
+        # ... (other aws_instance arguments) ...
+        ```
 
         ## Import
 
@@ -254,6 +271,23 @@ class Static(pulumi.CustomResource):
 
         example = time.Static("example")
         pulumi.export("currentTime", example.rfc3339)
+        ```
+        ### Triggers Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumiverse_time as time
+
+        ami_update = time.Static("amiUpdate", triggers={
+            "ami_id": data["aws_ami"]["example"]["id"],
+        })
+        server = aws.ec2.Instance("server",
+            ami=ami_update.triggers["amiId"],
+            tags={
+                "AmiUpdateTime": ami_update.rfc3339,
+            })
+        # ... (other aws_instance arguments) ...
         ```
 
         ## Import

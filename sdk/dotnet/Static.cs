@@ -16,6 +16,7 @@ namespace Pulumiverse.Time
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Time = Pulumiverse.Time;
     /// 
@@ -33,6 +34,7 @@ namespace Pulumiverse.Time
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Time = Pulumiverse.Time;

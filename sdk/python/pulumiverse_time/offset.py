@@ -436,6 +436,25 @@ class Offset(pulumi.CustomResource):
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
         ```
+        ### Triggers Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumiverse_time as time
+
+        ami_update = time.Offset("amiUpdate",
+            triggers={
+                "ami_id": data["aws_ami"]["example"]["id"],
+            },
+            offset_days=7)
+        server = aws.ec2.Instance("server",
+            ami=ami_update.triggers["amiId"],
+            tags={
+                "ExpirationTime": ami_update.rfc3339,
+            })
+        # ... (other aws_instance arguments) ...
+        ```
 
         ## Import
 
@@ -474,6 +493,25 @@ class Offset(pulumi.CustomResource):
 
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
+        ```
+        ### Triggers Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumiverse_time as time
+
+        ami_update = time.Offset("amiUpdate",
+            triggers={
+                "ami_id": data["aws_ami"]["example"]["id"],
+            },
+            offset_days=7)
+        server = aws.ec2.Instance("server",
+            ami=ami_update.triggers["amiId"],
+            tags={
+                "ExpirationTime": ami_update.rfc3339,
+            })
+        # ... (other aws_instance arguments) ...
         ```
 
         ## Import

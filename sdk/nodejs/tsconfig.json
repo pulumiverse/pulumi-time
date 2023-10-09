@@ -17,6 +17,7 @@
         "offset.ts",
         "provider.ts",
         "rotating.ts",
+        "sleep.ts",
         "static.ts",
         "utilities.ts"
     ]
