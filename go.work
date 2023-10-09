@@ -2,5 +2,8 @@ go 1.18
 
 use (
 	./provider
-	./sdk
+	./provider/shim
+// ******
+// Add ./sdk folder when SDK has been published the first time
+// ./sdk
 )

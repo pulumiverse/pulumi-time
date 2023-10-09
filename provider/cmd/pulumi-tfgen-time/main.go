@@ -15,12 +15,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
 	time "github.com/pulumiverse/pulumi-time/provider"
-	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
 func main() {
-	// Modify the path to point to the new provider
-	tfgen.Main("time", version.Version, time.Provider())
+	tfgen.Main("time", time.Provider())
 }
