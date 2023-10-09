@@ -118,7 +118,9 @@ fmt::
 
 install_plugins:: validate_go_version
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 4.3.1
+	pulumi plugin install resource random
+	pulumi plugin install resource aws
+	pulumi plugin install resource null
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
