@@ -20,7 +20,6 @@ import (
 	"context"
 	_ "embed"
 
-	
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	time "github.com/pulumiverse/pulumi-time/provider"
 )
@@ -31,5 +30,5 @@ var pulumiSchema []byte
 func main() {
 	meta := tfbridge.ProviderMetadata{PackageSchema: pulumiSchema}
 	tfbridge.Main(context.Background(), "time", time.Provider(), meta)
-	
+
 }

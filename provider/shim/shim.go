@@ -1,10 +1,10 @@
 package shim
 
 import (
-	"github.com/hashicorp/terraform-provider-time/internal/provider"
 	tf "github.com/hashicorp/terraform-plugin-framework/provider"
+	"github.com/hashicorp/terraform-provider-time/internal/provider"
 )
 
 func NewProvider() tf.Provider {
-		return provider.New()
+	return provider.New()
 }
