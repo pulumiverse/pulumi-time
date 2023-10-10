@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/pulumiverse/pulumi-time/sdk/go/time/internal"
 )
 
 // ## Example Usage
@@ -18,8 +20,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
 //
 // )
 //
@@ -98,7 +100,7 @@ func NewRotating(ctx *pulumi.Context,
 		args = &RotatingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rotating
 	err := ctx.RegisterResource("time:index/rotating:Rotating", name, args, &resource, opts...)
 	if err != nil {
@@ -252,6 +254,12 @@ func (i *Rotating) ToRotatingOutputWithContext(ctx context.Context) RotatingOutp
 	return pulumi.ToOutputWithContext(ctx, i).(RotatingOutput)
 }
 
+func (i *Rotating) ToOutput(ctx context.Context) pulumix.Output[*Rotating] {
+	return pulumix.Output[*Rotating]{
+		OutputState: i.ToRotatingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RotatingArrayInput is an input type that accepts RotatingArray and RotatingArrayOutput values.
 // You can construct a concrete instance of `RotatingArrayInput` via:
 //
@@ -275,6 +283,12 @@ func (i RotatingArray) ToRotatingArrayOutput() RotatingArrayOutput {
 
 func (i RotatingArray) ToRotatingArrayOutputWithContext(ctx context.Context) RotatingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RotatingArrayOutput)
+}
+
+func (i RotatingArray) ToOutput(ctx context.Context) pulumix.Output[[]*Rotating] {
+	return pulumix.Output[[]*Rotating]{
+		OutputState: i.ToRotatingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RotatingMapInput is an input type that accepts RotatingMap and RotatingMapOutput values.
@@ -302,6 +316,12 @@ func (i RotatingMap) ToRotatingMapOutputWithContext(ctx context.Context) Rotatin
 	return pulumi.ToOutputWithContext(ctx, i).(RotatingMapOutput)
 }
 
+func (i RotatingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Rotating] {
+	return pulumix.Output[map[string]*Rotating]{
+		OutputState: i.ToRotatingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RotatingOutput struct{ *pulumi.OutputState }
 
 func (RotatingOutput) ElementType() reflect.Type {
@@ -314,6 +334,12 @@ func (o RotatingOutput) ToRotatingOutput() RotatingOutput {
 
 func (o RotatingOutput) ToRotatingOutputWithContext(ctx context.Context) RotatingOutput {
 	return o
+}
+
+func (o RotatingOutput) ToOutput(ctx context.Context) pulumix.Output[*Rotating] {
+	return pulumix.Output[*Rotating]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Number day of timestamp.
@@ -405,6 +431,12 @@ func (o RotatingArrayOutput) ToRotatingArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o RotatingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Rotating] {
+	return pulumix.Output[[]*Rotating]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RotatingArrayOutput) Index(i pulumi.IntInput) RotatingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Rotating {
 		return vs[0].([]*Rotating)[vs[1].(int)]
@@ -423,6 +455,12 @@ func (o RotatingMapOutput) ToRotatingMapOutput() RotatingMapOutput {
 
 func (o RotatingMapOutput) ToRotatingMapOutputWithContext(ctx context.Context) RotatingMapOutput {
 	return o
+}
+
+func (o RotatingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Rotating] {
+	return pulumix.Output[map[string]*Rotating]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RotatingMapOutput) MapIndex(k pulumi.StringInput) RotatingOutput {

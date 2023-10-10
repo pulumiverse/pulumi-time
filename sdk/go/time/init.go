@@ -8,6 +8,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-time/sdk/go/time/internal"
 )
 
 type module struct {
@@ -24,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Offset{}
 	case "time:index/rotating:Rotating":
 		r = &Rotating{}
+	case "time:index/sleep:Sleep":
+		r = &Sleep{}
 	case "time:index/static:Static":
 		r = &Static{}
 	default:
@@ -53,7 +56,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"time",
 		"index/offset",
@@ -62,6 +68,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"time",
 		"index/rotating",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"time",
+		"index/sleep",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

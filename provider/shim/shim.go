@@ -1,10 +1,10 @@
 package shim
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-provider-time/internal/tftime"
+	tf "github.com/hashicorp/terraform-plugin-framework/provider"
+	"github.com/hashicorp/terraform-provider-time/internal/provider"
 )
 
-func NewProvider() *schema.Provider {
-	return tftime.Provider()
+func NewProvider() tf.Provider {
+	return provider.New()
 }

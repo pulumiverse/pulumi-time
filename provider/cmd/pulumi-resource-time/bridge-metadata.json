@@ -1,0 +1,33 @@
+{
+    "renames": {
+        "resources": {
+            "time:index/offset:Offset": "time_offset",
+            "time:index/rotating:Rotating": "time_rotating",
+            "time:index/sleep:Sleep": "time_sleep",
+            "time:index/static:Static": "time_static"
+        },
+        "renamedProperties": {
+            "time:index/offset:Offset": {
+                "baseRfc3339": "base_rfc3339",
+                "offsetDays": "offset_days",
+                "offsetHours": "offset_hours",
+                "offsetMinutes": "offset_minutes",
+                "offsetMonths": "offset_months",
+                "offsetSeconds": "offset_seconds",
+                "offsetYears": "offset_years"
+            },
+            "time:index/rotating:Rotating": {
+                "rotationDays": "rotation_days",
+                "rotationHours": "rotation_hours",
+                "rotationMinutes": "rotation_minutes",
+                "rotationMonths": "rotation_months",
+                "rotationRfc3339": "rotation_rfc3339",
+                "rotationYears": "rotation_years"
+            },
+            "time:index/sleep:Sleep": {
+                "createDuration": "create_duration",
+                "destroyDuration": "destroy_duration"
+            }
+        }
+    }
+}

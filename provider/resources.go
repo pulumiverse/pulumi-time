@@ -15,6 +15,7 @@
 package time
 
 import (
+	_ "embed"
 	"fmt"
 	"path/filepath"
 	"strings"
@@ -22,16 +23,19 @@ import (
 
 	"github.com/ettle/strcase"
 	shimprovider "github.com/hashicorp/terraform-provider-time/shim"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
+//go:embed cmd/pulumi-resource-time/bridge-metadata.json
+var bridgeMetadata []byte
+
 // all of the token components used below.
 const (
-	// modules:
+	// This variable controls the default name of the package in the package
 	mainMod = "index" // the time module
 )
 
@@ -69,8 +73,7 @@ func makeResource(res string) tokens.Type {
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(shimprovider.NewProvider())
-	// Create a Pulumi provider mapping
+	p := pf.ShimProvider(shimprovider.NewProvider()) // Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
 		Name: "time",
@@ -106,8 +109,10 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/pulumiverse/pulumi-time",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "hashicorp",
-		Config:    map[string]*tfbridge.SchemaInfo{
+		Version:      version.Version,
+		GitHubOrg:    "hashicorp",
+		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
+		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -118,46 +123,20 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: tfbridge.MakeResource(mainPkg, mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
-			// 	},
-			// },
 			"time_offset": {
 				Tok: makeResource("time_offset"),
-				Docs: &tfbridge.DocInfo{
-					Source: "offset.html.markdown",
-				},
 			},
 			"time_rotating": {
 				Tok: makeResource("time_rotating"),
-				Docs: &tfbridge.DocInfo{
-					Source: "rotating.html.markdown",
-				},
 			},
 			"time_static": {
 				Tok: makeResource("time_static"),
-				Docs: &tfbridge.DocInfo{
-					Source: "static.html.markdown",
-				},
+			},
+			"time_sleep": {
+				Tok: makeResource("time_sleep"),
 			},
 		},
-		IgnoreMappings: []string{
-			// time_sleep not mapped because Pulumi provides other means to pause for a specific timespan
-			"time_sleep",
-		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
-		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumiverse/time",
 
@@ -184,7 +163,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", "time"),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", "time"),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				"time",

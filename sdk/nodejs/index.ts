@@ -20,6 +20,11 @@ export type Rotating = import("./rotating").Rotating;
 export const Rotating: typeof import("./rotating").Rotating = null as any;
 utilities.lazyLoad(exports, ["Rotating"], () => require("./rotating"));
 
+export { SleepArgs, SleepState } from "./sleep";
+export type Sleep = import("./sleep").Sleep;
+export const Sleep: typeof import("./sleep").Sleep = null as any;
+utilities.lazyLoad(exports, ["Sleep"], () => require("./sleep"));
+
 export { StaticArgs, StaticState } from "./static";
 export type Static = import("./static").Static;
 export const Static: typeof import("./static").Static = null as any;
@@ -34,6 +39,8 @@ const _module = {
                 return new Offset(name, <any>undefined, { urn })
             case "time:index/rotating:Rotating":
                 return new Rotating(name, <any>undefined, { urn })
+            case "time:index/sleep:Sleep":
+                return new Sleep(name, <any>undefined, { urn })
             case "time:index/static:Static":
                 return new Static(name, <any>undefined, { urn })
             default:
@@ -43,6 +50,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("time", "index/offset", _module)
 pulumi.runtime.registerResourceModule("time", "index/rotating", _module)
+pulumi.runtime.registerResourceModule("time", "index/sleep", _module)
 pulumi.runtime.registerResourceModule("time", "index/static", _module)
 pulumi.runtime.registerResourcePackage("time", {
     version: utilities.getVersion(),

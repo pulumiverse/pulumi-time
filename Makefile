@@ -6,7 +6,7 @@ PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 JAVA_GEN         := pulumi-java-gen
-JAVA_GEN_VERSION := v0.9.1
+JAVA_GEN_VERSION := v0.9.8
 TFGEN            := pulumi-tfgen-time
 PROVIDER         := pulumi-resource-time
 VERSION          := $(shell pulumictl get version)
@@ -51,7 +51,7 @@ tfgen:: install_plugins
 provider:: tfgen install_plugins # build the provider binary
 	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
-build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet build_java # build all the sdks
+build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
 
 build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
@@ -59,7 +59,6 @@ build_nodejs:: install_plugins tfgen # build the node sdk
 	cd sdk/nodejs/ && \
         yarn install && \
         yarn run tsc && \
-		cp -R scripts/ bin && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
 
@@ -84,6 +83,8 @@ build_dotnet:: install_plugins tfgen # build the dotnet sdk
 
 build_go:: install_plugins tfgen # build the go sdk
 	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
+	cd sdk/go/ && \
+		go mod tidy
 
 build_java:: PACKAGE_VERSION := $(shell pulumictl get version --language generic)
 build_java:: $(WORKING_DIR)/bin/$(JAVA_GEN)
@@ -108,12 +109,18 @@ help::
  	expand -t20
 
 clean::
-	rm -rf sdk/{dotnet,nodejs,go,python,java}
+	rm -rf sdk/{dotnet,nodejs,go,python,java} sdk/go.sum
 
-install_plugins::
+.PHONY: fmt
+fmt::
+	@echo "Fixing source code with gofmt..."
+	find . -name '*.go' | grep -v vendor | xargs gofmt -s -w
+
+install_plugins:: validate_go_version
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 4.3.1
+	pulumi plugin install resource random
 	pulumi plugin install resource aws
+	pulumi plugin install resource null
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
