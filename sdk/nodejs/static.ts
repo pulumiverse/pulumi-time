@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Basic Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
@@ -15,8 +17,11 @@ import * as utilities from "./utilities";
  * const example = new time.Static("example", {});
  * export const currentTime = example.rfc3339;
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Triggers Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -33,16 +38,17 @@ import * as utilities from "./utilities";
  * });
  * // ... (other aws_instance arguments) ...
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource can be imported using the UTC RFC3339 value, e.g.
  *
  * ```sh
- *  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
+ * $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
  * ```
  *
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  */
 export class Static extends pulumi.CustomResource {
     /**

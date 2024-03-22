@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Basic Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
@@ -15,8 +17,26 @@ import * as utilities from "./utilities";
  * const example = new time.Offset("example", {offsetDays: 7});
  * export const oneWeekFromNow = example.rfc3339;
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Multiple Offsets Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as time from "@pulumiverse/time";
+ *
+ * const example = new time.Offset("example", {
+ *     offsetYears: 1,
+ *     offsetMonths: 1,
+ * });
+ * export const oneYearAndMonthFromNow = example.rfc3339;
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Triggers Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -36,16 +56,17 @@ import * as utilities from "./utilities";
  * });
  * // ... (other aws_instance arguments) ...
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
  *
  * ```sh
- *  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+ * $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
  * ```
  *
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  */
 export class Offset extends pulumi.CustomResource {
     /**

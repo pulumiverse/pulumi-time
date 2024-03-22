@@ -6,30 +6,33 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Basic Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
  *
  * const example = new time.Rotating("example", {rotationDays: 30});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
  *
  * ```sh
- *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
+ * $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
  * ```
  *
- *  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
+ * Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
  *
  * ```sh
- *  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
+ * $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
  * ```
  *
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  */
 export class Rotating extends pulumi.CustomResource {
     /**

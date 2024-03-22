@@ -12,8 +12,10 @@ namespace Pulumiverse.Time
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Delay Create Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,8 +52,11 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Delay Destroy Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -88,8 +93,11 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Triggers Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -127,22 +135,25 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`). e.g. For 30 seconds create duration with no destroy duration
+    /// This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`).
+    /// 
+    /// e.g. For 30 seconds create duration with no destroy duration:
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/sleep:Sleep example 30s,
+    /// $ pulumi import time:index/sleep:Sleep example 30s,
     /// ```
     /// 
-    ///  e.g. For 30 seconds destroy duration with no create duration
+    /// e.g. For 30 seconds destroy duration with no create duration:
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/sleep:Sleep example ,30s
+    /// $ pulumi import time:index/sleep:Sleep example ,30s
     /// ```
     /// 
-    ///  The `triggers` argument cannot be imported.
+    /// The `triggers` argument cannot be imported.
     /// </summary>
     [TimeResourceType("time:index/sleep:Sleep")]
     public partial class Sleep : global::Pulumi.CustomResource

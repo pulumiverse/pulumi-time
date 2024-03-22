@@ -8,13 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-time/sdk/go/time/internal"
 )
 
 // ## Example Usage
+//
 // ### Delay Create Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// This resource will destroy (potentially immediately) after null_resource.next
 //			previous, err := null.NewResource(ctx, "previous", nil)
 //			if err != nil {
 //				return err
@@ -40,6 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// This resource will create (at least) 30 seconds after null_resource.previous
 //			_, err = null.NewResource(ctx, "next", nil, pulumi.DependsOn([]pulumi.Resource{
 //				wait30Seconds,
 //			}))
@@ -51,8 +54,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Delay Destroy Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,6 +72,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// This resource will destroy (at least) 30 seconds after null_resource.next
 //			previous, err := null.NewResource(ctx, "previous", nil)
 //			if err != nil {
 //				return err
@@ -78,6 +85,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// This resource will create (potentially immediately) after null_resource.previous
 //			_, err = null.NewResource(ctx, "next", nil, pulumi.DependsOn([]pulumi.Resource{
 //				wait30Seconds,
 //			}))
@@ -89,8 +97,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Triggers Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -112,6 +123,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// AWS resources shared via Resource Access Manager can take a few seconds to
+//			// propagate across AWS accounts after RAM returns a successful association.
 //			ramResourcePropagation, err := time.NewSleep(ctx, "ramResourcePropagation", &time.SleepArgs{
 //				CreateDuration: pulumi.String("60s"),
 //				Triggers: pulumi.StringMap{
@@ -137,26 +150,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`). e.g. For 30 seconds create duration with no destroy duration
+// This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`).
+//
+// e.g. For 30 seconds create duration with no destroy duration:
 //
 // ```sh
-//
-//	$ pulumi import time:index/sleep:Sleep example 30s,
-//
+// $ pulumi import time:index/sleep:Sleep example 30s,
 // ```
 //
-//	e.g. For 30 seconds destroy duration with no create duration
+// e.g. For 30 seconds destroy duration with no create duration:
 //
 // ```sh
-//
-//	$ pulumi import time:index/sleep:Sleep example ,30s
-//
+// $ pulumi import time:index/sleep:Sleep example ,30s
 // ```
 //
-//	The `triggers` argument cannot be imported.
+// The `triggers` argument cannot be imported.
 type Sleep struct {
 	pulumi.CustomResourceState
 
@@ -271,12 +283,6 @@ func (i *Sleep) ToSleepOutputWithContext(ctx context.Context) SleepOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SleepOutput)
 }
 
-func (i *Sleep) ToOutput(ctx context.Context) pulumix.Output[*Sleep] {
-	return pulumix.Output[*Sleep]{
-		OutputState: i.ToSleepOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SleepArrayInput is an input type that accepts SleepArray and SleepArrayOutput values.
 // You can construct a concrete instance of `SleepArrayInput` via:
 //
@@ -300,12 +306,6 @@ func (i SleepArray) ToSleepArrayOutput() SleepArrayOutput {
 
 func (i SleepArray) ToSleepArrayOutputWithContext(ctx context.Context) SleepArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SleepArrayOutput)
-}
-
-func (i SleepArray) ToOutput(ctx context.Context) pulumix.Output[[]*Sleep] {
-	return pulumix.Output[[]*Sleep]{
-		OutputState: i.ToSleepArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SleepMapInput is an input type that accepts SleepMap and SleepMapOutput values.
@@ -333,12 +333,6 @@ func (i SleepMap) ToSleepMapOutputWithContext(ctx context.Context) SleepMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SleepMapOutput)
 }
 
-func (i SleepMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Sleep] {
-	return pulumix.Output[map[string]*Sleep]{
-		OutputState: i.ToSleepMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SleepOutput struct{ *pulumi.OutputState }
 
 func (SleepOutput) ElementType() reflect.Type {
@@ -351,12 +345,6 @@ func (o SleepOutput) ToSleepOutput() SleepOutput {
 
 func (o SleepOutput) ToSleepOutputWithContext(ctx context.Context) SleepOutput {
 	return o
-}
-
-func (o SleepOutput) ToOutput(ctx context.Context) pulumix.Output[*Sleep] {
-	return pulumix.Output[*Sleep]{
-		OutputState: o.OutputState,
-	}
 }
 
 // [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
@@ -390,12 +378,6 @@ func (o SleepArrayOutput) ToSleepArrayOutputWithContext(ctx context.Context) Sle
 	return o
 }
 
-func (o SleepArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Sleep] {
-	return pulumix.Output[[]*Sleep]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SleepArrayOutput) Index(i pulumi.IntInput) SleepOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Sleep {
 		return vs[0].([]*Sleep)[vs[1].(int)]
@@ -414,12 +396,6 @@ func (o SleepMapOutput) ToSleepMapOutput() SleepMapOutput {
 
 func (o SleepMapOutput) ToSleepMapOutputWithContext(ctx context.Context) SleepMapOutput {
 	return o
-}
-
-func (o SleepMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Sleep] {
-	return pulumix.Output[map[string]*Sleep]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SleepMapOutput) MapIndex(k pulumi.StringInput) SleepOutput {

@@ -12,8 +12,10 @@ namespace Pulumiverse.Time
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Basic Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,22 +31,23 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource can be imported using the base UTC RFC3339 value and rotation years, months, days, hours, and minutes, separated by commas (`,`), e.g. for 30 days
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
+    /// $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,0,0,30,0,0
     /// ```
     /// 
-    ///  Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
+    /// Otherwise, to import with the rotation RFC3339 value, the base UTC RFC3339 value and rotation UTC RFC3339 value, separated by commas (`,`), e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
+    /// $ pulumi import time:index/rotating:Rotating example 2020-02-12T06:36:13Z,2020-02-13T06:36:13Z
     /// ```
     /// 
-    ///  The `triggers` argument cannot be imported.
+    /// The `triggers` argument cannot be imported.
     /// </summary>
     [TimeResourceType("time:index/rotating:Rotating")]
     public partial class Rotating : global::Pulumi.CustomResource

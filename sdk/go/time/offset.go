@@ -8,13 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/pulumiverse/pulumi-time/sdk/go/time/internal"
 )
 
 // ## Example Usage
+//
 // ### Basic Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,8 +40,41 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Multiple Offsets Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := time.NewOffset(ctx, "example", &time.OffsetArgs{
+//				OffsetYears:  pulumi.Int(1),
+//				OffsetMonths: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("oneYearAndMonthFromNow", example.Rfc3339)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Triggers Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,18 +113,17 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 //
 // ```sh
-//
-//	$ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
-//
+// $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
 // ```
 //
-//	The `triggers` argument cannot be imported.
+// The `triggers` argument cannot be imported.
 type Offset struct {
 	pulumi.CustomResourceState
 
@@ -293,12 +326,6 @@ func (i *Offset) ToOffsetOutputWithContext(ctx context.Context) OffsetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OffsetOutput)
 }
 
-func (i *Offset) ToOutput(ctx context.Context) pulumix.Output[*Offset] {
-	return pulumix.Output[*Offset]{
-		OutputState: i.ToOffsetOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OffsetArrayInput is an input type that accepts OffsetArray and OffsetArrayOutput values.
 // You can construct a concrete instance of `OffsetArrayInput` via:
 //
@@ -322,12 +349,6 @@ func (i OffsetArray) ToOffsetArrayOutput() OffsetArrayOutput {
 
 func (i OffsetArray) ToOffsetArrayOutputWithContext(ctx context.Context) OffsetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OffsetArrayOutput)
-}
-
-func (i OffsetArray) ToOutput(ctx context.Context) pulumix.Output[[]*Offset] {
-	return pulumix.Output[[]*Offset]{
-		OutputState: i.ToOffsetArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OffsetMapInput is an input type that accepts OffsetMap and OffsetMapOutput values.
@@ -355,12 +376,6 @@ func (i OffsetMap) ToOffsetMapOutputWithContext(ctx context.Context) OffsetMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(OffsetMapOutput)
 }
 
-func (i OffsetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Offset] {
-	return pulumix.Output[map[string]*Offset]{
-		OutputState: i.ToOffsetMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OffsetOutput struct{ *pulumi.OutputState }
 
 func (OffsetOutput) ElementType() reflect.Type {
@@ -373,12 +388,6 @@ func (o OffsetOutput) ToOffsetOutput() OffsetOutput {
 
 func (o OffsetOutput) ToOffsetOutputWithContext(ctx context.Context) OffsetOutput {
 	return o
-}
-
-func (o OffsetOutput) ToOutput(ctx context.Context) pulumix.Output[*Offset] {
-	return pulumix.Output[*Offset]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Base timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.8) format (see [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) e.g., `YYYY-MM-DDTHH:MM:SSZ`). Defaults to the current time.
@@ -475,12 +484,6 @@ func (o OffsetArrayOutput) ToOffsetArrayOutputWithContext(ctx context.Context) O
 	return o
 }
 
-func (o OffsetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Offset] {
-	return pulumix.Output[[]*Offset]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OffsetArrayOutput) Index(i pulumi.IntInput) OffsetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Offset {
 		return vs[0].([]*Offset)[vs[1].(int)]
@@ -499,12 +502,6 @@ func (o OffsetMapOutput) ToOffsetMapOutput() OffsetMapOutput {
 
 func (o OffsetMapOutput) ToOffsetMapOutputWithContext(ctx context.Context) OffsetMapOutput {
 	return o
-}
-
-func (o OffsetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Offset] {
-	return pulumix.Output[map[string]*Offset]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OffsetMapOutput) MapIndex(k pulumi.StringInput) OffsetOutput {
