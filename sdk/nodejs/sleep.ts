@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Delay Create Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
@@ -23,8 +25,11 @@ import * as utilities from "./utilities";
  *     dependsOn: [wait30Seconds],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Delay Destroy Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
@@ -40,8 +45,11 @@ import * as utilities from "./utilities";
  *     dependsOn: [wait30Seconds],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Triggers Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -62,22 +70,25 @@ import * as utilities from "./utilities";
  * });
  * const exampleSubnetGroup = new aws.rds.SubnetGroup("exampleSubnetGroup", {subnetIds: [ramResourcePropagation.triggers.apply(triggers => triggers?.subnet_id)]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`). e.g. For 30 seconds create duration with no destroy duration
+ * This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`).
+ *
+ * e.g. For 30 seconds create duration with no destroy duration:
  *
  * ```sh
- *  $ pulumi import time:index/sleep:Sleep example 30s,
+ * $ pulumi import time:index/sleep:Sleep example 30s,
  * ```
  *
- *  e.g. For 30 seconds destroy duration with no create duration
+ * e.g. For 30 seconds destroy duration with no create duration:
  *
  * ```sh
- *  $ pulumi import time:index/sleep:Sleep example ,30s
+ * $ pulumi import time:index/sleep:Sleep example ,30s
  * ```
  *
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  */
 export class Sleep extends pulumi.CustomResource {
     /**

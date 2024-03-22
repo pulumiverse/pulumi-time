@@ -427,8 +427,10 @@ class Offset(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Basic Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -436,8 +438,25 @@ class Offset(pulumi.CustomResource):
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
         ```
+        <!--End PulumiCodeChooser -->
+
+        ### Multiple Offsets Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_time as time
+
+        example = time.Offset("example",
+            offset_years=1,
+            offset_months=1)
+        pulumi.export("oneYearAndMonthFromNow", example.rfc3339)
+        ```
+        <!--End PulumiCodeChooser -->
+
         ### Triggers Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -455,16 +474,17 @@ class Offset(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 
         ```sh
-         $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+        $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
         ```
 
-         The `triggers` argument cannot be imported.
+        The `triggers` argument cannot be imported.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -485,8 +505,10 @@ class Offset(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Basic Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -494,8 +516,25 @@ class Offset(pulumi.CustomResource):
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
         ```
+        <!--End PulumiCodeChooser -->
+
+        ### Multiple Offsets Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumiverse_time as time
+
+        example = time.Offset("example",
+            offset_years=1,
+            offset_months=1)
+        pulumi.export("oneYearAndMonthFromNow", example.rfc3339)
+        ```
+        <!--End PulumiCodeChooser -->
+
         ### Triggers Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -513,16 +552,17 @@ class Offset(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
 
         ```sh
-         $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+        $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
         ```
 
-         The `triggers` argument cannot be imported.
+        The `triggers` argument cannot be imported.
 
         :param str resource_name: The name of the resource.
         :param OffsetArgs args: The arguments to use to populate this resource's properties.

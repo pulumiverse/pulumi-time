@@ -4,6 +4,7 @@ NODE_MODULE_NAME := @pulumiverse/time
 TF_NAME          := time
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
+PROJECT_DIR      := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 JAVA_GEN         := pulumi-java-gen
 JAVA_GEN_VERSION := v0.9.8
@@ -22,7 +23,7 @@ GO_MINOR_VERSION := $(shell go version | cut -c 14- | cut -d' ' -f1 | cut -d'.' 
 # the (local) version must match the version specified in .github/workflows/release.yml
 # otherwise publkishing the Go SDK of the provider will fail
 REQUIRED_GO_MAJOR_VERSION := 1
-REQUIRED_GO_MINOR_VERSION := 20
+REQUIRED_GO_MINOR_VERSION := 21
 GO_VERSION_VALIDATION_ERR_MSG := Golang version $(REQUIRED_GO_MAJOR_VERSION).$(REQUIRED_GO_MINOR_VERSION) is required
 
 .PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python cleanup validate_go_version
@@ -42,6 +43,9 @@ development:: install_plugins provider lint_provider build_sdks install_sdks cle
 # Required for the codegen action that runs in pulumi/pulumi and pulumi/pulumi-terraform-bridge
 build:: install_plugins provider build_sdks install_sdks
 only_build:: build
+
+generate::
+	go generate provider/resources.go
 
 tfgen:: install_plugins
 	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
@@ -99,6 +103,9 @@ $(WORKING_DIR)/bin/$(JAVA_GEN)::
 lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
 
+tidy:: # call go mod tidy in relevant directories
+	find ./provider -name go.mod -execdir go mod tidy \;
+
 cleanup:: # cleans up the temporary directory
 	rm -r $(WORKING_DIR)/bin
 	rm -f provider/cmd/${PROVIDER}/schema.go
@@ -137,3 +144,14 @@ install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+
+.PHONY: go.work
+go.work::
+	@cd $(PROJECT_DIR)
+ifeq (,$(wildcard $(PROJECT_DIR)/go.work))
+	@echo "Initializing go.work..."
+	@go work init
+else
+	@echo "Updating go.work..."
+endif
+	@go work use provider provider/shim sdk examples

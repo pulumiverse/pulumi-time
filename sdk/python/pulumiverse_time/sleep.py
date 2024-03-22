@@ -142,8 +142,10 @@ class Sleep(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Delay Create Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -156,8 +158,11 @@ class Sleep(pulumi.CustomResource):
         # This resource will create (at least) 30 seconds after null_resource.previous
         next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Delay Destroy Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -170,8 +175,11 @@ class Sleep(pulumi.CustomResource):
         # This resource will create (potentially immediately) after null_resource.previous
         next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Triggers Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -190,22 +198,25 @@ class Sleep(pulumi.CustomResource):
             })
         example_subnet_group = aws.rds.SubnetGroup("exampleSubnetGroup", subnet_ids=[ram_resource_propagation.triggers["subnet_id"]])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`). e.g. For 30 seconds create duration with no destroy duration
+        This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`).
+
+        e.g. For 30 seconds create duration with no destroy duration:
 
         ```sh
-         $ pulumi import time:index/sleep:Sleep example 30s,
+        $ pulumi import time:index/sleep:Sleep example 30s,
         ```
 
-         e.g. For 30 seconds destroy duration with no create duration
+        e.g. For 30 seconds destroy duration with no create duration:
 
         ```sh
-         $ pulumi import time:index/sleep:Sleep example ,30s
+        $ pulumi import time:index/sleep:Sleep example ,30s
         ```
 
-         The `triggers` argument cannot be imported.
+        The `triggers` argument cannot be imported.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -223,8 +234,10 @@ class Sleep(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Delay Create Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -237,8 +250,11 @@ class Sleep(pulumi.CustomResource):
         # This resource will create (at least) 30 seconds after null_resource.previous
         next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Delay Destroy Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -251,8 +267,11 @@ class Sleep(pulumi.CustomResource):
         # This resource will create (potentially immediately) after null_resource.previous
         next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Triggers Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -271,22 +290,25 @@ class Sleep(pulumi.CustomResource):
             })
         example_subnet_group = aws.rds.SubnetGroup("exampleSubnetGroup", subnet_ids=[ram_resource_propagation.triggers["subnet_id"]])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`). e.g. For 30 seconds create duration with no destroy duration
+        This resource can be imported with the `create_duration` and `destroy_duration`, separated by a comma (`,`).
+
+        e.g. For 30 seconds create duration with no destroy duration:
 
         ```sh
-         $ pulumi import time:index/sleep:Sleep example 30s,
+        $ pulumi import time:index/sleep:Sleep example 30s,
         ```
 
-         e.g. For 30 seconds destroy duration with no create duration
+        e.g. For 30 seconds destroy duration with no create duration:
 
         ```sh
-         $ pulumi import time:index/sleep:Sleep example ,30s
+        $ pulumi import time:index/sleep:Sleep example ,30s
         ```
 
-         The `triggers` argument cannot be imported.
+        The `triggers` argument cannot be imported.
 
         :param str resource_name: The name of the resource.
         :param SleepArgs args: The arguments to use to populate this resource's properties.

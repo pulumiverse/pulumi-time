@@ -12,8 +12,10 @@ namespace Pulumiverse.Time
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Basic Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,8 +32,11 @@ namespace Pulumiverse.Time
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Triggers Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,16 +66,17 @@ namespace Pulumiverse.Time
     ///     // ... (other aws_instance arguments) ...
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource can be imported using the UTC RFC3339 value, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
+    /// $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
     /// ```
     /// 
-    ///  The `triggers` argument cannot be imported.
+    /// The `triggers` argument cannot be imported.
     /// </summary>
     [TimeResourceType("time:index/static:Static")]
     public partial class Static : global::Pulumi.CustomResource

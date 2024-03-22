@@ -30,6 +30,8 @@ import (
 	"github.com/pulumiverse/pulumi-time/provider/pkg/version"
 )
 
+//go:generate go run generate.go
+
 //go:embed cmd/pulumi-resource-time/bridge-metadata.json
 var bridgeMetadata []byte
 

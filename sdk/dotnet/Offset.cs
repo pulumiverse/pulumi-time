@@ -12,8 +12,10 @@ namespace Pulumiverse.Time
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Basic Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,8 +35,36 @@ namespace Pulumiverse.Time
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Multiple Offsets Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Time = Pulumiverse.Time;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Time.Offset("example", new()
+    ///     {
+    ///         OffsetYears = 1,
+    ///         OffsetMonths = 1,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["oneYearAndMonthFromNow"] = example.Rfc3339,
+    ///     };
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Triggers Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,16 +95,17 @@ namespace Pulumiverse.Time
     ///     // ... (other aws_instance arguments) ...
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+    /// $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
     /// ```
     /// 
-    ///  The `triggers` argument cannot be imported.
+    /// The `triggers` argument cannot be imported.
     /// </summary>
     [TimeResourceType("time:index/offset:Offset")]
     public partial class Offset : global::Pulumi.CustomResource
