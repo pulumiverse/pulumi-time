@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
@@ -17,11 +16,9 @@ import * as utilities from "./utilities";
  * const example = new time.Offset("example", {offsetDays: 7});
  * export const oneWeekFromNow = example.rfc3339;
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Multiple Offsets Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as time from "@pulumiverse/time";
@@ -32,11 +29,9 @@ import * as utilities from "./utilities";
  * });
  * export const oneYearAndMonthFromNow = example.rfc3339;
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Triggers Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -56,7 +51,6 @@ import * as utilities from "./utilities";
  * });
  * // ... (other aws_instance arguments) ...
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

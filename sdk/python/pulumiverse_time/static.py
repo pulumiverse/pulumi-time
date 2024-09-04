@@ -216,7 +216,6 @@ class Static(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -224,11 +223,9 @@ class Static(pulumi.CustomResource):
         example = time.Static("example")
         pulumi.export("currentTime", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -244,7 +241,6 @@ class Static(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -272,7 +268,6 @@ class Static(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -280,11 +275,9 @@ class Static(pulumi.CustomResource):
         example = time.Static("example")
         pulumi.export("currentTime", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -300,7 +293,6 @@ class Static(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

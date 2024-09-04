@@ -430,7 +430,6 @@ class Offset(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -438,11 +437,9 @@ class Offset(pulumi.CustomResource):
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Multiple Offsets Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -452,11 +449,9 @@ class Offset(pulumi.CustomResource):
             offset_months=1)
         pulumi.export("oneYearAndMonthFromNow", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -474,7 +469,6 @@ class Offset(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -508,7 +502,6 @@ class Offset(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -516,11 +509,9 @@ class Offset(pulumi.CustomResource):
         example = time.Offset("example", offset_days=7)
         pulumi.export("oneWeekFromNow", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Multiple Offsets Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
@@ -530,11 +521,9 @@ class Offset(pulumi.CustomResource):
             offset_months=1)
         pulumi.export("oneYearAndMonthFromNow", example.rfc3339)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -552,7 +541,6 @@ class Offset(pulumi.CustomResource):
             })
         # ... (other aws_instance arguments) ...
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

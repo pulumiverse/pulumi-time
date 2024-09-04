@@ -15,7 +15,6 @@ namespace Pulumiverse.Time
     /// 
     /// ### Delay Create Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,7 +32,7 @@ namespace Pulumiverse.Time
     ///         CreateDuration = "30s",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             previous,
     ///         },
@@ -44,7 +43,7 @@ namespace Pulumiverse.Time
     ///     {
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             wait30Seconds,
     ///         },
@@ -52,11 +51,9 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Delay Destroy Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -74,7 +71,7 @@ namespace Pulumiverse.Time
     ///         DestroyDuration = "30s",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             previous,
     ///         },
@@ -85,7 +82,7 @@ namespace Pulumiverse.Time
     ///     {
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             wait30Seconds,
     ///         },
@@ -93,11 +90,9 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Triggers Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -135,7 +130,6 @@ namespace Pulumiverse.Time
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -164,11 +158,6 @@ namespace Pulumiverse.Time
         [Output("createDuration")]
         public Output<string?> CreateDuration { get; private set; } = null!;
 
-        /// <summary>
-        /// [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        /// or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        /// successfully applied into the Terraform state before destroying this resource to take effect.
-        /// </summary>
         [Output("destroyDuration")]
         public Output<string?> DestroyDuration { get; private set; } = null!;
 
@@ -231,11 +220,6 @@ namespace Pulumiverse.Time
         [Input("createDuration")]
         public Input<string>? CreateDuration { get; set; }
 
-        /// <summary>
-        /// [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        /// or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        /// successfully applied into the Terraform state before destroying this resource to take effect.
-        /// </summary>
         [Input("destroyDuration")]
         public Input<string>? DestroyDuration { get; set; }
 
@@ -265,11 +249,6 @@ namespace Pulumiverse.Time
         [Input("createDuration")]
         public Input<string>? CreateDuration { get; set; }
 
-        /// <summary>
-        /// [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        /// or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        /// successfully applied into the Terraform state before destroying this resource to take effect.
-        /// </summary>
         [Input("destroyDuration")]
         public Input<string>? DestroyDuration { get; set; }
 

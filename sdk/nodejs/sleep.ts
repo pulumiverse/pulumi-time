@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ### Delay Create Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
@@ -25,11 +24,9 @@ import * as utilities from "./utilities";
  *     dependsOn: [wait30Seconds],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Delay Destroy Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
@@ -45,11 +42,9 @@ import * as utilities from "./utilities";
  *     dependsOn: [wait30Seconds],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Triggers Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -70,7 +65,6 @@ import * as utilities from "./utilities";
  * });
  * const exampleSubnetGroup = new aws.rds.SubnetGroup("exampleSubnetGroup", {subnetIds: [ramResourcePropagation.triggers.apply(triggers => triggers?.subnet_id)]});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -122,11 +116,6 @@ export class Sleep extends pulumi.CustomResource {
      * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
      */
     public readonly createDuration!: pulumi.Output<string | undefined>;
-    /**
-     * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-     * or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-     * successfully applied into the Terraform state before destroying this resource to take effect.
-     */
     public readonly destroyDuration!: pulumi.Output<string | undefined>;
     /**
      * (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
@@ -168,11 +157,6 @@ export interface SleepState {
      * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
      */
     createDuration?: pulumi.Input<string>;
-    /**
-     * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-     * or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-     * successfully applied into the Terraform state before destroying this resource to take effect.
-     */
     destroyDuration?: pulumi.Input<string>;
     /**
      * (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
@@ -188,11 +172,6 @@ export interface SleepArgs {
      * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
      */
     createDuration?: pulumi.Input<string>;
-    /**
-     * [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-     * or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-     * successfully applied into the Terraform state before destroying this resource to take effect.
-     */
     destroyDuration?: pulumi.Input<string>;
     /**
      * (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
