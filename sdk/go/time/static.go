@@ -15,7 +15,6 @@ import (
 //
 // ### Basic Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,11 +37,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Triggers Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,9 +62,9 @@ import (
 //				return err
 //			}
 //			_, err = ec2.NewInstance(ctx, "server", &ec2.InstanceArgs{
-//				Ami: amiUpdate.Triggers.ApplyT(func(triggers interface{}) (*string, error) {
+//				Ami: pulumi.String(amiUpdate.Triggers.ApplyT(func(triggers map[string]string) (*string, error) {
 //					return &triggers.AmiId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //				Tags: pulumi.StringMap{
 //					"AmiUpdateTime": amiUpdate.Rfc3339,
 //				},
@@ -80,7 +77,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

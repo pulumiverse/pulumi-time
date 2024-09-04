@@ -20,9 +20,6 @@ class SleepArgs:
         """
         The set of arguments for constructing a Sleep resource.
         :param pulumi.Input[str] create_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
-        :param pulumi.Input[str] destroy_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-               or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-               successfully applied into the Terraform state before destroying this resource to take effect.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
         """
         if create_duration is not None:
@@ -47,11 +44,6 @@ class SleepArgs:
     @property
     @pulumi.getter(name="destroyDuration")
     def destroy_duration(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        successfully applied into the Terraform state before destroying this resource to take effect.
-        """
         return pulumi.get(self, "destroy_duration")
 
     @destroy_duration.setter
@@ -80,9 +72,6 @@ class _SleepState:
         """
         Input properties used for looking up and filtering Sleep resources.
         :param pulumi.Input[str] create_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
-        :param pulumi.Input[str] destroy_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-               or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-               successfully applied into the Terraform state before destroying this resource to take effect.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
         """
         if create_duration is not None:
@@ -107,11 +96,6 @@ class _SleepState:
     @property
     @pulumi.getter(name="destroyDuration")
     def destroy_duration(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        successfully applied into the Terraform state before destroying this resource to take effect.
-        """
         return pulumi.get(self, "destroy_duration")
 
     @destroy_duration.setter
@@ -145,7 +129,6 @@ class Sleep(pulumi.CustomResource):
 
         ### Delay Create Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -154,15 +137,13 @@ class Sleep(pulumi.CustomResource):
         # This resource will destroy (potentially immediately) after null_resource.next
         previous = null.Resource("previous")
         wait30_seconds = time.Sleep("wait30Seconds", create_duration="30s",
-        opts=pulumi.ResourceOptions(depends_on=[previous]))
+        opts = pulumi.ResourceOptions(depends_on=[previous]))
         # This resource will create (at least) 30 seconds after null_resource.previous
-        next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
+        next = null.Resource("next", opts = pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Delay Destroy Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -171,15 +152,13 @@ class Sleep(pulumi.CustomResource):
         # This resource will destroy (at least) 30 seconds after null_resource.next
         previous = null.Resource("previous")
         wait30_seconds = time.Sleep("wait30Seconds", destroy_duration="30s",
-        opts=pulumi.ResourceOptions(depends_on=[previous]))
+        opts = pulumi.ResourceOptions(depends_on=[previous]))
         # This resource will create (potentially immediately) after null_resource.previous
-        next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
+        next = null.Resource("next", opts = pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -198,7 +177,6 @@ class Sleep(pulumi.CustomResource):
             })
         example_subnet_group = aws.rds.SubnetGroup("exampleSubnetGroup", subnet_ids=[ram_resource_propagation.triggers["subnet_id"]])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -221,9 +199,6 @@ class Sleep(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
-        :param pulumi.Input[str] destroy_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-               or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-               successfully applied into the Terraform state before destroying this resource to take effect.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
         """
         ...
@@ -237,7 +212,6 @@ class Sleep(pulumi.CustomResource):
 
         ### Delay Create Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -246,15 +220,13 @@ class Sleep(pulumi.CustomResource):
         # This resource will destroy (potentially immediately) after null_resource.next
         previous = null.Resource("previous")
         wait30_seconds = time.Sleep("wait30Seconds", create_duration="30s",
-        opts=pulumi.ResourceOptions(depends_on=[previous]))
+        opts = pulumi.ResourceOptions(depends_on=[previous]))
         # This resource will create (at least) 30 seconds after null_resource.previous
-        next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
+        next = null.Resource("next", opts = pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Delay Destroy Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_null as null
@@ -263,15 +235,13 @@ class Sleep(pulumi.CustomResource):
         # This resource will destroy (at least) 30 seconds after null_resource.next
         previous = null.Resource("previous")
         wait30_seconds = time.Sleep("wait30Seconds", destroy_duration="30s",
-        opts=pulumi.ResourceOptions(depends_on=[previous]))
+        opts = pulumi.ResourceOptions(depends_on=[previous]))
         # This resource will create (potentially immediately) after null_resource.previous
-        next = null.Resource("next", opts=pulumi.ResourceOptions(depends_on=[wait30_seconds]))
+        next = null.Resource("next", opts = pulumi.ResourceOptions(depends_on=[wait30_seconds]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Triggers Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -290,7 +260,6 @@ class Sleep(pulumi.CustomResource):
             })
         example_subnet_group = aws.rds.SubnetGroup("exampleSubnetGroup", subnet_ids=[ram_resource_propagation.triggers["subnet_id"]])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -361,9 +330,6 @@ class Sleep(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource creation. For example, `30s` for 30 seconds or `5m` for 5 minutes. Updating this value by itself will not trigger a delay.
-        :param pulumi.Input[str] destroy_duration: [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-               or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-               successfully applied into the Terraform state before destroying this resource to take effect.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] triggers: (Optional) Arbitrary map of values that, when changed, will run any creation or destroy delays again. See the main provider documentation for more information.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -386,11 +352,6 @@ class Sleep(pulumi.CustomResource):
     @property
     @pulumi.getter(name="destroyDuration")
     def destroy_duration(self) -> pulumi.Output[Optional[str]]:
-        """
-        [Time duration](https://golang.org/pkg/time/#ParseDuration) to delay resource destroy. For example, `30s` for 30 seconds
-        or `5m` for 5 minutes. Updating this value by itself will not trigger a delay. This value or any updates to it must be
-        successfully applied into the Terraform state before destroying this resource to take effect.
-        """
         return pulumi.get(self, "destroy_duration")
 
     @property

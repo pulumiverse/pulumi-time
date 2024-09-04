@@ -414,14 +414,12 @@ class Rotating(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
 
         example = time.Rotating("example", rotation_days=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -461,14 +459,12 @@ class Rotating(pulumi.CustomResource):
 
         ### Basic Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_time as time
 
         example = time.Rotating("example", rotation_days=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
