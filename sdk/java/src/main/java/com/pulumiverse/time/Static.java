@@ -18,7 +18,10 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
  * ### Basic Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -45,7 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Triggers Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -69,28 +76,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var amiUpdate = new Static(&#34;amiUpdate&#34;, StaticArgs.builder()        
+ *         var amiUpdate = new Static(&#34;amiUpdate&#34;, StaticArgs.builder()
  *             .triggers(Map.of(&#34;ami_id&#34;, data.aws_ami().example().id()))
  *             .build());
  * 
- *         var server = new Instance(&#34;server&#34;, InstanceArgs.builder()        
+ *         var server = new Instance(&#34;server&#34;, InstanceArgs.builder()
  *             .ami(amiUpdate.triggers().applyValue(triggers -&gt; triggers.amiId()))
  *             .tags(Map.of(&#34;AmiUpdateTime&#34;, amiUpdate.rfc3339()))
  *             .build());
  * 
+ *         // ... (other aws_instance arguments) ...
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource can be imported using the UTC RFC3339 value, e.g.
  * 
  * ```sh
- *  $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
+ * $ pulumi import time:index/static:Static example 2020-02-12T06:36:13Z
  * ```
  * 
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  * 
  */
 @ResourceType(type="time:index/static:Static")
