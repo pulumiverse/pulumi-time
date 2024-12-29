@@ -18,7 +18,10 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
  * ### Basic Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -40,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Offset(&#34;example&#34;, OffsetArgs.builder()        
+ *         var example = new Offset(&#34;example&#34;, OffsetArgs.builder()
  *             .offsetDays(7)
  *             .build());
  * 
@@ -48,7 +51,46 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Multiple Offsets Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.time.Offset;
+ * import com.pulumi.time.OffsetArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Offset(&#34;example&#34;, OffsetArgs.builder()
+ *             .offsetYears(1)
+ *             .offsetMonths(1)
+ *             .build());
+ * 
+ *         ctx.export(&#34;oneYearAndMonthFromNow&#34;, example.rfc3339());
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Triggers Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -72,29 +114,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var amiUpdate = new Offset(&#34;amiUpdate&#34;, OffsetArgs.builder()        
+ *         var amiUpdate = new Offset(&#34;amiUpdate&#34;, OffsetArgs.builder()
  *             .triggers(Map.of(&#34;ami_id&#34;, data.aws_ami().example().id()))
  *             .offsetDays(7)
  *             .build());
  * 
- *         var server = new Instance(&#34;server&#34;, InstanceArgs.builder()        
+ *         var server = new Instance(&#34;server&#34;, InstanceArgs.builder()
  *             .ami(amiUpdate.triggers().applyValue(triggers -&gt; triggers.amiId()))
  *             .tags(Map.of(&#34;ExpirationTime&#34;, amiUpdate.rfc3339()))
  *             .build());
  * 
+ *         // ... (other aws_instance arguments) ...
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource can be imported using the base UTC RFC3339 timestamp and offset years, months, days, hours, minutes, and seconds, separated by commas (`,`), e.g.
  * 
  * ```sh
- *  $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
+ * $ pulumi import time:index/offset:Offset example 2020-02-12T06:36:13Z,0,0,7,0,0,0
  * ```
  * 
- *  The `triggers` argument cannot be imported.
+ * The `triggers` argument cannot be imported.
  * 
  */
 @ResourceType(type="time:index/offset:Offset")
